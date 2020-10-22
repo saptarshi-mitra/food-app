@@ -1,1 +1,23 @@
-<p>search-result works!</p>
+<div class="container">
+    <h3 class="mb-3">Seach results for {{ query }}</h3>
+    <div class="card mb-3" *ngFor="let recipe of recipes">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="{{recipe.image}}" class="card-img" alt="{{recipe.title}}">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><a [routerLink]="['/details', recipe.id]">{{ recipe.title }}</a></h5><!--<span class="text-right" [ngClass]="{'veg': recipe.vegetarian, 'non-veg': !recipe.vegetarian}"></span>-->
+            Health Score
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="recipe.healthScore + '%'" aria-valuenow="{{ recipe.healthScore }}" aria-valuemin="0" aria-valuemax="100">{{ recipe.healthScore }}%</div>
+            </div>
+            <div>Time required to cook: {{ recipe.readyInMinutes }}</div>
+            <div>Servings: {{ recipe.servings }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- <pre>{{ recipes | json }}</pre>  recipe.healthScore -->
