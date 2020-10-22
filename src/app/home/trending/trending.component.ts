@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FoodService } from 'src/app/common/services/food.service';
 
 @Component({
   selector: 'app-trending',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrendingComponent implements OnInit {
 
-  constructor() { }
+  trending;
+  constructor(private foodService: FoodService) { }
 
   ngOnInit(): void {
+    this.foodService.getRandomRecipe().subscribe(data => this.trending = data.recipes);
   }
 
 }
