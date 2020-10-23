@@ -8,8 +8,10 @@ import { SearchComponent } from './home/search/search.component';
 import { TrendingComponent } from './home/trending/trending.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { DetailsComponent } from './details/details.component';
+
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -23,8 +25,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
