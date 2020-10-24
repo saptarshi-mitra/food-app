@@ -11,6 +11,8 @@ import { DetailsComponent } from './details/details.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -20,13 +22,15 @@ import { FormsModule } from '@angular/forms';
     SearchComponent,
     TrendingComponent,
     SearchResultComponent,
-    DetailsComponent
+    DetailsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
