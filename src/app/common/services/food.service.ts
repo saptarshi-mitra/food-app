@@ -17,8 +17,9 @@ export class FoodService {
 
   key_sumon = "51bcd51d265942b083eff5936d4e2ddb";
 
-  getRandomRecipe(){
-    return this._http.get<any>(` https://api.spoonacular.com/recipes/random?number=10&apiKey=${this.key_sumon}`)
+
+  getRandomRecipe(count){
+    return this._http.get<any>(` https://api.spoonacular.com/recipes/random?number=${count}&apiKey=${this.key_sumon}`)
   }
 
 }
