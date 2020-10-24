@@ -11,11 +11,12 @@ export class FoodService {
   constructor(private _http: HttpClient) { }
 
   getSearchResult(query){
-    return this._http.get(`https://api.spoonacular.com/recipes/complexSearch?query=${query}&addRecipeNutrition=true&number=2&apiKey=${this._apikey}`)
+    return this._http.get(`https://api.spoonacular.com/recipes/complexSearch?query=${query}&addRecipeNutrition=true&number=10&apiKey=${this._apikey}`)
   }
 
 
   key_sumon = "51bcd51d265942b083eff5936d4e2ddb";
+
 
   getRandomRecipe(count){
     return this._http.get<any>(` https://api.spoonacular.com/recipes/random?number=${count}&apiKey=${this.key_sumon}`)
