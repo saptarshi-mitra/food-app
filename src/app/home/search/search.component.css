@@ -1,0 +1,11 @@
+.home-head{
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(../../common/images/test_image.jpg);
+    min-height: 100vh;
+    background-size: cover;
+}
+
+.input-tag{
+    font-size: 80px;
+    font-weight: 200;
+    color: white;
+}

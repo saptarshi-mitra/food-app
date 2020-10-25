@@ -1,0 +1,56 @@
+<div class="container results">
+  <h3 class="mb-3">Seach results for {{ query }}</h3>
+  <div class="card mb-3" *ngFor="let recipe of recipes | paginate: config">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="{{recipe.image}}" class="card-img" alt="{{recipe.title}}">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a [routerLink]="['/details', recipe.id]">{{ recipe.title }}</a>
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="ml-3 bi bi-circle-fill" [ngClass]="{'veg': recipe.vegetarian, 'non-veg': !recipe.vegetarian}" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="8" cy="8" r="8"/>
+            </svg>
+          </h5>            
+          Health Score
+          <div class="progress">
+              <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="recipe.healthScore + '%'" aria-valuenow="{{ recipe.healthScore }}" aria-valuemin="0" aria-valuemax="100">{{ recipe.healthScore }}%</div>
+          </div>
+          <div>Time required to cook: {{ recipe.readyInMinutes }} min</div>
+          <div class="Serving">Servings: 
+            <span *ngFor="let serving of [].constructor(recipe.servings);">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+              </svg>
+            </span>
+            <div class="weight-per-serving">Weight per serving: {{ recipe.nutrition.weightPerServing.amount }} {{ recipe.nutrition.weightPerServing.unit }}</div>
+          </div>
+          <div class="breakdown mt-2">
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" [style.width]="recipe.nutrition.caloricBreakdown.percentCarbs + '%'" aria-valuenow="{{ recipe.nutrition.caloricBreakdown.percentCarbs }}" aria-valuemin="0" aria-valuemax="100">{{ recipe.nutrition.caloricBreakdown.percentCarbs }}%</div>
+              <div class="progress-bar bg-warning" role="progressbar" [style.width]="recipe.nutrition.caloricBreakdown.percentProtein + '%'" aria-valuenow="{{ recipe.nutrition.caloricBreakdown.percentProtein }}" aria-valuemin="0" aria-valuemax="100">{{ recipe.nutrition.caloricBreakdown.percentProtein }}%</div>
+              <div class="progress-bar bg-danger" role="progressbar" [style.width]="recipe.nutrition.caloricBreakdown.percentFat + '%'" aria-valuenow="{{ recipe.nutrition.caloricBreakdown.percentFat }}" aria-valuemin="0" aria-valuemax="100">{{ recipe.nutrition.caloricBreakdown.percentFat }}%</div>
+            </div>
+            <div class="text-right mt-4">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="ml-3 bi bi-circle-fill text-primary mr-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="8" cy="8" r="8"/>
+              </svg>Carbohydrate
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="ml-3 bi bi-circle-fill text-warning mr-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="8" cy="8" r="8"/>
+              </svg>Protein
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="ml-3 bi bi-circle-fill text-danger mr-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="8" cy="8" r="8"/>
+              </svg>Fat
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center">
+    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+  </div>
+</div>
+
+<!-- <pre>{{ recipes | json }}</pre>  recipe.healthScore -->

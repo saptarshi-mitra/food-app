@@ -1,0 +1,9 @@
+<div class="home-head  d-flex flex-column justify-content-center align-items-center">
+    <h1 class="input-tag mb-5 text-center">Want to learn some new recipes,<br> just search them</h1>
+    <div class="input-group mb-3 container">
+        <input type="text" class="form-control" placeholder="Enter the dish you want to make today" [(ngModel)]="recipe">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="button" id="button-addon2" [routerLink]="['/search', recipe]">Search</button>
+        </div>
+    </div>
+</div>
