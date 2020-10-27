@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FooterComponent } from './footer/footer.component';
+import { FilterCuisinePipe } from './common/pipe/filter-cuisine.pipe';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { FooterComponent } from './footer/footer.component';
     TrendingComponent,
     SearchResultComponent,
     DetailsComponent,
-    FooterComponent
+    FooterComponent,
+    FilterCuisinePipe
   ],
   imports: [
     BrowserModule,
