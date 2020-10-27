@@ -8,6 +8,8 @@ export class FoodService {
 
 
   private _apikey = '3b29c5052f9d4e76b262a81071255ec7' //saptarshi key
+  url = "https://api.spoonacular.com/recipes/informationBulk?ids=";
+
   constructor(private _http: HttpClient) { }
 
   getSearchResult(query){
@@ -22,5 +24,8 @@ export class FoodService {
     return this._http.get<any>(` https://api.spoonacular.com/recipes/random?number=${count}&apiKey=${this.key_sumon}`)
   }
 
+  getData(id){
+    return this._http.get(`${this.url}${id}&apiKey=${this._apikey}&includeNutrition=true`);
+  }
 }
 
