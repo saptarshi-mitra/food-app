@@ -11,25 +11,27 @@ import { map,filter } from 'rxjs/operators'
 })
 export class DetailsComponent implements OnInit {
 
+  serving;
+  name;
   id: number;
   recipe: any;
   healthScore: number;
   ingredients=[];
   nutrition=[];
-  similiar: any=[];
+  substitute: any;
+  view: boolean = false;
   @Input() imgUrl=[];
   wineText: string;
   @Input() link: string;
   instructions: string;
   @Input() image: string;
-  @Input() img: string;
   @Input() limit=[];
   @Input() includeMore=[];
-  url: string =``;
   show: boolean = false;
   showText: string ="Show Complete Breakdown of Nutritional Information";
   
-  constructor(private data:FoodService,private route:ActivatedRoute) { }
+  constructor(private data:FoodService,private route:ActivatedRoute) { 
+  }
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id');
@@ -38,7 +40,6 @@ export class DetailsComponent implements OnInit {
       console.log(this.recipe);
       this.image = response[0].image;
       this.wineText = this.recipe[0].winePairing.pairingText;
-      console.log(this.wineText);
       this.ingredients = this.recipe[0].extendedIngredients;
       this.ingredients.forEach(item =>{
         this.imgUrl.push("https://spoonacular.com/cdn/ingredients_100x100/"+item.image);
@@ -55,5 +56,14 @@ export class DetailsComponent implements OnInit {
   showLimit(){
     this.show = !this.show;
     this.show ? this.showText="Hide" : this.showText="Show Complete Breakdown of Nutritional Information";
+  }
+
+  alternate(value){
+    this.view = true;
+    this.data.getIngredientAlternate(value).subscribe(response =>{
+      this.substitute = response;
+      console.log(this.substitute)
+    });
+    
   }
 }

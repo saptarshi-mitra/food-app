@@ -30,5 +30,8 @@ export class FoodService {
   getData(id){
     return this._http.get(`${this.url}${id}&apiKey=${this.apiKey}&includeNutrition=true`);
   }
+  getIngredientAlternate(value){
+    return this._http.get(`https://api.spoonacular.com/food/ingredients/substitutes?ingredientName=${value}&apiKey=${this.apiKey}`);
+  }
 }
 
