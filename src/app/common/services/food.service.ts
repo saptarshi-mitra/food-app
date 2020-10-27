@@ -24,8 +24,11 @@ export class FoodService {
     return this._http.get<any>(` https://api.spoonacular.com/recipes/random?number=${count}&apiKey=${this.key_sumon}`)
   }
 
+  apiKey="25afd5eaa4f846c1a19e7f8a627a5751";
+  api="772ea3f410aa4c8ea2fcf9f44746bbae";
+
   getData(id){
-    return this._http.get(`${this.url}${id}&apiKey=${this._apikey}&includeNutrition=true`);
+    return this._http.get(`${this.url}${id}&apiKey=${this.apiKey}&includeNutrition=true`);
   }
 }
 

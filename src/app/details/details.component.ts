@@ -16,21 +16,22 @@ export class DetailsComponent implements OnInit {
   healthScore: number;
   ingredients=[];
   nutrition=[];
+  similiar: any=[];
   @Input() imgUrl=[];
   wineText: string;
   @Input() link: string;
   instructions: string;
   @Input() image: string;
+  @Input() img: string;
   @Input() limit=[];
   @Input() includeMore=[];
-
+  url: string =``;
   show: boolean = false;
   showText: string ="Show Complete Breakdown of Nutritional Information";
   
   constructor(private data:FoodService,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log(this.route)
     this.id = +this.route.snapshot.paramMap.get('id');
     this.data.getData(this.id).subscribe(response =>{
       this.recipe= response;

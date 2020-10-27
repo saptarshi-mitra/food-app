@@ -1,4 +1,4 @@
-<div class="container my-2">
+<div class="container pt-3 mt-5">
     <h3 class="my-3 p-2 display-4"
         style="background-color: white;border: solid;border-image: linear-gradient( black, white,black) 1">
         {{ recipe[0].title }}</h3>
@@ -7,7 +7,7 @@
             <img src="{{ image }}" class="rounded mx-auto d-block" style="border: solid thin;">
         </div>
         <div class="row"
-            style="text-align: center;margin-top: 38px;border: solid;border-image: linear-gradient(to right,gold,red) 1;">
+            style="text-align: center;margin-top: 38px;background-color: white;border: solid;border-image: linear-gradient( black, white,black) 1">
             <div class="col-md-3 pt-3">
                 <svg width="3rem" height="3rem" viewBox="0 0 16 16" class="bi bi-cash-stack" fill="currentColor"
                     xmlns="http://www.w3.org/2000/svg" style="color: green;">
@@ -77,13 +77,13 @@
                 </tbody>
             </table>
         </div>
-        <div class="instructions my-5" *ngIf="(instructions!='')">
+        <div class="instructions my-5" style="background-color: lightgrey;" *ngIf="(instructions!='')">
             <h4 class="display-4 p-2" style="background-image: linear-gradient(to right,gold,red)">Instructions</h4>
-            <p class="p-4">{{instructions }}</p>
+            <p class="p-4"><span [outerHTML]="instructions"></span></p>
         </div>
         <div class="nutrition-info" *ngIf="nutrition.length>0">
             <h4 class="display-4 p-2">Nutritional Information</h4>
-            <h5><b>QuickView</b></h5>
+            <h5 class="mx-3"><b>QuickView</b></h5>
             <ul class="p-4" style="list-style: none;display: inline-flex;">
                 <li class="mx-2 p-2" style="border: solid thin;" *ngFor="let n of nutrition">
                     <strong>{{n.amount}}{{n.unit}}</strong> {{ n.title }}</li>
@@ -127,5 +127,4 @@
         </div>
 
     </div>
-
 </div>
