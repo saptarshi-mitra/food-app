@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,9 +9,8 @@ import { SearchComponent } from './home/search/search.component';
 import { TrendingComponent } from './home/trending/trending.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { DetailsComponent } from './details/details.component';
-
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FooterComponent } from './footer/footer.component';
 import { FilterCuisinePipe } from './common/pipe/filter-cuisine.pipe';
