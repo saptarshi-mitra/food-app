@@ -9,3 +9,7 @@
     font-weight: 200;
     color: white;
 }
+
+.suggest{
+    cursor: pointer;
+}

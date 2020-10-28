@@ -14,6 +14,10 @@ import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FooterComponent } from './footer/footer.component';
 import { FilterCuisinePipe } from './common/pipe/filter-cuisine.pipe';
+import { FilterVegPipe } from './common/pipe/filter-veg.pipe';
+import { PriceFilterPipe } from './common/pipe/price-filter.pipe';
+import { FilterGlutenPipe } from './common/pipe/filter-gluten.pipe';
+import { FilterDiaryProductsPipe } from './common/pipe/filter-diary-products.pipe';
 
 
 @NgModule({
@@ -25,7 +29,11 @@ import { FilterCuisinePipe } from './common/pipe/filter-cuisine.pipe';
     SearchResultComponent,
     DetailsComponent,
     FooterComponent,
-    FilterCuisinePipe
+    FilterCuisinePipe,
+    FilterVegPipe,
+    PriceFilterPipe,
+    FilterGlutenPipe,
+    FilterDiaryProductsPipe
   ],
   imports: [
     BrowserModule,
