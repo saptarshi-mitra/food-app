@@ -12,7 +12,11 @@ export class TrendingComponent implements OnInit {
   constructor(private foodService: FoodService) { }
 
   ngOnInit(): void {
-    this.foodService.getRandomRecipe(8).subscribe(data => this.trending = data.recipes);
+    this.foodService.getRandomRecipe(8).subscribe(data => {
+      this.trending = data.recipes
+      console.log(data.recipes)
+    }
+    );
   }
 
 }
