@@ -1,0 +1,28 @@
+#bg-img{
+    background-image: url(../common/images/pizza.jpg);
+    min-height: 100vh;
+    width: auto;
+    background-size: cover;
+}
+.text{
+    color: white;
+    padding-top:400px ;
+}
+.img-1{
+    background-image: url(../common/images/chef.jpg);
+    min-height: 60vh;
+    min-width: 60vh;
+    background-size: cover;
+}
+.img-2{
+    background-image: url(../common/images/cookbook-general.jpg);
+    min-height: 60vh;
+    min-width: 60vh;
+    background-size: cover;
+}
+.img-3{
+    background-image: url(../common/images/grocery.jpg);
+    min-height: 60vh;
+    min-width: 60vh;
+    background-size: cover;
+}

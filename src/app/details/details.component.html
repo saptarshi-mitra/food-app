@@ -1,4 +1,4 @@
-<div class="container my-2">
+<div class="container pt-3 mt-5" style="background-image: linear-gradient(to bottom right,lightblue,lightcoral);">
     <h3 class="my-3 p-2 display-4"
         style="background-color: white;border: solid;border-image: linear-gradient( black, white,black) 1">
         {{ recipe[0].title }}</h3>
@@ -7,7 +7,7 @@
             <img src="{{ image }}" class="rounded mx-auto d-block" style="border: solid thin;">
         </div>
         <div class="row"
-            style="text-align: center;margin-top: 38px;border: solid;border-image: linear-gradient(to right,gold,red) 1;">
+            style="text-align: center;margin-top: 38px;background-color: white;border: solid;border-image: linear-gradient( black, white,black) 1">
             <div class="col-md-3 pt-3">
                 <svg width="3rem" height="3rem" viewBox="0 0 16 16" class="bi bi-cash-stack" fill="currentColor"
                     xmlns="http://www.w3.org/2000/svg" style="color: green;">
@@ -57,33 +57,50 @@
         </div>
         <div class="ingredients my-5" *ngIf="ingredients.length>0">
             <h4 class="display-4 p-2" style="background-image: linear-gradient(to right,gold,red)">Ingredients</h4>
-            <div class="row my-4" *ngIf="imgUrl.length>0">
+            <div class="row py-3 my-4" style="background-color:white;" *ngIf="imgUrl.length>0">
                 <div class="col-md-2 mx-auto" *ngFor="let img of imgUrl">
                     <img src="{{ img }}">
                 </div>
             </div>
+            <div class="alternate my-3">
+                <h5>Short of ingredients? Find alternatives!</h5>
+                <input type="text" class="form-control" placeholder="Enter Ingredient" (keyup.enter)="alternate($event.target.value)">
+                <div class="output" *ngIf="view">
+                    <div class="success my-3">
+                        <div class="card" style="width: 30rem;" *ngIf="substitute.status==='success'">
+                            <div class="card-header bg-dark" style="color: white;">{{substitute.message}}</div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item" *ngFor="let sub of substitute.substitutes">{{ sub }}</li>
+                            </ul>
+                        </div>
+                        <div class="alert alert-primary" *ngIf="substitute.status==='failure'">No substitute found.</div>
+                    </div>
+                </div>
+            </div>
+            <h5>Find Ingredients accordingly to {{ recipe[0].servings }} serving</h5>
             <table class="table table-dark">
                 <thead>
                     <tr>
                         <th scope="col">Ingredients</th>
-                        <th scope="col">Amount</th>
+                        <th scope="col">Amount <button class="btn btn-small btn-secondary mx-3" (click)="measure()">{{buttonText}}</button></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let i of ingredients">
                         <td>{{ i.name | uppercase }}</td>
                         <td>{{ i.amount}} {{ i.unit }}</td>
+                        <td *ngIf="switch">{{i.measures.metric.amount}} {{i.measures.metric.unitShort}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div class="instructions my-5" *ngIf="(instructions!='')">
+        <div class="instructions my-5" style="background-color: lightgrey;" *ngIf="(instructions!='')">
             <h4 class="display-4 p-2" style="background-image: linear-gradient(to right,gold,red)">Instructions</h4>
-            <p class="p-4">{{instructions }}</p>
+            <p class="p-4"><span [outerHTML]="instructions"></span></p>
         </div>
         <div class="nutrition-info" *ngIf="nutrition.length>0">
             <h4 class="display-4 p-2">Nutritional Information</h4>
-            <h5><b>QuickView</b></h5>
+            <h5 class="mx-3"><b>QuickView</b></h5>
             <ul class="p-4" style="list-style: none;display: inline-flex;">
                 <li class="mx-2 p-2" style="border: solid thin;" *ngFor="let n of nutrition">
                     <strong>{{n.amount}}{{n.unit}}</strong> {{ n.title }}</li>
@@ -125,7 +142,77 @@
                 </div>
             </div>
         </div>
-
     </div>
-
+    <div class="extra my-3">
+        <button class="btn mx-2" style="background-image: linear-gradient(to top right,darkblue,black);color: white;" (click)="showCard()">Generate Recipe Card</button>
+        <form [formGroup]="form" (ngSubmit)="submit()" *ngIf="showCardBool">
+            <div class="form-group">
+                <input type="text"
+                formControlName="title"
+                class="form-control"
+                placeholder="Enter Title"
+                id="title"
+                name="title">
+            </div>
+            <div class="form-group">
+                <input type="file"
+                formControlName="img"
+                class="form-control"
+                placeholder="Choose File"
+                id="img"
+                name="img">
+            </div>
+            <div class="form-group">
+                <input type="text"
+                formControlName="ingredient"
+                class="form-control"
+                placeholder="Enter ingredients"
+                id="ingredient"
+                name="ingredient">
+            </div>
+            <div class="form-group">
+                <input type="text"
+                formControlName="instruction"
+                class="form-control"
+                placeholder="Enter Instructions"
+                id="instruction"
+                name="instruction">
+            </div>
+            <div class="form-group">
+                <input type="number"
+                formControlName="readyInMinutes"
+                class="form-control"
+                placeholder="Enter readyInMinutes"
+                id="readyInMinutes"
+                name="readyInMinutes">
+            </div>
+            <div class="form-group">
+                <input type="number"
+                formControlName="servings"
+                class="form-control"
+                placeholder="Enter servings"
+                id="servings"
+                name="servings">
+            </div>
+            <div class="form-group">
+                <input type="text"
+                formControlName="mask"
+                class="form-control"
+                placeholder="Enter mask"
+                id="mask"
+                name="mask">
+            </div>
+            <div class="form-group">
+                <input type="text"
+                formControlName="backgroundImage"
+                class="form-control"
+                placeholder="Enter backgroundImage"
+                id="backgroundImage"
+                name="backgroundImage">
+            </div>
+            <button class="btn btn-primary" (click)="submit()">Click</button>
+        </form>
+        <a href="{{url}}">{{url}}</a>
+    </div>
 </div>
+
