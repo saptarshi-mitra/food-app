@@ -28,10 +28,13 @@ export class FoodService {
   api="772ea3f410aa4c8ea2fcf9f44746bbae";
 
   getData(id){
-    return this._http.get(`${this.url}${id}&apiKey=${this.apiKey}&includeNutrition=true`);
+    return this._http.get(`${this.url}${id}&apiKey=${this.api}&includeNutrition=true`);
   }
   getIngredientAlternate(value){
-    return this._http.get(`https://api.spoonacular.com/food/ingredients/substitutes?ingredientName=${value}&apiKey=${this.apiKey}`);
+    return this._http.get(`https://api.spoonacular.com/food/ingredients/substitutes?ingredientName=${value}&apiKey=${this.api}`);
+  }
+  getRecipeCard(value: any){
+    return this._http.post(`https://api.spoonacular.com/recipes/visualizeRecipe&apiKey=${this.api}`,{title:'value["title"]',image:'value["img"]',ingredients:'value["ingredient"]',instructions:'value["instruction"]',readyInMinutes:'value["readyInMinutes"]',servings:'value["servings"]',mask:'value["mask"]',backgroundImage:'value["backgroundImage"]'});
   }
 }
 

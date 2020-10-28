@@ -1,1 +1,64 @@
-<p class="my-5">about works!</p>
+<div class="container-fluid my-5" id="bg-img">
+    <div class="text pl-3">
+        <h4>Our Mission</h4>
+        <h3 class="display-4">Shaping the Future of Food</h3>
+    </div>
+</div>
+<div class="container mx-auto">
+    <h4 class="display-4">Our goal is to change what you eat</h4>
+    <p class="pl-2">Changing how you eat is just a means to an end.</p>
+    <div class="d-flex m-5" >
+        <div class="img-1"></div>
+        <h2 style="background-image: linear-gradient(to bottom right,white,yellow);" class="my-5 pt-5 mx-4">Focussing on <span style="color: red;font-weight: 500;">Ease</span></h2>
+    </div>
+    <div class="d-flex m-5" style="background-image: linear-gradient(to bottom right, silver,green);">
+        <div class="content d-flex" style="padding-left: 20%;">
+            <div class="text">
+                <h2 class="mx-4">Who are <span style="color: red;">we?</span></h2>
+                <p>We are the three musketeers! Each one of us from different regions have come together to create this site and bring our native foods to the table!</p>
+            </div>
+            <div class="img-2"></div>
+        </div>  
+    </div> 
+    <div class="d-flex m-4">
+        <div class="img-3"></div>
+        <h2 class="my-5 pt-5 mx-4">Our <span style="color: red;">Values</span></h2>
+        <div class="row" style="font-weight: 550;">
+            <div class="col-md-4">
+                <div class="card" style="background-image: linear-gradient(to top,silver,rgba(255, 0, 0, 0.685));">
+                    <div class="card-body">
+                      <h5 class="card-title">Resilience</h5>
+                      <p class="card-text">We push ourselves beyond our abilities when faced with tough times. When we foresee uncertainty, we address it only with flexibility.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card" style="background-image: linear-gradient(to top,silver,rgba(0, 0, 255, 0.692));">
+                    <div class="card-body">
+                      <h5 class="card-title">Acceptance</h5>
+                      <p class="card-text">Feedback is never taken personally, we break it into positive pieces and strive to work on each and every element even more effectively</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card" style="background-image: linear-gradient(to top,silver,rgba(255, 217, 0, 0.699));">
+                    <div class="card-body">
+                      <h5 class="card-title">Ownership</h5>
+                      <p class="card-text">People here don’t work ‘for’ Zomato, they work ‘with’ Zomato. We treat every problem as our own, take accountability and drive the change.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="author my-5">
+        <h4 class="display-4">People you get to collab with!</h4>
+        <div class="card-group my-5">
+            <div class="card" *ngFor="let name of names">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{name}}</h5>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
