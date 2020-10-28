@@ -9,3 +9,7 @@
 .non-veg{
     color: brown;
 }
+
+.sort-prop{
+    cursor: pointer;
+}
