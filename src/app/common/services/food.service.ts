@@ -33,18 +33,5 @@ export class FoodService {
   getIngredientAlternate(value){
     return this._http.get(`https://api.spoonacular.com/food/ingredients/substitutes?ingredientName=${value}&apiKey=${this.api}`);
   }
-  getRecipeCard(value: any){
-    return this._http.post(`https://api.spoonacular.com/recipes/visualizeRecipe&apiKey=${this.api}`,
-    {
-      title:value.title,
-      image:value.img,
-      ingredients:value.ingredient,
-      instructions:value.instruction,
-      readyInMinutes:value.readyInMinutes,
-      servings:value.servings,
-      mask:value.mask,
-      backgroundImage:value.backgroundImage}
-    );
-  }
 }
 
