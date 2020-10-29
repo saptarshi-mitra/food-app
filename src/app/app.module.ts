@@ -25,6 +25,7 @@ import { FilterVegPipe } from './common/pipe/filter-veg.pipe';
 import { PriceFilterPipe } from './common/pipe/price-filter.pipe';
 import { FilterGlutenPipe } from './common/pipe/filter-gluten.pipe';
 import { FilterDiaryProductsPipe } from './common/pipe/filter-diary-products.pipe';
+import { CarouselComponent } from './home/carousel/carousel.component';
 
 
 
@@ -40,13 +41,14 @@ import { FilterDiaryProductsPipe } from './common/pipe/filter-diary-products.pip
     SigninComponent,
     SignupComponent,
     HeaderComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
     AboutComponent,
     FilterCuisinePipe,
     FilterVegPipe,
     PriceFilterPipe,
     FilterGlutenPipe,
-    FilterDiaryProductsPipe
+    FilterDiaryProductsPipe,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
