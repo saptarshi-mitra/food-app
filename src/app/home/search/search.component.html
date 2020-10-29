@@ -1,8 +1,13 @@
 <div class="home-head  d-flex flex-column justify-content-center align-items-center">
     <h1 class="input-tag mb-5 text-center">Want to learn some new recipes,<br> just search them</h1>
     <div class="input-group mb-3 container">
-        <input type="text" class="form-control" placeholder="Enter the dish you want to make today" [(ngModel)]="recipe">
-        <div class="input-group-append">
+        <div class="d-flex flex-column flex-fill">
+            <input type="text" class="form-control" placeholder="Enter the dish you want to make today" [(ngModel)]="recipe" (keyup)="showSuggestion()">
+            <ul class="list-group">
+                <li class="list-group-item suggest" *ngFor="let suggest of suggestions" [routerLink]="['/search', suggest.id]">{{ suggest.title }}</li>
+            </ul>
+        </div>
+        <div class="">
             <button class="btn btn-primary" type="button" id="button-addon2" [routerLink]="['/search', recipe]">Search</button>
         </div>
     </div>
