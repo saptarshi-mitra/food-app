@@ -1,0 +1,14 @@
+.carousel .carousel-item {
+  height: 30em;
+}
+
+.carousel .carousel-item>*:first-child {
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: inherit;
+}
+
+.w-100{
+  object-fit: cover;
+}

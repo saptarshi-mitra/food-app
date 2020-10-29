@@ -22,9 +22,16 @@ export class FoodService {
 
   key_sumon = "51bcd51d265942b083eff5936d4e2ddb";
 
+  getRandomTrivia(){
+    return this._http.get<any>(`https://api.spoonacular.com/food/trivia/random?apiKey=${this._apikey}`);
+  }
+
+  getRandomJoke(){
+    return this._http.get<any>(`https://api.spoonacular.com/food/jokes/random?apiKey=${this._apikey}`);
+  }
 
   getRandomRecipe(count){
-    return this._http.get<any>(` https://api.spoonacular.com/recipes/random?number=${count}&apiKey=${this.key_sumon}`)
+    return this._http.get<any>(` https://api.spoonacular.com/recipes/random?number=${count}&apiKey=${this._apikey}`)
   }
 
   apiKey="25afd5eaa4f846c1a19e7f8a627a5751";
@@ -35,9 +42,6 @@ export class FoodService {
   }
   getIngredientAlternate(value){
     return this._http.get(`https://api.spoonacular.com/food/ingredients/substitutes?ingredientName=${value}&apiKey=${this.api}`);
-  }
-  getRecipeCard(value: any){
-    return this._http.post(`https://api.spoonacular.com/recipes/visualizeRecipe&apiKey=${this.api}`,{title:'value["title"]',image:'value["img"]',ingredients:'value["ingredient"]',instructions:'value["instruction"]',readyInMinutes:'value["readyInMinutes"]',servings:'value["servings"]',mask:'value["mask"]',backgroundImage:'value["backgroundImage"]'});
   }
 }
 
