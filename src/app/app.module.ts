@@ -25,6 +25,7 @@ import { FilterVegPipe } from './common/pipe/filter-veg.pipe';
 import { PriceFilterPipe } from './common/pipe/price-filter.pipe';
 import { FilterGlutenPipe } from './common/pipe/filter-gluten.pipe';
 import { FilterDiaryProductsPipe } from './common/pipe/filter-diary-products.pipe';
+import { SubscribeComponent } from './home/subscribe/subscribe.component';
 
 
 
@@ -46,7 +47,8 @@ import { FilterDiaryProductsPipe } from './common/pipe/filter-diary-products.pip
     FilterVegPipe,
     PriceFilterPipe,
     FilterGlutenPipe,
-    FilterDiaryProductsPipe
+    FilterDiaryProductsPipe,
+    SubscribeComponent
   ],
   imports: [
     BrowserModule,
