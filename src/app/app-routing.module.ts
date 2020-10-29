@@ -19,10 +19,6 @@ const routes: Routes = [
     component: DetailsComponent
   },
   {
-    path: 'details/:id/:oid',
-    component: DetailsComponent
-  },
-  {
     path: 'about',
     component: AboutComponent
   }

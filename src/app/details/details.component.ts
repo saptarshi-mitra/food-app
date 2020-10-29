@@ -82,7 +82,7 @@ export class DetailsComponent implements OnInit {
   
   submit(){
     this.data.getRecipeCard(this.form.value).subscribe(response =>{
-      this.url=JSON.stringify(response);
+      this.url= response;
       console.log(this.url)
     })
     this.form.reset();
