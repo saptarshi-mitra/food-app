@@ -8,7 +8,16 @@ import { Component, OnInit } from '@angular/core';
 export class AboutComponent implements OnInit {
 
   constructor() { }
-  names=['Saptarshi Mitra','Sumon Nath','Himanshu Khandelwal'];
+  id = [{
+    "name":"Saptarshi Mitra",
+    "img":""
+  },{
+    "name":"Sumon Nath",
+    "img":"assets/images/sumon.jpg"
+  },{
+    "name":"Himanshu Khandelwal",
+    "img":"assets/images/himk.jpg"
+  }]
   ngOnInit(): void {
   }
 
