@@ -1,5 +1,5 @@
 #bg-img{
-    background-image: url(../common/images/pizza.jpg);
+    background-image: url(../../assets/images/pizza.jpg);
     min-height: 100vh;
     width: auto;
     background-size: cover;
