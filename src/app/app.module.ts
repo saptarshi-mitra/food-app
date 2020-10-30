@@ -47,7 +47,7 @@ import { CarouselComponent } from './home/carousel/carousel.component';
     PriceFilterPipe,
     FilterGlutenPipe,
     FilterDiaryProductsPipe,
-    SubscribeComponent
+    SubscribeComponent,
     CarouselComponent
   ],
   imports: [
