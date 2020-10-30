@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewportScroller, CommonModule } from "@angular/common";
-import { DemoComponent } from '../demo/demo.component';
 
 @Component({
   selector: 'app-help',
