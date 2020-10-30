@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ViewportScroller } from "@angular/common";
+import { ViewportScroller, CommonModule } from "@angular/common";
+import { DemoComponent } from '../demo/demo.component';
 
 @Component({
   selector: 'app-help',
@@ -10,23 +11,10 @@ export class HelpComponent implements OnInit {
 
   constructor(private vps: ViewportScroller) { }
 
-  showID: boolean = false;
-  showCollab: boolean = false;
-  showFB: boolean = false;
-
   public onClick(elementID: string):void {
-    this.vps.scrollToAnchor(elementID)
+    this.vps.scrollToAnchor(elementID);
   }
   ngOnInit(): void {
   }
 
-  toggleID(){
-    this.showID =! this.showID;
-  }
-  toggleCollab(){
-    this.showCollab =! this.showCollab;
-  }
-  toggleFB(){
-    this.showFB =! this.showFB;
-  }
 }

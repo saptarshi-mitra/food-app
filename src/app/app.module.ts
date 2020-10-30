@@ -27,8 +27,6 @@ import { FilterGlutenPipe } from './common/pipe/filter-gluten.pipe';
 import { FilterDiaryProductsPipe } from './common/pipe/filter-diary-products.pipe';
 import { CarouselComponent } from './home/carousel/carousel.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
