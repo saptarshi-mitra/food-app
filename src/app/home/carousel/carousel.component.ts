@@ -18,7 +18,7 @@ export class CarouselComponent implements OnInit {
   ngOnInit(): void {
     this.foodService.getRandomTrivia().subscribe(response=>{
       this.trivia1 = response.text;
-      console.log(response)
+      // console.log(response)
     })
     this.foodService.getRandomTrivia().subscribe(response=>{
       this.trivia2 = response.text;

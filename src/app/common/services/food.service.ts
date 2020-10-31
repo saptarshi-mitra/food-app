@@ -15,32 +15,32 @@ export class FoodService {
 
   constructor(private _http: HttpClient) { }
 
-  // getSearchResult(query){
-  //   return this._http.get(`https://api.spoonacular.com/recipes/complexSearch?query=${query}&addRecipeNutrition=true&number=10&apiKey=${this._apikey}`)
-  // }
+  getSearchResult(query){
+    return this._http.get(`https://api.spoonacular.com/recipes/complexSearch?query=${query}&addRecipeNutrition=true&number=10&apiKey=${this._apikey}`)
+  }
 
-  // getSuggestions(query){
-  //   return this._http.get(`https://api.spoonacular.com/food/menuItems/suggest?query=${query}&number=5&apiKey=${this._apikey}`)
-  // }
+  getSuggestions(query){
+    return this._http.get(`https://api.spoonacular.com/food/menuItems/suggest?query=${query}&number=5&apiKey=${this._apikey}`)
+  }
 
-  // getRandomTrivia(){
-  //   return this._http.get<any>(`https://api.spoonacular.com/food/trivia/random?apiKey=${this._apikey}`);
-  // }
+  getRandomTrivia(){
+    return this._http.get<any>(`https://api.spoonacular.com/food/trivia/random?apiKey=${this._apikey}`);
+  }
 
-  // getRandomJoke(){
-  //   return this._http.get<any>(`https://api.spoonacular.com/food/jokes/random?apiKey=${this._apikey}`);
-  // }
+  getRandomJoke(){
+    return this._http.get<any>(`https://api.spoonacular.com/food/jokes/random?apiKey=${this._apikey}`);
+  }
 
-  // getRandomRecipe(count){
-  //   return this._http.get<any>(` https://api.spoonacular.com/recipes/random?number=${count}&apiKey=${this._apikey}`)
-  // }
+  getRandomRecipe(count){
+    return this._http.get<any>(` https://api.spoonacular.com/recipes/random?number=${count}&apiKey=${this._apikey}`)
+  }
 
-  // getData(id){
-  //   return this._http.get(`${this.url}${id}&apiKey=${this.api}&includeNutrition=true`);
-  // }
-  // getIngredientAlternate(value){
-  //   return this._http.get(`https://api.spoonacular.com/food/ingredients/substitutes?ingredientName=${value}&apiKey=${this.api}`);
-  // }
+  getData(id){
+    return this._http.get(`${this.url}${id}&apiKey=${this.api}&includeNutrition=true`);
+  }
+  getIngredientAlternate(value){
+    return this._http.get(`https://api.spoonacular.com/food/ingredients/substitutes?ingredientName=${value}&apiKey=${this.api}`);
+  }
 
 
 
@@ -48,34 +48,34 @@ export class FoodService {
 
   /* the below code is used only for presentation or deployment*/
 
-  private _doNotUseThisKey = '3744dc7d521349f2a439909deec1a00c'
+  // private _doNotUseThisKey = '3744dc7d521349f2a439909deec1a00c'
 
-  getSearchResult(query){
-    return this._http.get(`https://api.spoonacular.com/recipes/complexSearch?query=${query}&addRecipeNutrition=true&number=10&apiKey=${this._doNotUseThisKey}`)
-  }
+  // getSearchResult(query){
+  //   return this._http.get(`https://api.spoonacular.com/recipes/complexSearch?query=${query}&addRecipeNutrition=true&number=10&apiKey=${this._doNotUseThisKey}`)
+  // }
 
-  getSuggestions(query){
-    return this._http.get(`https://api.spoonacular.com/food/menuItems/suggest?query=${query}&number=5&apiKey=${this._doNotUseThisKey}`)
-  }
+  // getSuggestions(query){
+  //   return this._http.get(`https://api.spoonacular.com/food/menuItems/suggest?query=${query}&number=5&apiKey=${this._doNotUseThisKey}`)
+  // }
 
-  getRandomTrivia(){
-    return this._http.get<any>(`https://api.spoonacular.com/food/trivia/random?apiKey=${this._doNotUseThisKey}`);
-  }
+  // getRandomTrivia(){
+  //   return this._http.get<any>(`https://api.spoonacular.com/food/trivia/random?apiKey=${this._doNotUseThisKey}`);
+  // }
 
-  getRandomJoke(){
-    return this._http.get<any>(`https://api.spoonacular.com/food/jokes/random?apiKey=${this._doNotUseThisKey}`);
-  }
+  // getRandomJoke(){
+  //   return this._http.get<any>(`https://api.spoonacular.com/food/jokes/random?apiKey=${this._doNotUseThisKey}`);
+  // }
 
-  getRandomRecipe(count){
-    return this._http.get<any>(` https://api.spoonacular.com/recipes/random?number=${count}&apiKey=${this._doNotUseThisKey}`)
-  }
+  // getRandomRecipe(count){
+  //   return this._http.get<any>(` https://api.spoonacular.com/recipes/random?number=${count}&apiKey=${this._doNotUseThisKey}`)
+  // }
 
-  getData(id){
-    return this._http.get(`${this.url}${id}&apiKey=${this._doNotUseThisKey}&includeNutrition=true`);
-  }
+  // getData(id){
+  //   return this._http.get(`${this.url}${id}&apiKey=${this._doNotUseThisKey}&includeNutrition=true`);
+  // }
 
-  getIngredientAlternate(value){
-    return this._http.get(`https://api.spoonacular.com/food/ingredients/substitutes?ingredientName=${value}&apiKey=${this._doNotUseThisKey}`);
-  }
+  // getIngredientAlternate(value){
+  //   return this._http.get(`https://api.spoonacular.com/food/ingredients/substitutes?ingredientName=${value}&apiKey=${this._doNotUseThisKey}`);
+  // }
 }
 

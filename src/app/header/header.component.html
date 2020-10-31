@@ -21,6 +21,9 @@
         </div>
       </div>
       <div *ngIf="isAuthenticated" class="ml-md-auto d-flex">
+        <div *ngIf="userName" class="nav-item d-flex">
+          <p style="margin: auto; padding-right: 10px;" class="text-light">{{userName}}</p>
+        </div>
         <div class="nav-item">
           <button class="btn btn-success" (click)="onLogout()">Logout</button>
         </div>
