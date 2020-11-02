@@ -45,6 +45,9 @@
                 <p class="text-center"><strong>Our Score: {{ recipe[0].spoonacularScore }}</strong></p>
             </div>
         </div>
+        <div class="favourite my-5 text-center" *ngIf="isLogged">
+            <h4><button class="btn btn-success" (click)="addFav()">Add to Favourite?</button></h4>
+        </div>
         <div class="summary my-5" *ngIf="!(recipe[0].summary==='')">
             <h4 class="display-4 p-2" style="background-image: linear-gradient(to right,white,lightgreen)">Summary</h4>
             <p class="p-4"><span [outerHTML]="recipe[0].summary"></span></p>

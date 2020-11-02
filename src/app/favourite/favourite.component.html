@@ -1,0 +1,20 @@
+<div class="container my-5">
+    <div class="alert alert-primary" *ngIf="!isLogged">
+        PLEASE LOG IN TO SEE YOUR FAVOURITES
+    </div>
+    <div class="favourites" *ngIf="isLogged">
+        <div class="row">
+            <div class="col-md-6" *ngFor="let i of arr; let x = index">
+                <div class="card text-center">
+                    <div class="card-header">
+                      Featured
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">{{i[x].recipeTitle}}</h5>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>

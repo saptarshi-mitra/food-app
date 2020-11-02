@@ -8,7 +8,7 @@ import { DetailsComponent } from './details/details.component';
 import { HelpComponent } from './help/help.component';
 import { HomeComponent } from './home/home.component';
 import { SearchResultComponent } from './search-result/search-result.component';
-import { DemoComponent } from './demo/demo.component';
+import { FavouriteComponent } from './favourite/favourite.component';
 
 const routes: Routes = [
   {
@@ -44,8 +44,8 @@ const routes: Routes = [
     component: HelpComponent
   },
   {
-    path: 'demo',
-    component: DemoComponent
+    path: 'favourite',
+    component: FavouriteComponent
   }
 ];
 
