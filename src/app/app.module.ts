@@ -26,6 +26,7 @@ import { PriceFilterPipe } from './common/pipe/price-filter.pipe';
 import { FilterGlutenPipe } from './common/pipe/filter-gluten.pipe';
 import { FilterDiaryProductsPipe } from './common/pipe/filter-diary-products.pipe';
 import { CarouselComponent } from './home/carousel/carousel.component';
+import { DemoComponent } from './demo/demo.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { CarouselComponent } from './home/carousel/carousel.component';
     PriceFilterPipe,
     FilterGlutenPipe,
     FilterDiaryProductsPipe,
-    CarouselComponent
+    CarouselComponent,
+    DemoComponent
   ],
   imports: [
     BrowserModule,
