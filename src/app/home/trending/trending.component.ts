@@ -15,7 +15,7 @@ export class TrendingComponent implements OnInit {
   ngOnInit(): void {
     this.foodService.getRandomRecipe(8).subscribe(data => {
       this.trending = data.recipes
-      console.log(data.recipes)
+      // console.log(data.recipes)
     }
     );
   }
