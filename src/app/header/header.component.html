@@ -1,6 +1,6 @@
 <header>
   <nav class="navigation-bar navbar fixed-top navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" routerLink="/">Food Recipe</a>
+    <a class="navbar-brand" routerLink="/">Hungry Time</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
       aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -9,8 +9,8 @@
       <div class="navbar-nav">
         <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
         <a class="nav-link" href="#trending">Trending</a>
-        <a class="nav-link" routerLink="help">Help</a>
-        <a class="nav-link" routerLink="about">About</a>
+        <a class="nav-link" routerLink="/help">Help</a>
+        <a class="nav-link" routerLink="/about">About Us</a>
       </div>
       <div *ngIf="!isAuthenticated" class="ml-md-auto d-flex">
         <div class="nav-item">
@@ -21,6 +21,9 @@
         </div>
       </div>
       <div *ngIf="isAuthenticated" class="ml-md-auto d-flex">
+        <div *ngIf="userName" class="nav-item d-flex">
+          <p style="margin: auto; padding-right: 10px;" class="text-light">{{userName}}</p>
+        </div>
         <div class="nav-item">
           <button class="btn btn-success" (click)="onLogout()">Logout</button>
         </div>

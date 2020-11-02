@@ -10,7 +10,7 @@ export class AboutComponent implements OnInit {
   constructor() { }
   id = [{
     "name":"Saptarshi Mitra",
-    "img":""
+    "img":"assets/images/sap_img.jpg"
   },{
     "name":"Sumon Nath",
     "img":"assets/images/sumon.jpg"

@@ -1,5 +1,5 @@
 .home-head{
-    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(../../common/images/test_image.jpg);
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(../../../assets/images/search_background.jpg);
     min-height: 100vh;
     background-size: cover;
 }
