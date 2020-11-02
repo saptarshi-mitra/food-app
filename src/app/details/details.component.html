@@ -1,13 +1,13 @@
-<div class="container pt-3 mt-5" style="background-image: linear-gradient(to bottom right,lightblue,lightcoral);">
+<div class="container pt-3 mt-5" style="background-image: linear-gradient(to bottom right,white,linen,white);">
     <h3 class="my-3 p-2 display-4"
-        style="background-color: white;border: solid;border-image: linear-gradient( black, white,black) 1">
+        style="background-color: white;border: solid;border-image: linear-gradient( white, green,white) 1">
         {{ recipe[0].title }}</h3>
     <div class="content">
-        <div class="image-part my-5" style="background-color: black;">
+        <div class="image-part my-5">
             <img src="{{ image }}" class="rounded mx-auto d-block" style="border: solid thin;">
         </div>
         <div class="row"
-            style="text-align: center;margin-top: 38px;background-color: white;border: solid;border-image: linear-gradient( black, white,black) 1">
+            style="text-align: center;margin-top: 38px;border: solid;border-image: linear-gradient( white, green,white) 1">
             <div class="col-md-3 pt-3">
                 <svg width="3rem" height="3rem" viewBox="0 0 16 16" class="bi bi-cash-stack" fill="currentColor"
                     xmlns="http://www.w3.org/2000/svg" style="color: green;">
@@ -45,18 +45,18 @@
                 <p class="text-center"><strong>Our Score: {{ recipe[0].spoonacularScore }}</strong></p>
             </div>
         </div>
-        <div class="summary my-5" style="background-color: lightgrey;" *ngIf="!(recipe[0].summary==='')">
-            <h4 class="display-4 p-2" style="background-image: linear-gradient(to right,gold,red)">Summary</h4>
+        <div class="summary my-5" *ngIf="!(recipe[0].summary==='')">
+            <h4 class="display-4 p-2" style="background-image: linear-gradient(to right,white,lightgreen)">Summary</h4>
             <p class="p-4"><span [outerHTML]="recipe[0].summary"></span></p>
         </div>
-        <div class="wine my-5" style="background-color: lightgrey;" *ngIf="wineText!=''">
-            <h4 class="display-4 p-2" style="background-image: linear-gradient(to right,gold,red);">Wine Advice</h4>
+        <div class="wine my-5" *ngIf="wineText!=''">
+            <h4 class="display-4 p-2" style="background-image: linear-gradient(to right,white,lightgreen);">Wine Advice</h4>
             <p class="p-4">{{ wineText }}</p>
             <p class="p-3" *ngIf="(link!='')"><a href="{{ link }}"><span class="p-2"
-                        style="background-color: black;color: white;">>> Get this Wine !</span></a></p>
+                        style="background-image: linear-gradient(to right,green,darkgreen);color: white;">>> Get this Wine !</span></a></p>
         </div>
         <div class="ingredients my-5" *ngIf="ingredients.length>0">
-            <h4 class="display-4 p-2" style="background-image: linear-gradient(to right,gold,red)">Ingredients</h4>
+            <h4 class="display-4 p-2" style="background-image: linear-gradient(to right,white,lightgreen)">Ingredients</h4>
             <div class="row py-3 my-4" style="background-color:white;" *ngIf="imgUrl.length>0">
                 <div class="col-md-2 mx-auto" *ngFor="let img of imgUrl">
                     <img src="{{ img }}">
@@ -78,7 +78,7 @@
                 </div>
             </div>
             <h5>Find Ingredients accordingly to {{ recipe[0].servings }} serving</h5>
-            <table class="table table-dark">
+            <table class="table table-dark-striped table-hover">
                 <thead>
                     <tr>
                         <th scope="col">Ingredients</th>
@@ -94,8 +94,8 @@
                 </tbody>
             </table>
         </div>
-        <div class="instructions my-5" style="background-color: lightgrey;" *ngIf="(instructions!='')">
-            <h4 class="display-4 p-2" style="background-image: linear-gradient(to right,gold,red)">Instructions</h4>
+        <div class="instructions my-5" *ngIf="(instructions!='')">
+            <h4 class="display-4 p-2" style="background-image: linear-gradient(to right,white,lightgreen)">Instructions</h4>
             <p class="p-4"><span [outerHTML]="instructions"></span></p>
         </div>
         <div class="nutrition-info" *ngIf="nutrition.length>0">
