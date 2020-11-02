@@ -23,11 +23,14 @@ export class SignupComponent implements OnInit {
     const password = form.value.password;
     const userName = form.value.firstName +" "+ form.value.lastName;    
     this.isLoading = true;
+    //first signup new user
     this.authService.signUp(email, password).subscribe(response => {
       // console.log(response)
+      //add userName after user is registered
       this.authService.registerDetails(userName,response.localId,response.idToken).subscribe(details =>{
         console.log(details);
         this.isLoading = false;
+        //redirect ro signin
         this.router.navigate(['/signin']);
       })
     }, error => {
