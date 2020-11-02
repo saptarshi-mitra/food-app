@@ -18,8 +18,12 @@ export class SearchResultComponent implements OnInit {
   option_cuisines = [
     {name: 'Mediterranean', value: 1, checked: false},
     {name: 'Italian', value: 2, checked: false},
-    {name: 'European', value: 3, checked: false},
-    {name: 'Indian', value: 4, checked: false},
+    {name: 'Thai', value: 3, checked: false},
+    {name: 'European', value: 4, checked: false},
+    {name: 'German', value: 5, checked: false},
+    {name: 'Indian', value: 6, checked: false},
+    {name: 'Chinese', value: 7, checked: false},
+    {name: 'French', value: 8, checked: false}
   ]
 
   food_habit = [
