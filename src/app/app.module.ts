@@ -29,6 +29,7 @@ import { SubscribeComponent } from './home/subscribe/subscribe.component';
 import { CarouselComponent } from './home/carousel/carousel.component';
 import { UserMealsComponent } from './user-meals/user-meals.component';
 import { ChartsModule } from 'ng2-charts';
+import { FavouriteComponent } from './favourite/favourite.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ChartsModule } from 'ng2-charts';
     FilterDiaryProductsPipe,
     SubscribeComponent,
     CarouselComponent,
-    UserMealsComponent
+    UserMealsComponent,
+    FavouriteComponent
   ],
   imports: [
     BrowserModule,
