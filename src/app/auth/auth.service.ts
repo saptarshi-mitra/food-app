@@ -69,7 +69,12 @@ export class AuthService {
 
   //get username of an authenticated user
   getDetails(localId: string, idToken: string) {
-    return this.http.get<{userName:string}>(`https://food-app-385cd.firebaseio.com/users/${localId}.json?auth=${idToken}`)
+    return this.http.get<UserName>(`https://food-app-385cd.firebaseio.com/users/${localId}.json?auth=${idToken}`)
+  }
+
+
+  getMeals(localId: string, idToken: string) {
+    return this.http.get(`https://food-app-385cd.firebaseio.com/users/${localId}/meal.json?auth=${idToken}`)
   }
 
   //sets current user and stores in localStorage
