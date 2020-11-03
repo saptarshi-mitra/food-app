@@ -4,6 +4,8 @@ import { FoodService } from '../common/services/food.service';
 import { TrendingComponent } from '../home/trending/trending.component';
 import { map,filter } from 'rxjs/operators'
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../auth/auth.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-details',
@@ -12,9 +14,17 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class DetailsComponent implements OnInit {
 
-  form;
   id: number;
+  localId: string="";
+  idToken: string="";
+  email: string = "";
+  @Input() favColor;
+  toggleMeal: boolean;
+  isTester: boolean = true;
+  isLogged: boolean = false;
+  user;
   recipe: any;
+  favourite=[];
   healthScore: number;
   ingredients=[];
   nutrition=[];
@@ -33,10 +43,11 @@ export class DetailsComponent implements OnInit {
   showText: string ="Show Complete Breakdown of Nutritional Information";
   buttonText: string ="Click to see in Metrics";
   
-  constructor(private data:FoodService,private route:ActivatedRoute) {
+  constructor(private data:FoodService,private route:ActivatedRoute,private userInfo:AuthService,private http: HttpClient) {
   }
 
   ngOnInit(): void {
+    
     this.id = +this.route.snapshot.paramMap.get('id');
     this.data.getData(this.id).subscribe(response =>{
       this.recipe= response;
@@ -52,8 +63,19 @@ export class DetailsComponent implements OnInit {
       this.limit = response[0].nutrition.nutrients.slice(0,8);
       this.includeMore = response[0].nutrition.nutrients.slice(8);
       this.healthScore = response[0].healthScore;
+      this.userInfo.user.subscribe(response =>{
+        this.user = response
+        console.log(this.user)
+        this.email = this.user.email;
+        this.localId = this.user.id;
+        this.idToken = this.user._token;
+      })
+      console.log(this.email);
+      this.email==='' ? this.isLogged = false: this.isLogged = true;
       this.link = this.recipe[0].winePairing.productMatches[0].link;
+
     })
+
   }
 
   showLimit(){
@@ -65,7 +87,6 @@ export class DetailsComponent implements OnInit {
     this.view = true;
     this.data.getIngredientAlternate(value).subscribe(response =>{
       this.substitute = response;
-      console.log(this.substitute)
     });
   }
 
@@ -76,5 +97,39 @@ export class DetailsComponent implements OnInit {
   measure(){
     this.switch =! this.switch;
     this.switch ? this.buttonText = "Hide" : this.buttonText = "Click to see in Metrics";
+  }
+
+  addFav(){
+    if(this.isTester){
+      this.favColor = "btn-danger"
+      this.http.patch(`https://food-app-385cd.firebaseio.com/users/${this.localId}/favourites/${this.recipe[0].id}.json?auth=${this.idToken}`,{
+      "recipe":this.recipe
+      }).subscribe(response =>{
+      console.log(response)
+      })
+    }
+    else{
+      this.favColor = "btn-succes";
+      this.http.delete(`https://food-app-385cd.firebaseio.com/users/${this.localId}/favourites/${this.recipe[0].id}.json?auth=${this.idToken}`).subscribe(response =>{
+        console.log(response);
+      })
+    }
+    this.isTester =! this.isTester;
+  }
+
+  addToMeal(){
+    if(!(this.toggleMeal)){
+      this.http.patch(`https://food-app-385cd.firebaseio.com/users/${this.localId}/meal/${this.recipe[0].id}.json?auth=${this.idToken}`,{
+      "recipe":this.recipe
+      }).subscribe(response =>{
+      console.log(response)
+      })
+    }
+    else{
+      this.favColor = "btn-succes";
+      this.http.delete(`https://food-app-385cd.firebaseio.com/users/${this.localId}/meal/${this.recipe[0].id}.json?auth=${this.idToken}`).subscribe(response =>{
+        console.log(response);
+      })
+    }
   }
 }
