@@ -9,5 +9,29 @@
 <link rel="stylesheet" href="styles.fef4eb426f464ec1dd3b.css"></head>
 <body>
   <app-root></app-root>
-<script src="runtime.acf0dec4155e77772545.js" defer></script><script src="polyfills.35a5ca1855eb057f016a.js" defer></script><script src="scripts.3cf90f8fc92130239739.js" defer></script><script src="main.056d4b557474123c2a4f.js" defer></script></body>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+      apiKey: "AIzaSyDJnt5awofvqP8V_WSHzRnO5I4KFrHYxC0",
+      authDomain: "foodapp-a7482.firebaseapp.com",
+      databaseURL: "https://foodapp-a7482.firebaseio.com",
+      projectId: "foodapp-a7482",
+      storageBucket: "foodapp-a7482.appspot.com",
+      messagingSenderId: "428502517153",
+      appId: "1:428502517153:web:b9618dec616bb0942877e0",
+      measurementId: "G-FL4F3RF2LY"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+<script src="runtime.acf0dec4155e77772545.js" defer></script><script src="polyfills.35a5ca1855eb057f016a.js" defer></script><script src="scripts.3cf90f8fc92130239739.js" defer></script><script src="main.915e2eb38e1aa2cea6a8.js" defer></script></body>
 </html>
