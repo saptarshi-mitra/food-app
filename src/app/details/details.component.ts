@@ -17,6 +17,10 @@ export class DetailsComponent implements OnInit {
   id: number;
   localId: string="";
   idToken: string="";
+  email: string = "";
+  @Input() favColor;
+  toggleMeal: boolean;
+  isTester: boolean = true;
   isLogged: boolean = false;
   user;
   recipe: any;
@@ -59,16 +63,19 @@ export class DetailsComponent implements OnInit {
       this.limit = response[0].nutrition.nutrients.slice(0,8);
       this.includeMore = response[0].nutrition.nutrients.slice(8);
       this.healthScore = response[0].healthScore;
-      this.link = this.recipe[0].winePairing.productMatches[0].link;
-
       this.userInfo.user.subscribe(response =>{
         this.user = response
         console.log(this.user)
+        this.email = this.user.email;
         this.localId = this.user.id;
         this.idToken = this.user._token;
       })
-      this.user===null ? this.isLogged = false: this.isLogged = true;
+      console.log(this.email);
+      this.email==='' ? this.isLogged = false: this.isLogged = true;
+      this.link = this.recipe[0].winePairing.productMatches[0].link;
+
     })
+
   }
 
   showLimit(){
@@ -93,11 +100,38 @@ export class DetailsComponent implements OnInit {
   }
 
   addFav(){
-    this.http.patch(`https://food-app-385cd.firebaseio.com/users/${this.localId}/favourites/${this.recipe[0].id}.json?auth=${this.idToken}`,{
+    if(this.isTester){
+      this.favColor = "btn-danger"
+      this.http.patch(`https://food-app-385cd.firebaseio.com/users/${this.localId}/favourites/${this.recipe[0].id}.json?auth=${this.idToken}`,{
       "recipeId":this.recipe[0].id,
       "recipeTitle":this.recipe[0].title
-    }).subscribe(response =>{
+      }).subscribe(response =>{
       console.log(response)
-    })
+      })
+    }
+    else{
+      this.favColor = "btn-succes";
+      this.http.delete(`https://food-app-385cd.firebaseio.com/users/${this.localId}/favourites/${this.recipe[0].id}.json?auth=${this.idToken}`).subscribe(response =>{
+        console.log(response);
+      })
+    }
+    this.isTester =! this.isTester;
+  }
+
+  addToMeal(){
+    if(!(this.toggleMeal)){
+      this.http.patch(`https://food-app-385cd.firebaseio.com/users/${this.localId}/meal/${this.recipe[0].id}.json?auth=${this.idToken}`,{
+      "recipeId":this.recipe[0].id,
+      "recipeTitle":this.recipe[0].title
+      }).subscribe(response =>{
+      console.log(response)
+      })
+    }
+    else{
+      this.favColor = "btn-succes";
+      this.http.delete(`https://food-app-385cd.firebaseio.com/users/${this.localId}/meal/${this.recipe[0].id}.json?auth=${this.idToken}`).subscribe(response =>{
+        console.log(response);
+      })
+    }
   }
 }
