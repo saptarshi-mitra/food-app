@@ -27,6 +27,8 @@ import { FilterGlutenPipe } from './common/pipe/filter-gluten.pipe';
 import { FilterDiaryProductsPipe } from './common/pipe/filter-diary-products.pipe';
 import { SubscribeComponent } from './home/subscribe/subscribe.component';
 import { CarouselComponent } from './home/carousel/carousel.component';
+import { UserMealsComponent } from './user-meals/user-meals.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import { CarouselComponent } from './home/carousel/carousel.component';
     FilterGlutenPipe,
     FilterDiaryProductsPipe,
     SubscribeComponent,
-    CarouselComponent
+    CarouselComponent,
+    UserMealsComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,8 @@ import { CarouselComponent } from './home/carousel/carousel.component';
     HttpClientModule,
     NgxPaginationModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

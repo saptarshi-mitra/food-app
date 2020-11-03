@@ -1,0 +1,26 @@
+<div class="container myContainer">
+    <h1>Welcome {{ userName }}</h1>
+    The following items are there in your meals list
+    <div *ngFor="let recipe of recipes">
+      {{ recipe.title }}
+
+    </div>
+
+    <h5>Here is your nutrients intake</h5>
+    <div style="display: block">
+        <canvas baseChart
+        [datasets]="doughnutChartData"
+        [labels]="doughnutChartLabels"
+        [chartType]="doughnutChartType">
+    </canvas>
+    </div>
+    <!-- <div style="display: block">
+      <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
+      </canvas>
+    </div> -->
+</div>

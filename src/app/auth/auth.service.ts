@@ -70,8 +70,13 @@ export class AuthService {
   }
 
   getDetails(localId: string, idToken: string) {
-  return this.http.get<UserName>(`https://food-app-385cd.firebaseio.com/users/${localId}.json?auth=${idToken}`)
-}
+    return this.http.get<UserName>(`https://food-app-385cd.firebaseio.com/users/${localId}.json?auth=${idToken}`)
+  }
+
+
+  getMeals(localId: string, idToken: string) {
+    return this.http.get(`https://food-app-385cd.firebaseio.com/users/${localId}/meal.json?auth=${idToken}`)
+  }
 
   private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
   const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
