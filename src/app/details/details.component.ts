@@ -103,8 +103,7 @@ export class DetailsComponent implements OnInit {
     if(this.isTester){
       this.favColor = "btn-danger"
       this.http.patch(`https://food-app-385cd.firebaseio.com/users/${this.localId}/favourites/${this.recipe[0].id}.json?auth=${this.idToken}`,{
-      "recipeId":this.recipe[0].id,
-      "recipeTitle":this.recipe[0].title
+      "recipe":this.recipe
       }).subscribe(response =>{
       console.log(response)
       })
@@ -121,8 +120,7 @@ export class DetailsComponent implements OnInit {
   addToMeal(){
     if(!(this.toggleMeal)){
       this.http.patch(`https://food-app-385cd.firebaseio.com/users/${this.localId}/meal/${this.recipe[0].id}.json?auth=${this.idToken}`,{
-      "recipeId":this.recipe[0].id,
-      "recipeTitle":this.recipe[0].title
+      "recipe":this.recipe
       }).subscribe(response =>{
       console.log(response)
       })
