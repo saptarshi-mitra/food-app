@@ -1,3 +1,14 @@
 .myContainer{
     margin-top: 80px;
 }
+
+.meals{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.individualMeals{
+    margin-top: 20px;
+    width: 50%;
+    box-sizing: border-box;
+}

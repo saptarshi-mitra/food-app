@@ -30,6 +30,7 @@ import { CarouselComponent } from './home/carousel/carousel.component';
 import { UserMealsComponent } from './user-meals/user-meals.component';
 import { ChartsModule } from 'ng2-charts';
 import { FavouriteComponent } from './favourite/favourite.component';
+import { IndividualGraphsComponent } from './user-meals/individual-graphs/individual-graphs.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { FavouriteComponent } from './favourite/favourite.component';
     SubscribeComponent,
     CarouselComponent,
     UserMealsComponent,
-    FavouriteComponent
+    FavouriteComponent,
+    IndividualGraphsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,26 +1,52 @@
 <div class="container myContainer">
-    <h1>Welcome {{ userName }}</h1>
-    The following items are there in your meals list
-    <div *ngFor="let recipe of recipes">
-      {{ recipe.title }}
-
-    </div>
-
-    <h5>Here is your nutrients intake</h5>
-    <div style="display: block">
+  <h1>Welcome {{ userName }}</h1>
+  <h3 class="mt-2">Here is your total nutrients intake</h3>
+  <div class="row">
+    <div class="col-6">
+      <div>
         <canvas baseChart
-        [datasets]="doughnutChartData"
-        [labels]="doughnutChartLabels"
-        [chartType]="doughnutChartType">
-    </canvas>
+          height="300px"
+          [datasets]="doughnutChartData"
+          [labels]="doughnutChartLabels"
+          [chartType]="doughnutChartType">
+        </canvas>
+      </div>
     </div>
-    <!-- <div style="display: block">
-      <canvas baseChart
-              [datasets]="barChartData"
-              [labels]="barChartLabels"
-              [options]="barChartOptions"
-              [legend]="barChartLegend"
-              [chartType]="barChartType">
-      </canvas>
-    </div> -->
+    <div class="col-6">
+      <div>
+        <canvas baseChart
+        height="300px"
+          [datasets]="doughnutChartData"
+          [labels]="doughnutChartLabels"
+          [options]="barChartOptions"
+          [legend]="barChartLegend"
+          [chartType]="barChartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+
+  <h3 class="mt-5">The following items are there in your meals list</h3>
+
+  <div class="meals">
+    <div class="card individualMeals" *ngFor="let recipe of recipes">
+      <div class="card-body">
+        <h5 class="card-title">{{ recipe.title }}</h5>
+        <app-individual-graphs [recipe]="recipe"></app-individual-graphs>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <!-- <div style="display: block">
+    <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType">
+    </canvas>
+  </div> -->
 </div>

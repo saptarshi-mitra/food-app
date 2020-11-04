@@ -9,18 +9,17 @@ import { AuthService } from '../auth/auth.service';
 })
 export class UserMealsComponent implements OnInit {
 
-  userName = 'John Smith'
+  userName = ''
   recipes
-  // public barChartOptions = {
-  //   scaleShowVerticalLines: false,
-  //   responsive: true
-  // };
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
 
-  // public barChartLabels = [];
-  // public barChartType = 'bar';
-  // public barChartLegend = true;
+  public barChartType = 'bar';
+  public barChartLegend = true;
 
-  // public barChartData = [];
+  //doughnuts
   public doughnutChartLabels = [];
   public doughnutChartData = [];
   public doughnutChartType = 'doughnut'
@@ -58,7 +57,7 @@ export class UserMealsComponent implements OnInit {
 
 
             //to bring all the units to grams
-            arr = arr.map(item=> item.nutrition.nutrients.map(nutrient => {
+            arr = arr.map(item => item.nutrition.nutrients.map(nutrient => {
               if(nutrient.unit == 'mg')
                 nutrient.amount = nutrient.amount/1000
               else if(nutrient.unit == 'IU')
@@ -67,20 +66,20 @@ export class UserMealsComponent implements OnInit {
             }))
             arr = arr.map(item => item.filter(nutrient => nutrient.amount > 1))//removing nutrients with very low value
             arr = arr.map(item => item.filter(nutrient => nutrient.title !== 'Calories'))//calories is not nutrient
-            let total_nutrients = arr[0] // putting 1st element in the array
-            arr.shift() // removing the first element
 
-            //soln in an array of objects
+            let total_nutrients = []
             arr.map(item => item.map(nutrient => {
               let flag = false
-              for(let i=0; i<total_nutrients.length; i++)
+              for(let i=0; i<total_nutrients.length; i++){
                 if(nutrient.title == total_nutrients[i].title && flag==false){
                   total_nutrients[i].amount += nutrient.amount
                   flag=true
                 }
-                if(flag == false){
-                  total_nutrients.push({title: nutrient.title, amount: nutrient.amount})
-                }
+                if(flag==true)
+                  break
+              }
+              if(flag == false)
+                total_nutrients.push({title: nutrient.title, amount: nutrient.amount})
             }))
 
             this.doughnutChartData = [{data: total_nutrients.map(item => item.amount), label: 'Nutrients'}]

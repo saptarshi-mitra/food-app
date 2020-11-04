@@ -45,7 +45,7 @@ const routes: Routes = [
     component: HelpComponent
   },
   {
-    path: 'dashboard',
+    path: 'meal-analysis',
     component: UserMealsComponent
   },
   {
