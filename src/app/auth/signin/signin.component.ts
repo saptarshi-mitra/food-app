@@ -24,7 +24,7 @@ export class SigninComponent implements OnInit {
 
     this.isLoading = true;
     this.authService.signIn(email, password).subscribe(response => {
-      console.log(response);
+      //console.log(response);
       this.isLoading = false;
       this.router.navigate(['/'])
     }, error => {
