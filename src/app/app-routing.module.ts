@@ -9,6 +9,7 @@ import { HelpComponent } from './help/help.component';
 import { HomeComponent } from './home/home.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { FavouriteComponent } from './favourite/favourite.component';
+import { MealComponent } from './meal/meal.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
   {
     path: 'favourite',
     component: FavouriteComponent
+  },
+  {
+    path: 'meal',
+    component: MealComponent
   }
 ];
 

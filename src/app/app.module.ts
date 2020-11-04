@@ -28,6 +28,8 @@ import { FilterDiaryProductsPipe } from './common/pipe/filter-diary-products.pip
 import { SubscribeComponent } from './home/subscribe/subscribe.component';
 import { CarouselComponent } from './home/carousel/carousel.component';
 import { FavouriteComponent } from './favourite/favourite.component';
+import { MealComponent } from './meal/meal.component';
+import { FavItemComponent } from './favourite/fav-item/fav-item.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { FavouriteComponent } from './favourite/favourite.component';
     FilterDiaryProductsPipe,
     SubscribeComponent,
     CarouselComponent,
-    FavouriteComponent
+    FavouriteComponent,
+    MealComponent,
+    FavItemComponent
   ],
   imports: [
     BrowserModule,

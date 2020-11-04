@@ -1,0 +1,27 @@
+<article class="card depth--two">
+  <figure class="image">
+    <img src="{{recipe.image}}" alt="City picture via LoremPixel" />
+  </figure>
+  <div class="card__body">
+    <header class="card__primary-title">
+      <h2 class="text-large">{{recipe.title}}</h2>
+      <h3 class="text-secondary text-normal text-small">{{recipe.dishTypes[0]}}</h3>
+    </header>
+
+  </div>
+  <div class="go-down">
+    <div class="card__supporting-text">
+      <div class="carbs" data-toggle="tooltip" data-placement="bottom" title="Carbohydrates">
+        <i class="fas fa-bread-slice"></i>  {{recipe.nutrition.caloricBreakdown.percentCarbs | number:'.0-0'}}%
+      </div>
+      <div class="fat" data-toggle="tooltip" data-placement="bottom" title="Fats">
+        <i class="fas fa-hotdog"></i>  {{recipe.nutrition.caloricBreakdown.percentFat | number:'.0-0'}}%
+      </div>
+      <div class="protein" data-toggle="tooltip" data-placement="bottom" title="Proteins">
+        <i class="fas fa-egg"></i>  {{recipe.nutrition.caloricBreakdown.percentProtein | number:'.0-0'}}%
+      </div>
+    </div>
+    <footer class="card__actions"><i (click)="onDelete()" class="fas fa-trash"></i>
+    </footer>
+  </div>
+</article>

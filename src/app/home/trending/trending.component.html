@@ -1,13 +1,65 @@
-<div class="container mt-5 mb-5">
-  <div class="row">
-    <h1>Check these out !</h1>
-  </div>
-  <div class="row mt-4">
-    <div *ngFor="let recipe of trending" class="col col-md-3 p-2">
+<div class="wrapper">
+  <div class="container pt-5 pb-5">
+    <div class="row">
+      <h1>Check these out !</h1>
+    </div>
+    <div class="row mt-4">
+      <!-- <div *ngFor="let recipe of trending" class="col col-md-3 p-2">
       <div class="card" [routerLink]="['/details', recipe.id]">
         <img src="{{!!recipe.image?recipe.image:tempImage}}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="text-center card-title">{{recipe.title}}</h5>
+        </div>
+      </div>
+    </div> -->
+      <div *ngFor="let recipe of trending" class="col-xs-12 col-sm-6 col-md-3 mb-5"
+        [routerLink]="['/details', recipe.id]">
+        <div class="image-flip">
+          <div class="mainflip flip-0">
+            <div class="frontside">
+              <div class="card">
+                <div class="card-body text-center">
+                  <p><img class=" img-fluid" src="{{!!recipe.image?recipe.image:tempImage}}" alt="card image">
+                  </p>
+                  <h5 class="card-title">{{recipe.title}}</h5>
+
+
+                </div>
+              </div>
+            </div>
+            <div class="backside">
+              <div class="card">
+                <div class="card-body text-center mt-4">
+                  <h4 class="card-title">Sunlimetech</h4>
+                  <p class="card-text">This is basic card with image on top, title, description and button.This is basic
+                    card with image on top, title, description and button.This is basic card with image on top, title,
+                    description and button.</p>
+                  <ul class="list-inline">
+                    <li class="list-inline-item">
+                      <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                        <i class="fa fa-facebook"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                        <i class="fa fa-twitter"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                        <i class="fa fa-skype"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                        <i class="fa fa-google"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
