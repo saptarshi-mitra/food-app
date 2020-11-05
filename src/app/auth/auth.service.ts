@@ -70,7 +70,7 @@ export class AuthService {
   }
 
   getDetails(localId: string, idToken: string) {
-    return this.http.get<UserName>(`https://food-app-385cd.firebaseio.com/users/${localId}.json?auth=${idToken}`)
+    return this.http.get<{userName:string}>(`https://food-app-385cd.firebaseio.com/users/${localId}.json?auth=${idToken}`)
   }
 
 

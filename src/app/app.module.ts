@@ -30,6 +30,7 @@ import { CarouselComponent } from './home/carousel/carousel.component';
 import { UserMealsComponent } from './user-meals/user-meals.component';
 import { ChartsModule } from 'ng2-charts';
 import { FavouriteComponent } from './favourite/favourite.component';
+import { IndividualGraphsComponent } from './user-meals/individual-graphs/individual-graphs.component';
 import { MealComponent } from './meal/meal.component';
 import { FavItemComponent } from './favourite/fav-item/fav-item.component';
 
@@ -58,6 +59,8 @@ import { FavItemComponent } from './favourite/fav-item/fav-item.component';
     MealComponent,
     FavItemComponent,
     UserMealsComponent,
+    FavouriteComponent,
+    IndividualGraphsComponent
   ],
   imports: [
     BrowserModule,
