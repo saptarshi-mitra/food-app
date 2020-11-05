@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FoodService } from '../common/services/food.service';
 import { TrendingComponent } from '../home/trending/trending.component';
-import { map,filter, catchError } from 'rxjs/operators'
+import { map, filter, catchError } from 'rxjs/operators'
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 import { HttpClient } from '@angular/common/http';
@@ -20,15 +20,15 @@ export class DetailsComponent implements OnInit {
   idToken: string = "";
   email: string = "";
   username: string;
-  comment:string;
-  recipeArray=[];
-  recipeReviewComment=[];
-  recipeReviewUser=[];
-  recipeReview=[];
+  comment: string;
+  recipeArray = [];
+  recipeReviewComment = [];
+  recipeReviewUser = [];
+  recipeReview = [];
   @Input() favColor;
   toggleMeal: boolean;
   isTester: boolean = true;
-  conditonal:boolean;
+  conditonal: boolean;
   isLogged: boolean = false;
   commentBool: boolean;
   user;
@@ -48,11 +48,11 @@ export class DetailsComponent implements OnInit {
   show: boolean = false;
   showCardBool: boolean = false;
   view: boolean = false;
-  switch:boolean = false;
-  showText: string ="Show Complete Breakdown of Nutritional Information";
-  buttonText: string ="Click to see in Metrics";
-  
-  constructor(private data:FoodService,private route:ActivatedRoute,private userInfo:AuthService,private http: HttpClient,private fb: FormBuilder) {
+  switch: boolean = false;
+  showText: string = "Show Complete Breakdown of Nutritional Information";
+  buttonText: string = "Click to see in Metrics";
+
+  constructor(private data: FoodService, private route: ActivatedRoute, private userInfo: AuthService, private http: HttpClient, private fb: FormBuilder) {
     this.form = fb.group({
       comment: ['']
     })
@@ -82,17 +82,17 @@ export class DetailsComponent implements OnInit {
         this.localId = this.user.id;
         this.idToken = this.user._token;
       })
-      this.email==='' ? this.isLogged = false: this.isLogged = true;
-      this.http.get(`https://food-app-385cd.firebaseio.com/users/${this.localId}/favourites.json?auth=${this.idToken}`).subscribe(response =>{
+      this.email === '' ? this.isLogged = false : this.isLogged = true;
+      this.http.get(`https://food-app-385cd.firebaseio.com/users/${this.localId}/favourites.json?auth=${this.idToken}`).subscribe(response => {
         this.recipeArray = Object.keys(response);
       })
-      this.http.get(`https://foodapp-a7482.firebaseio.com//reviews/${this.recipe[0].id}.json`).subscribe(response =>{
+      this.http.get(`https://foodapp-a7482.firebaseio.com//reviews/${this.recipe[0].id}.json`).subscribe(response => {
         this.recipeReviewComment = Object.values(response);
-        this.recipeReviewComment.forEach(item =>{
+        this.recipeReviewComment.forEach(item => {
           this.recipeReview.push(item.review)
           this.recipeReviewUser.push(item.user)
         })
-        
+
       })
       this.link = this.recipe[0].winePairing.productMatches[0].link;
     })
@@ -120,39 +120,40 @@ export class DetailsComponent implements OnInit {
     this.switch ? this.buttonText = "Hide" : this.buttonText = "Click to see in Metrics";
   }
 
-// <<<<<<< sumon
-//   addFav() {
-//     if (this.isTester) {
-//       this.favColor = "btn-danger"
-//       this.http.patch(`https://food-app-385cd.firebaseio.com/users/${this.localId}/favourites.json?auth=${this.idToken}`,
-//         {
-//           [this.recipe[0].id]: this.recipe[0]
-//         }).subscribe(response => {
-//           console.log(response)
-//         })
-//     }
-//     else {
-//       this.favColor = "btn-succes";
-//       this.http.delete(`https://food-app-385cd.firebaseio.com/users/${this.localId}/favourites/${this.recipe[0].id}.json?auth=${this.idToken}`).subscribe(response => {
-//         console.log(response);
-//       })
-// =======
-  addFav(){
-    if(this.recipeArray.includes(this.id.toString())){
+  // <<<<<<< sumon
+  //   addFav() {
+  //     if (this.isTester) {
+  //       this.favColor = "btn-danger"
+  //       this.http.patch(`https://food-app-385cd.firebaseio.com/users/${this.localId}/favourites.json?auth=${this.idToken}`,
+  //         {
+  //           [this.recipe[0].id]: this.recipe[0]
+  //         }).subscribe(response => {
+  //           console.log(response)
+  //         })
+  //     }
+  //     else {
+  //       this.favColor = "btn-succes";
+  //       this.http.delete(`https://food-app-385cd.firebaseio.com/users/${this.localId}/favourites/${this.recipe[0].id}.json?auth=${this.idToken}`).subscribe(response => {
+  //         console.log(response);
+  //       })
+  // =======
+  addFav() {
+    if (this.recipeArray.includes(this.id.toString())) {
       alert('Item already added to favourite')
     }
-    else{
+    else {
       if (this.isTester) {
         this.favColor = "btn-danger";
-        this.http.patch(`https://food-app-385cd.firebaseio.com/users/${this.localId}/favourites/${this.recipe[0].id}.json?auth=${this.idToken}`, {
-          "recipe": this.recipe
-        }).subscribe(response => {
-          console.log(response)
-        })
+        this.http.patch(`https://food-app-385cd.firebaseio.com/users/${this.localId}/favourites.json?auth=${this.idToken}`,
+          {
+            [this.recipe[0].id]: this.recipe[0]
+          }).subscribe(response => {
+            console.log(response)
+          })
       }
-      else{
+      else {
         this.favColor = "btn-succes";
-        this.http.delete(`https://food-app-385cd.firebaseio.com/users/${this.localId}/favourites/${this.recipe[0].id}.json?auth=${this.idToken}`).subscribe(response =>{
+        this.http.delete(`https://food-app-385cd.firebaseio.com/users/${this.localId}/favourites/${this.recipe[0].id}.json?auth=${this.idToken}`).subscribe(response => {
           console.log(response);
         })
       }
@@ -163,7 +164,7 @@ export class DetailsComponent implements OnInit {
   addToMeal() {
     if (!(this.toggleMeal)) {
       this.http.patch(`https://food-app-385cd.firebaseio.com/users/${this.localId}/meal.json?auth=${this.idToken}`, {
-        [this.recipe[0].id] : this.recipe[0]
+        [this.recipe[0].id]: this.recipe[0]
       }).subscribe(response => {
         console.log(response)
       })
@@ -176,18 +177,18 @@ export class DetailsComponent implements OnInit {
     }
   }
 
-  addReview(){
-    this.commentBool =! this.commentBool;
+  addReview() {
+    this.commentBool = !this.commentBool;
   }
 
-  addComment(value){
-    this.userInfo.getDetails(this.localId,this.idToken).subscribe(response =>{
+  addComment(value) {
+    this.userInfo.getDetails(this.localId, this.idToken).subscribe(response => {
       this.username = response.userName;
-      this.http.post(`https://foodapp-a7482.firebaseio.com//reviews/${this.recipe[0].id}.json`,{
-      "review":this.comment,
-      "user":this.username
-      }).subscribe(response =>{
-      console.log(response)
+      this.http.post(`https://foodapp-a7482.firebaseio.com//reviews/${this.recipe[0].id}.json`, {
+        "review": this.comment,
+        "user": this.username
+      }).subscribe(response => {
+        console.log(response)
       })
     })
     this.comment = value;
