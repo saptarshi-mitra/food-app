@@ -16,8 +16,8 @@ export class DetailsComponent implements OnInit {
 
   form;
   id: number;
-  localId: string="";
-  idToken: string="";
+  localId: string = "";
+  idToken: string = "";
   email: string = "";
   username: string;
   comment:string;
@@ -33,20 +33,20 @@ export class DetailsComponent implements OnInit {
   commentBool: boolean;
   user;
   recipe: any;
-  favourite=[];
+  favourite = [];
   healthScore: number;
-  ingredients=[];
-  nutrition=[];
+  ingredients = [];
+  nutrition = [];
   substitute: any;
-  @Input() imgUrl=[];
+  @Input() imgUrl = [];
   wineText: string;
   @Input() link: string;
   instructions: string;
   @Input() image: string;
-  @Input() limit=[];
-  @Input() includeMore=[];
+  @Input() limit = [];
+  @Input() includeMore = [];
   show: boolean = false;
-  showCardBool: boolean=false;
+  showCardBool: boolean = false;
   view: boolean = false;
   switch:boolean = false;
   showText: string ="Show Complete Breakdown of Nutritional Information";
@@ -59,23 +59,23 @@ export class DetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
     this.id = +this.route.snapshot.paramMap.get('id');
-    this.data.getData(this.id).subscribe(response =>{
-      this.recipe= response;
+    this.data.getData(this.id).subscribe(response => {
+      this.recipe = response;
       console.log(this.recipe);
       this.image = response[0].image;
       this.wineText = this.recipe[0].winePairing.pairingText;
       this.ingredients = this.recipe[0].extendedIngredients;
-      this.ingredients.forEach(item =>{
-        this.imgUrl.push("https://spoonacular.com/cdn/ingredients_100x100/"+item.image);
+      this.ingredients.forEach(item => {
+        this.imgUrl.push("https://spoonacular.com/cdn/ingredients_100x100/" + item.image);
       })
       this.instructions = response[0].instructions;
-      this.nutrition = response[0].nutrition.nutrients.slice(0,4);
-      this.limit = response[0].nutrition.nutrients.slice(0,8);
+      this.nutrition = response[0].nutrition.nutrients.slice(0, 4);
+      this.limit = response[0].nutrition.nutrients.slice(0, 8);
       this.includeMore = response[0].nutrition.nutrients.slice(8);
       this.healthScore = response[0].healthScore;
-      this.userInfo.user.subscribe(response =>{
+      this.userInfo.user.subscribe(response => {
         this.user = response
         console.log(this.user)
         this.email = this.user.email;
@@ -99,27 +99,44 @@ export class DetailsComponent implements OnInit {
 
   }
 
-  showLimit(){
+  showLimit() {
     this.show = !this.show;
-    this.show ? this.showText="Hide" : this.showText="Show Complete Breakdown of Nutritional Information";
+    this.show ? this.showText = "Hide" : this.showText = "Show Complete Breakdown of Nutritional Information";
   }
 
-  alternate(value){
+  alternate(value) {
     this.view = true;
-    this.data.getIngredientAlternate(value).subscribe(response =>{
+    this.data.getIngredientAlternate(value).subscribe(response => {
       this.substitute = response;
     });
   }
 
-  showCard(){
-    this.showCardBool=!this.showCardBool;
+  showCard() {
+    this.showCardBool = !this.showCardBool;
   }
 
-  measure(){
-    this.switch =! this.switch;
+  measure() {
+    this.switch = !this.switch;
     this.switch ? this.buttonText = "Hide" : this.buttonText = "Click to see in Metrics";
   }
 
+// <<<<<<< sumon
+//   addFav() {
+//     if (this.isTester) {
+//       this.favColor = "btn-danger"
+//       this.http.patch(`https://food-app-385cd.firebaseio.com/users/${this.localId}/favourites.json?auth=${this.idToken}`,
+//         {
+//           [this.recipe[0].id]: this.recipe[0]
+//         }).subscribe(response => {
+//           console.log(response)
+//         })
+//     }
+//     else {
+//       this.favColor = "btn-succes";
+//       this.http.delete(`https://food-app-385cd.firebaseio.com/users/${this.localId}/favourites/${this.recipe[0].id}.json?auth=${this.idToken}`).subscribe(response => {
+//         console.log(response);
+//       })
+// =======
   addFav(){
     if(this.recipeArray.includes(this.id.toString())){
       alert('Item already added to favourite')
@@ -140,20 +157,20 @@ export class DetailsComponent implements OnInit {
         })
       }
     }
-    this.isTester =! this.isTester;
+    this.isTester = !this.isTester;
   }
 
-  addToMeal(){
-    if(!(this.toggleMeal)){
-      this.http.patch(`https://food-app-385cd.firebaseio.com/users/${this.localId}/meal/${this.recipe[0].id}.json?auth=${this.idToken}`,{
-      "recipe":this.recipe
-      }).subscribe(response =>{
-      console.log(response)
+  addToMeal() {
+    if (!(this.toggleMeal)) {
+      this.http.patch(`https://food-app-385cd.firebaseio.com/users/${this.localId}/meal.json?auth=${this.idToken}`, {
+        [this.recipe[0].id] : this.recipe[0]
+      }).subscribe(response => {
+        console.log(response)
       })
     }
-    else{
+    else {
       this.favColor = "btn-succes";
-      this.http.delete(`https://food-app-385cd.firebaseio.com/users/${this.localId}/meal/${this.recipe[0].id}.json?auth=${this.idToken}`).subscribe(response =>{
+      this.http.delete(`https://food-app-385cd.firebaseio.com/users/${this.localId}/meal/${this.recipe[0].id}.json?auth=${this.idToken}`).subscribe(response => {
         console.log(response);
       })
     }
