@@ -19,4 +19,8 @@ export class FireService {
   deleteFavorite(userId:string, id: string, token: string){
     return this.http.delete(`https://food-app-385cd.firebaseio.com/users/${userId}/favourites/${id}.json?auth=${token}`)
   }
+
+  deleteMeal(userId:string, id: string, token: string){
+    return this.http.delete(`https://food-app-385cd.firebaseio.com/users/${userId}/meal/${id}.json?auth=${token}`)
+  }
 }
