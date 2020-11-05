@@ -157,3 +157,7 @@
 .depth--two {
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
 }
+
+.trash{
+  font-size: 20px;
+}

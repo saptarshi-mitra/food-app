@@ -4,28 +4,29 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { FireService } from 'src/app/common/services/fire.service';
 
 @Component({
-  selector: 'app-fav-item',
-  templateUrl: './fav-item.component.html',
-  styleUrls: ['./fav-item.component.css']
+  selector: 'app-meal-item',
+  templateUrl: './meal-item.component.html',
+  styleUrls: ['./meal-item.component.css']
 })
-export class FavItemComponent implements OnInit {
+export class MealItemComponent implements OnInit {
 
   @Input() recipe: any;
   @Output() deleted = new EventEmitter<string>();
 
-  constructor(private fire: FireService, private auth: AuthService,private router: Router) { }
+  constructor(private fire: FireService, private auth: AuthService, private router: Router) { }
 
   beingDeleted = false;
-  
+
   ngOnInit(): void {
-    // console.log(this.recipe);
+    console.log(this.recipe);
   }
 
   onDelete() {
     this.beingDeleted = true;
     this.auth.user.subscribe(user => {
-      this.fire.deleteFavorite(user.id,this.recipe.id,user.token).subscribe(resopnse=>{
-        // console.log(resopnse);
+
+      this.fire.deleteMeal(user.id, this.recipe.id, user.token).subscribe(resopnse => {
+        console.log(resopnse);
         this.deleted.emit("reload");
       })
     })

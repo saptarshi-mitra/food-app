@@ -11,6 +11,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { UserMealsComponent } from './user-meals/user-meals.component';
 import { FavouriteComponent } from './favourite/favourite.component';
 import { MealComponent } from './meal/meal.component';
+import { MealParentComponent } from './meal-parent/meal-parent.component';
 
 const routes: Routes = [
   {
@@ -46,16 +47,12 @@ const routes: Routes = [
     component: HelpComponent
   },
   {
-    path: 'meal-analysis',
-    component: UserMealsComponent
-  },
-  {
     path: 'favourite',
     component: FavouriteComponent
   },
   {
     path: 'meal',
-    component: MealComponent
+    component: MealParentComponent
   }
 ];
 

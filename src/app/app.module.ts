@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatTabsModule} from '@angular/material/tabs';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +36,8 @@ import { FavouriteComponent } from './favourite/favourite.component';
 import { IndividualGraphsComponent } from './user-meals/individual-graphs/individual-graphs.component';
 import { MealComponent } from './meal/meal.component';
 import { FavItemComponent } from './favourite/fav-item/fav-item.component';
+import { MealParentComponent } from './meal-parent/meal-parent.component';
+import { MealItemComponent } from './meal/meal-item/meal-item.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +65,9 @@ import { FavItemComponent } from './favourite/fav-item/fav-item.component';
     FavItemComponent,
     UserMealsComponent,
     FavouriteComponent,
-    IndividualGraphsComponent
+    IndividualGraphsComponent,
+    MealParentComponent,
+    MealItemComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +76,9 @@ import { FavItemComponent } from './favourite/fav-item/fav-item.component';
     NgxPaginationModule,
     FormsModule,
     ReactiveFormsModule,
-    ChartsModule
+    ChartsModule,
+    BrowserAnimationsModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -21,7 +21,9 @@
         <i class="fas fa-egg"></i>  {{recipe.nutrition.caloricBreakdown.percentProtein | number:'.0-0'}}%
       </div>
     </div>
-    <footer class="card__actions"><i (click)="onDelete()" class="fas fa-trash"></i>
+    <footer class="card__actions"> 
+      <app-loading-spinner *ngIf="beingDeleted"></app-loading-spinner>  
+      <i (click)="onDelete()" *ngIf="!beingDeleted" class="fas fa-trash trash p-2"></i>
     </footer>
   </div>
 </article>
