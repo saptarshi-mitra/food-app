@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
+import { FireService } from '../common/services/fire.service';
 
 @Component({
   selector: 'app-favourite',
@@ -9,31 +10,18 @@ import { AuthService } from '../auth/auth.service';
 })
 export class FavouriteComponent implements OnInit {
 
-  constructor(private userInfo: AuthService,private http:HttpClient) { }
+  constructor(private authService: AuthService, private fire: FireService) { }
 
-  user;
-  id:number;
-  title:string;
-  userDetails;
-  isLogged: boolean;
-  arr;
+  recipes;
 
   ngOnInit(): void {
-    this.userInfo.user.subscribe(response =>{
-      this.user = response
-    })
-    this.user === null ? this.isLogged = false : this.isLogged = true;
-    if(this.isLogged){
-      this.http.get(`https://food-app-385cd.firebaseio.com/users/${this.user.id}/favourites.json?auth=${this.user._token}`).subscribe(response =>{
-        this.userDetails = response;
-        this.arr = Object.entries(response)
-        console.log(this.userDetails)
+    this.authService.user.subscribe(currentUser => {
+      this.fire.getFavorites(currentUser.id,currentUser.token).subscribe(response=>{
+        
+        this.recipes = Object.values(response);
+        console.log(this.recipes)
       })
-    }
-    else{
-      console.log("take your time")
-    }
-
+    })
   }
 
 }
