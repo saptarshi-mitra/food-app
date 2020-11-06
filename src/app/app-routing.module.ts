@@ -12,6 +12,7 @@ import { UserMealsComponent } from './user-meals/user-meals.component';
 import { FavouriteComponent } from './favourite/favourite.component';
 import { MealComponent } from './meal/meal.component';
 import { AuthGuardService } from './auth/auth-guard.service';
+import { MealParentComponent } from './meal-parent/meal-parent.component';
 
 const routes: Routes = [
   {
@@ -58,7 +59,8 @@ const routes: Routes = [
   },
   {
     path: 'meal',
-    component: MealComponent
+    component: MealParentComponent,
+    canActivate: [AuthGuardService]
   }
 ];
 
