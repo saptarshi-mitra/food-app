@@ -94,7 +94,8 @@ export class DetailsComponent implements OnInit {
         })
 
       })
-      this.link = this.recipe[0].winePairing.productMatches[0].link;
+      if(this.recipe[0].winePairing.hasOwnProperty('productMatches'))
+        this.link = this.recipe[0].winePairing.productMatches[0].link;
     })
 
   }

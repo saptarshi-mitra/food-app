@@ -11,6 +11,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { UserMealsComponent } from './user-meals/user-meals.component';
 import { FavouriteComponent } from './favourite/favourite.component';
 import { MealComponent } from './meal/meal.component';
+import { AuthGuardService } from './auth/auth-guard.service';
 import { MealParentComponent } from './meal-parent/meal-parent.component';
 
 const routes: Routes = [
@@ -47,12 +48,19 @@ const routes: Routes = [
     component: HelpComponent
   },
   {
+    path: 'meal-analysis',
+    component: UserMealsComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
     path: 'favourite',
-    component: FavouriteComponent
+    component: FavouriteComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'meal',
-    component: MealParentComponent
+    component: MealParentComponent,
+    canActivate: [AuthGuardService]
   }
 ];
 
