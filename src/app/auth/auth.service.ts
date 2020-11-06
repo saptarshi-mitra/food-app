@@ -69,6 +69,14 @@ export class AuthService {
       });
   }
 
+  changePassword(idToken: string, password: string, returnSecureToken: boolean){
+    return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyAHwgKUz04OEuff0r1e5PcJN1T94BbKsR8`,{
+      idToken: idToken,
+      password: password,
+      returnSecureToken: returnSecureToken
+    }).pipe(catchError(this.handleError))
+  }
+
   getDetails(localId: string, idToken: string) {
     return this.http.get<{userName:string}>(`https://food-app-385cd.firebaseio.com/users/${localId}.json?auth=${idToken}`)
   }

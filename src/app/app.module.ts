@@ -38,6 +38,8 @@ import { MealComponent } from './meal/meal.component';
 import { FavItemComponent } from './favourite/fav-item/fav-item.component';
 import { MealParentComponent } from './meal-parent/meal-parent.component';
 import { MealItemComponent } from './meal/meal-item/meal-item.component';
+import { ProfileComponent } from './profile/profile.component';
+import { PasswordChangeComponent } from './profile/password-change/password-change.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,9 @@ import { MealItemComponent } from './meal/meal-item/meal-item.component';
     FavouriteComponent,
     IndividualGraphsComponent,
     MealParentComponent,
-    MealItemComponent
+    MealItemComponent,
+    ProfileComponent,
+    PasswordChangeComponent
   ],
   imports: [
     BrowserModule,
