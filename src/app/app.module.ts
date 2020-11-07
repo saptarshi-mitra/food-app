@@ -33,6 +33,9 @@ import { FavouriteComponent } from './favourite/favourite.component';
 import { IndividualGraphsComponent } from './user-meals/individual-graphs/individual-graphs.component';
 import { MealComponent } from './meal/meal.component';
 import { FavItemComponent } from './favourite/fav-item/fav-item.component';
+import { NotesComponent } from './notes/notes.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,8 @@ import { FavItemComponent } from './favourite/fav-item/fav-item.component';
     FavItemComponent,
     UserMealsComponent,
     FavouriteComponent,
-    IndividualGraphsComponent
+    IndividualGraphsComponent,
+    NotesComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +73,9 @@ import { FavItemComponent } from './favourite/fav-item/fav-item.component';
     NgxPaginationModule,
     FormsModule,
     ReactiveFormsModule,
-    ChartsModule
+    ChartsModule,
+    BrowserAnimationsModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

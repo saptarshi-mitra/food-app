@@ -11,6 +11,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { UserMealsComponent } from './user-meals/user-meals.component';
 import { FavouriteComponent } from './favourite/favourite.component';
 import { MealComponent } from './meal/meal.component';
+import { NotesComponent } from './notes/notes.component';
 
 const routes: Routes = [
   {
@@ -56,6 +57,10 @@ const routes: Routes = [
   {
     path: 'meal',
     component: MealComponent
+  },
+  {
+    path: 'notes',
+    component: NotesComponent
   }
 ];
 

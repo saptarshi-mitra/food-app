@@ -1,0 +1,25 @@
+<div class="container my-5" *ngIf="!isLogged">
+    <div class="alert alert-danger">PLEASE LOG IN TO SEE YOUR NOTES</div>
+</div>
+<div class="container my-5" *ngIf="isLogged">
+    <div class="row pl-3" style="padding-top: 100px;width: 91.5%;">
+        <div class="col-md-3" *ngFor="let time of timePeriod" style="border: solid thin;background-image: linear-gradient(darkgreen,green);color: white;">{{time}}</div>
+    </div>
+    <div class="dragger" style="padding-top: 50px;">
+        <div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
+
+            <div id="top" style="background-image: linear-gradient(green,lightgreen,white);" class="example-box flex-column" *ngFor="let timePeriod of timePeriods; let i = index" cdkDrag>
+                <textarea class="mx-auto" name="note" id="note" cols="25" rows="5" #note></textarea>&nbsp;
+                <button class="btn btn-success" (click)="add(i,note.value,timePeriod)">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div class="notes my-4">
+        <h4 class="display-3">Click to see your recent notes</h4>
+    </div>
+    <div class="timeFor my-4" *ngFor="let time of timePeriod;let i = index">
+        <label for="time">{{time}}</label>
+        <input class="mx-2" type="checkbox" id="time" [value]="time" (click)="getData(i)" #show>
+    </div>
+    <div class="alert alert-primary" *ngIf="show">{{note}}: {{date}}</div>
+</div>
