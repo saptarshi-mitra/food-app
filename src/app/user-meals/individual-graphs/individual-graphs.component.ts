@@ -12,6 +12,12 @@ export class IndividualGraphsComponent implements OnInit {
   public doughnutChartLabels = [];
   public doughnutChartData = [];
   public doughnutChartType = 'doughnut'
+  public colours = [
+    {
+      backgroundColor: ["#d00", "#f55", "#ffb266", "#dd6e00", "#ff9", "#ee0", "#6f6", "#0d0", "#99f", "#33f", "#8600e8", "#4b0082", "#ac00f5", "#7000a0"],
+      borderWidth: 0
+    }
+  ]
   constructor() { }
 
   ngOnInit(): void {
