@@ -4,6 +4,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -82,7 +85,10 @@ import { PasswordChangeComponent } from './profile/password-change/password-chan
     ReactiveFormsModule,
     ChartsModule,
     BrowserAnimationsModule,
-    MatTabsModule
+    MatTabsModule,
+    MatTooltipModule,
+    MatMenuModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
