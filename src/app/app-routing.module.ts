@@ -13,6 +13,8 @@ import { FavouriteComponent } from './favourite/favourite.component';
 import { MealComponent } from './meal/meal.component';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { MealParentComponent } from './meal-parent/meal-parent.component';
+import { ProfileComponent } from './profile/profile.component';
+import { PasswordChangeComponent } from './profile/password-change/password-change.component';
 
 const routes: Routes = [
   {
@@ -60,6 +62,14 @@ const routes: Routes = [
   {
     path: 'meal',
     component: MealParentComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'account',
+    component: ProfileComponent,
+    children: [
+      {path: 'passwordChange', component: PasswordChangeComponent}
+    ],
     canActivate: [AuthGuardService]
   }
 ];
