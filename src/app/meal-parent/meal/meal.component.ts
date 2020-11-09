@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
-import { FireService } from '../common/services/fire.service';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AuthService } from 'src/app/auth/auth.service';
+import { FireService } from 'src/app/common/services/fire.service';
+import { MealService } from '../meal.service';
 
 @Component({
   selector: 'app-meal',
@@ -9,7 +10,8 @@ import { FireService } from '../common/services/fire.service';
 })
 export class MealComponent implements OnInit {
 
-  constructor(private authService: AuthService, private fire: FireService) { }
+
+  constructor(private authService: AuthService, private fire: FireService, private mealService: MealService) { }
 
   recipes;
 
@@ -25,5 +27,13 @@ export class MealComponent implements OnInit {
         }
       })
     })
+
+    this.mealService.deleted.subscribe(response => {
+      if(response==="reload")
+        this.ngOnInit();
+    })
+
   }
+
+
 }
