@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { FireService } from 'src/app/common/services/fire.service';
+import { MealService } from '../../meal.service';
 
 @Component({
   selector: 'app-meal-item',
@@ -11,9 +12,8 @@ import { FireService } from 'src/app/common/services/fire.service';
 export class MealItemComponent implements OnInit {
 
   @Input() recipe: any;
-  @Output() deleted = new EventEmitter<string>();
 
-  constructor(private fire: FireService, private auth: AuthService, private router: Router) { }
+  constructor(private fire: FireService, private auth: AuthService, private router: Router, private mealService: MealService) { }
 
   beingDeleted = false;
 
@@ -27,7 +27,7 @@ export class MealItemComponent implements OnInit {
 
       this.fire.deleteMeal(user.id, this.recipe.id, user.token).subscribe(resopnse => {
         console.log(resopnse);
-        this.deleted.emit("reload");
+        this.mealService.deleted.next("reload");
       })
     })
   }

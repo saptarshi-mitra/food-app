@@ -8,9 +8,8 @@ import { DetailsComponent } from './details/details.component';
 import { HelpComponent } from './help/help.component';
 import { HomeComponent } from './home/home.component';
 import { SearchResultComponent } from './search-result/search-result.component';
-import { UserMealsComponent } from './user-meals/user-meals.component';
 import { FavouriteComponent } from './favourite/favourite.component';
-import { MealComponent } from './meal/meal.component';
+import { NotesComponent } from './notes/notes.component';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { MealParentComponent } from './meal-parent/meal-parent.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -51,11 +50,6 @@ const routes: Routes = [
     component: HelpComponent
   },
   {
-    path: 'meal-analysis',
-    component: UserMealsComponent,
-    canActivate: [AuthGuardService]
-  },
-  {
     path: 'favourite',
     component: FavouriteComponent,
     canActivate: [AuthGuardService]
@@ -64,6 +58,10 @@ const routes: Routes = [
     path: 'meal',
     component: MealParentComponent,
     canActivate: [AuthGuardService]
+  },
+  {
+    path: 'notes',
+    component: NotesComponent
   },
   {
     path: 'account',
