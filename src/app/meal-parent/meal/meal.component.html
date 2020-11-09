@@ -4,7 +4,6 @@
     <app-meal-item 
       *ngFor="let recipe of recipes" 
       [recipe]="recipe" 
-      (deleted)="this.ngOnInit()" 
       [class]="'col col-md-3'">
     </app-meal-item>
   </div>

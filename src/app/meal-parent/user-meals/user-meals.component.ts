@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from 'src/app/auth/auth.service';
+import { MealService } from '../meal.service';
 
 @Component({
   selector: 'app-user-meals',
@@ -33,7 +34,7 @@ export class UserMealsComponent implements OnInit {
 
   isAuthenticated = false;
   private userSub: Subscription;
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private mealService: MealService) { }
 
   ngOnInit(): void {
     this.userName = "";
@@ -97,6 +98,12 @@ export class UserMealsComponent implements OnInit {
             // this.barChartLabels = arr[0].map(item => item.title)
           })
       })
+
+      this.mealService.deleted.subscribe(response => {
+        if(response==="reload")
+          this.ngOnInit();
+      })
+  
 
     }
 
