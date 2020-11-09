@@ -42,6 +42,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { MealParentComponent } from './meal-parent/meal-parent.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PasswordChangeComponent } from './profile/password-change/password-change.component';
+import { UsernameChangeComponent } from './profile/username-change/username-change.component';
 import { MealComponent } from './meal-parent/meal/meal.component';
 import { UserMealsComponent } from './meal-parent/user-meals/user-meals.component';
 import { IndividualGraphsComponent } from './meal-parent/user-meals/individual-graphs/individual-graphs.component';
@@ -78,7 +79,8 @@ import { MealItemComponent } from './meal-parent/meal/meal-item/meal-item.compon
     MealParentComponent,
     MealItemComponent,
     ProfileComponent,
-    PasswordChangeComponent
+    PasswordChangeComponent,
+    UsernameChangeComponent
   ],
   imports: [
     BrowserModule,
