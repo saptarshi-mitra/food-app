@@ -61,6 +61,9 @@ export class DetailsComponent implements OnInit {
   ngOnInit(): void {
 
     this.id = +this.route.snapshot.paramMap.get('id');
+    if (this.recipeArray.includes(this.id.toString())) {
+      this.favColor = "btn-danger"
+    }
     this.data.getData(this.id).subscribe(response => {
       this.recipe = response;
       console.log(this.recipe);
@@ -86,13 +89,12 @@ export class DetailsComponent implements OnInit {
       this.http.get(`https://food-app-385cd.firebaseio.com/users/${this.localId}/favourites.json?auth=${this.idToken}`).subscribe(response => {
         this.recipeArray = Object.keys(response);
       })
-      this.http.get(`https://foodapp-a7482.firebaseio.com//reviews/${this.recipe[0].id}.json`).subscribe(response => {
+      this.http.get(`https://foodapp-a7482.firebaseio.com/reviews/${this.recipe[0].id}.json`).subscribe(response => {
         this.recipeReviewComment = Object.values(response);
         this.recipeReviewComment.forEach(item => {
           this.recipeReview.push(item.review)
           this.recipeReviewUser.push(item.user)
         })
-
       })
       if(this.recipe[0].winePairing.hasOwnProperty('productMatches'))
         this.link = this.recipe[0].winePairing.productMatches[0].link;
@@ -139,25 +141,20 @@ export class DetailsComponent implements OnInit {
   //       })
   // =======
   addFav() {
-    if (this.recipeArray.includes(this.id.toString())) {
-      alert('Item already added to favourite')
+    if (this.isTester) {
+      this.favColor = "btn-danger";
+      this.http.patch(`https://food-app-385cd.firebaseio.com/users/${this.localId}/favourites.json?auth=${this.idToken}`,
+        {
+          [this.recipe[0].id]: this.recipe[0]
+        }).subscribe(response => {
+          console.log(response)
+        })
     }
     else {
-      if (this.isTester) {
-        this.favColor = "btn-danger";
-        this.http.patch(`https://food-app-385cd.firebaseio.com/users/${this.localId}/favourites.json?auth=${this.idToken}`,
-          {
-            [this.recipe[0].id]: this.recipe[0]
-          }).subscribe(response => {
-            console.log(response)
-          })
-      }
-      else {
-        this.favColor = "btn-succes";
-        this.http.delete(`https://food-app-385cd.firebaseio.com/users/${this.localId}/favourites/${this.recipe[0].id}.json?auth=${this.idToken}`).subscribe(response => {
-          console.log(response);
-        })
-      }
+      this.favColor = "btn-succes";
+      this.http.delete(`https://food-app-385cd.firebaseio.com/users/${this.localId}/favourites/${this.recipe[0].id}.json?auth=${this.idToken}`).subscribe(response => {
+        console.log(response);
+      })
     }
     this.isTester = !this.isTester;
   }
