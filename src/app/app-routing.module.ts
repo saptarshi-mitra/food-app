@@ -15,6 +15,7 @@ import { AuthGuardService } from './auth/auth-guard.service';
 import { MealParentComponent } from './meal-parent/meal-parent.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PasswordChangeComponent } from './profile/password-change/password-change.component';
+import { UsernameChangeComponent } from './profile/username-change/username-change.component';
 
 const routes: Routes = [
   {
@@ -68,7 +69,8 @@ const routes: Routes = [
     path: 'account',
     component: ProfileComponent,
     children: [
-      {path: 'passwordChange', component: PasswordChangeComponent}
+      {path: 'passwordChange', component: PasswordChangeComponent},
+      {path: 'usernameChange', component: UsernameChangeComponent}
     ],
     canActivate: [AuthGuardService]
   }

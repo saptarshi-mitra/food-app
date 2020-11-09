@@ -40,6 +40,7 @@ import { MealParentComponent } from './meal-parent/meal-parent.component';
 import { MealItemComponent } from './meal/meal-item/meal-item.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PasswordChangeComponent } from './profile/password-change/password-change.component';
+import { UsernameChangeComponent } from './profile/username-change/username-change.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { PasswordChangeComponent } from './profile/password-change/password-chan
     MealParentComponent,
     MealItemComponent,
     ProfileComponent,
-    PasswordChangeComponent
+    PasswordChangeComponent,
+    UsernameChangeComponent
   ],
   imports: [
     BrowserModule,

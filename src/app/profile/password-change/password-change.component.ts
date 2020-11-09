@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/auth/user.model';
@@ -9,7 +9,7 @@ import { AuthService } from '../../auth/auth.service';
   templateUrl: './password-change.component.html',
   styleUrls: ['./password-change.component.css']
 })
-export class PasswordChangeComponent implements OnInit {
+export class PasswordChangeComponent implements OnInit, OnDestroy {
 
   form = new FormGroup({
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
