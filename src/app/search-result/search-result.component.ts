@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FoodService } from '../common/services/food.service';
+import { RecipeSearchResult, IndividualSearchRecipe } from "../common/shared/model/recipe-search-result";
 
 @Component({
   selector: 'app-search-result',
@@ -44,7 +45,7 @@ export class SearchResultComponent implements OnInit {
   min_value: number = 0
   max_value: number = 5000
 
-  recipes = []
+  recipes: IndividualSearchRecipe[] = []
   query: string
   constructor(private _service: FoodService, private _route: ActivatedRoute) { 
     this.config = {
@@ -57,8 +58,8 @@ export class SearchResultComponent implements OnInit {
   ngOnInit(): void {
     this.query = this._route.snapshot.paramMap.get('name')
     if(parseInt(this.query)) //check if the user has clicked form suggestions, search with id
-      this._service.getData(+(this.query)).subscribe(response => {
-        this.recipes = response as []
+      this._service.getData(+(this.query)).subscribe((response: IndividualSearchRecipe) => {
+        this.recipes = response as unknown as []
         this.config = {
           itemsPerPage: 1,
           currentPage: 1,
@@ -67,8 +68,8 @@ export class SearchResultComponent implements OnInit {
       })
     else{
       this._service.getSearchResult(this.query) //if the user searches with key word
-        .subscribe(response => {
-          this.recipes = response['results']
+        .subscribe((response: RecipeSearchResult) => {
+          this.recipes = response.results
           this.config = {
             itemsPerPage: 5,
             currentPage: 1,

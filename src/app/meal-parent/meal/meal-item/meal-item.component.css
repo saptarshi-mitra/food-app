@@ -1,0 +1,163 @@
+/* Prettify */
+* {
+    box-sizing: border-box;
+  }
+  
+  .container {
+    margin-top: 80px;
+  }
+  
+  /* Card Styles */
+  .card {
+    height: 100%;
+    background-color: #ffffff;
+    text-align: left;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .card__body {
+    padding: 16px 0;
+  }
+  
+  .card__primary-title {
+    padding: 8px 16px;
+  }
+  
+  .card__primary-title h1,
+  .card__primary-title h2,
+  .card__primary-title h3,
+  .card__primary-title h4,
+  .card__primary-title h5,
+  .card__primary-title h6 {
+    margin: 0;
+  }
+  
+  .card__supporting-text {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 25px;
+  }
+  
+  .go-down{
+    margin-top: auto;
+  }
+  
+  .carbs {
+    cursor: pointer;
+    color: rgb(2, 185, 2);
+  }
+  
+  .fat{
+    cursor: pointer;
+    color: brown;
+  }
+  
+  .protein{
+    cursor: pointer;
+    color: orange;
+  }
+  
+  .card__actions {
+    color: rgb(197, 0, 0);
+    padding: 8px;
+    padding-right: 17px;
+    padding-bottom: 12px;
+    text-align: right;
+  }
+  
+  .card__actions i {
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  
+  .card__actions:hover{
+    color:red;
+  }
+  /* Material & utility classes */
+  .bg--deep-purple {
+    color: #ffffff;
+    background-color: #673ab7;
+  }
+  
+  .text-normal {
+    font-weight: normal;
+  }
+  
+  .text-bold {
+    font-weight: bold;
+  }
+  
+  .text-secondary {
+    color: #9e9e9e;
+  }
+  
+  .text-small {
+    font-size: 14px;
+  }
+  
+  .text-medium {
+    font-size: 16px;
+  }
+  
+  .text-large {
+    font-size: 24px;
+  }
+  
+  .item {
+    display: inline-block;
+    margin-top: 8px;
+    max-height: 72px;
+    vertical-align: middle;
+  }
+  
+  .image {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  .image--avatar {
+    display: inline-block;
+    margin-right: 16px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    vertical-align: middle;
+  }
+  
+  .image img {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+    border: none;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 8px;
+    color: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: left;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  
+  .btn--icon {
+    -webkit-transition: color 0.3s;
+    transition: color 0.3s;
+  }
+  
+  .btn--icon:hover {
+    color: #9e9e9e;
+  }
+  
+  .depth--two {
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
+  }
+  
+  .trash{
+    font-size: 20px;
+  }

@@ -11,12 +11,13 @@
         <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
         <a class="nav-link" href="#trending">Trending</a>
         <a class="nav-link" routerLink="/help">Help</a>
-        <a class="nav-link" routerLink="/favourite">My Favourites</a>
-        <a class="nav-link" routerLink="/meal-analysis">My Meals</a>
-        <a class="nav-link" routerLink="/notes">My Notes</a>
+        <!-- <a class="nav-link" routerLink="/favourite">My Favourites</a> -->
+        <!-- <a class="nav-link" routerLink="/meal">My Meals</a> -->
+<!--         <a class="nav-link" routerLink="/account/passwordChange">Profile</a> -->
         <a class="nav-link" routerLink="/about">About Us</a>
       </div>
       <!-- signin/signup buttons -->
+
       <div *ngIf="!isAuthenticated" class="ml-md-auto d-flex">
         <div class="nav-item">
           <button class="btn text-white" routerLink="/signin">Sign in</button>
@@ -25,14 +26,22 @@
           <button class="btn btn-success" routerLink="/signup">Sign up</button>
         </div>
       </div>
-      <!-- logout btn and username -->
+      <!-- user menu-->
       <div *ngIf="isAuthenticated" class="ml-md-auto d-flex">
-        <div *ngIf="userName" class="nav-item d-flex">
-          <p style="margin: auto; padding-right: 10px;" class="text-light">{{userName}}</p>
-        </div>
-        <div class="nav-item">
-          <button class="btn btn-success" (click)="onLogout()">Logout</button>
-        </div>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown">{{userName}}</a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li><a class="dropdown-item" routerLink="/meal"> Meal</a></li>
+              <div class="dropdown-divider m-1"></div>
+              <li><a class="dropdown-item" routerLink="/favourite"> Favourites </a></li>
+              <div class="dropdown-divider m-1"></div>
+              <li><a class="dropdown-item" href="#"> Settings </a></li>
+              <div class="dropdown-divider m-1"></div>
+              <li><a class="dropdown-item text-danger" style="cursor: pointer;" (click)="onLogout()"> Signout </a></li>
+            </ul>
+          </li>
+        </ul>
       </div>
     </div>
   </nav>
