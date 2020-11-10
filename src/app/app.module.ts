@@ -37,7 +37,6 @@ import { ChartsModule } from 'ng2-charts';
 import { FavouriteComponent } from './favourite/favourite.component';
 import { FavItemComponent } from './favourite/fav-item/fav-item.component';
 import { NotesComponent } from './notes/notes.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { MealParentComponent } from './meal-parent/meal-parent.component';
 import { ProfileComponent } from './profile/profile.component';

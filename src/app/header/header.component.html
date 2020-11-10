@@ -8,7 +8,6 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <!-- main links -->
       <div class="navbar-nav">
-        <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
         <a class="nav-link" href="#trending">Trending</a>
         <a class="nav-link" routerLink="/help">Help</a>
         <!-- <a class="nav-link" routerLink="/favourite">My Favourites</a> -->
@@ -36,7 +35,7 @@
               <div class="dropdown-divider m-1"></div>
               <li><a class="dropdown-item" routerLink="/favourite"> Favourites </a></li>
               <div class="dropdown-divider m-1"></div>
-              <li><a class="dropdown-item" href="#"> Settings </a></li>
+              <li><a class="dropdown-item" routerLink="account/usernameChange"> Settings </a></li>
               <div class="dropdown-divider m-1"></div>
               <li><a class="dropdown-item text-danger" style="cursor: pointer;" (click)="onLogout()"> Signout </a></li>
             </ul>
