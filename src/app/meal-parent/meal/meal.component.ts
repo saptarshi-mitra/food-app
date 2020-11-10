@@ -14,6 +14,7 @@ export class MealComponent implements OnInit {
   constructor(private authService: AuthService, private fire: FireService, private mealService: MealService) { }
 
   recipes;
+  isLoading = true;
 
   ngOnInit(): void {
     this.authService.user.subscribe(currentUser => {
@@ -25,6 +26,7 @@ export class MealComponent implements OnInit {
         else{
           this.recipes = null;
         }
+        this.isLoading = false;
       })
     })
 

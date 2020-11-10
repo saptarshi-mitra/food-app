@@ -13,17 +13,19 @@ export class FavouriteComponent implements OnInit {
   constructor(private authService: AuthService, private fire: FireService) { }
 
   recipes;
+  isLoading = true;
 
   ngOnInit(): void {
     this.authService.user.subscribe(currentUser => {
       this.fire.getFavorites(currentUser.id, currentUser.token).subscribe(response => {
         if (response) {
           this.recipes = Object.values(response);
-          console.log(this.recipes)
+          // console.log(this.recipes)
         }
         else{
           this.recipes = null;
         }
+        this.isLoading = false;
       })
     })
   }
