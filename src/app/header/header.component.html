@@ -30,7 +30,10 @@
       <div *ngIf="isAuthenticated" class="ml-md-auto d-flex">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item dropdown">
-            <a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown">{{userName}}</a>
+            <a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown">
+              <app-loading-spinner [small]="true" *ngIf="!userName"></app-loading-spinner>
+              <span *ngIf="!!userName">{{userName}}</span>
+            </a>
             <ul class="dropdown-menu dropdown-menu-right">
               <li><a class="dropdown-item" routerLink="/meal"> Meal</a></li>
               <div class="dropdown-divider m-1"></div>
