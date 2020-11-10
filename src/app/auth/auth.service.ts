@@ -26,7 +26,6 @@ export class AuthService {
 
   user = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
-  userName = new Subject<UserName>();
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -64,6 +63,13 @@ export class AuthService {
 
   registerDetails(userName: string, localId: string, idToken: string) {
     return this.http.put(`https://food-app-385cd.firebaseio.com/users/${localId}.json?auth=${idToken}`,
+      {
+        "userName": userName
+      });
+  }
+
+  updateDetails(userName: string, localId: string, idToken: string) {
+    return this.http.patch(`https://food-app-385cd.firebaseio.com/users/${localId}.json?auth=${idToken}`,
       {
         "userName": userName
       });

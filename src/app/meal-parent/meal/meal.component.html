@@ -1,6 +1,7 @@
 <div class="container mb-5 mt-5">
-  <h3 *ngIf="!recipes">Nothing here :/</h3>
-  <div *ngIf="recipes" class="row">
+  <app-loading-spinner [color]="'success'" *ngIf="isLoading"></app-loading-spinner>
+  <h3 *ngIf="!recipes && !isLoading">Nothing here :/</h3>
+  <div *ngIf="recipes && !isLoading" class="row">
     <app-meal-item 
       *ngFor="let recipe of recipes" 
       [recipe]="recipe" 
