@@ -4,8 +4,8 @@
     </figure>
     <div class="card__body">
       <header class="card__primary-title">
-        <h2 class="text-large">{{recipe.title}}</h2>
-        <h3 class="text-secondary text-normal text-small">{{recipe.dishTypes[0]}}</h3>
+        <a class="text-large" [routerLink]="['/details', recipe.id]" matTooltip="{{recipe.title}}" [matTooltipClass]="'h6'">{{recipe.title | shorten}}</a>
+        <h3 class="text-secondary text-normal text-small">{{!!recipe.dishTypes?recipe.dishTypes[0]:""}}</h3>
       </header>
   
     </div>

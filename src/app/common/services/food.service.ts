@@ -33,7 +33,7 @@ export class FoodService {
   }
 
   getRandomRecipe(count){
-    return this._http.get<any>(` https://api.spoonacular.com/recipes/random?number=${count}&apiKey=${this.apiKey}`)
+    return this._http.get<any>(` https://api.spoonacular.com/recipes/random?number=${count}&apiKey=${this._apikey}`)
   }
 
   getData(id){
