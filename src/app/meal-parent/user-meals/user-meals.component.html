@@ -1,5 +1,6 @@
-<div class="container myContainer">
+<div class="container mt-4">
   <h1>Welcome {{ userName }}</h1>
+  <div *ngIf="doughnutChartData.length>0; else nothing">
   <h3 class="mt-2">Here is your total nutrients intake</h3>
   <div class="row">
     <div class="col-6">
@@ -8,7 +9,9 @@
           height="300px"
           [datasets]="doughnutChartData"
           [labels]="doughnutChartLabels"
-          [chartType]="doughnutChartType">
+          [chartType]="doughnutChartType"
+          [colors]="colours"
+          >
         </canvas>
       </div>
     </div>
@@ -37,6 +40,8 @@
       </div>
     </div>
   </div>
+  </div>
+  <ng-template #nothing>First add some meals to view this tab</ng-template>
 
 
   

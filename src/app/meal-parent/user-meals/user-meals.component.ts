@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from 'src/app/auth/auth.service';
+import { MealService } from '../meal.service';
 
 @Component({
   selector: 'app-user-meals',
@@ -23,11 +24,17 @@ export class UserMealsComponent implements OnInit {
   public doughnutChartLabels = [];
   public doughnutChartData = [];
   public doughnutChartType = 'doughnut'
+  public colours = [
+    {
+      backgroundColor: ["#d00", "#f55", "#ffb266", "#dd6e00", "#ff9", "#ee0", "#6f6", "#0d0", "#99f", "#33f", "#8600e8", "#4b0082", "#ac00f5", "#7000a0"],
+      borderWidth: 0
+    }
+  ]
 
 
   isAuthenticated = false;
   private userSub: Subscription;
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private mealService: MealService) { }
 
   ngOnInit(): void {
     this.userName = "";
@@ -91,6 +98,12 @@ export class UserMealsComponent implements OnInit {
             // this.barChartLabels = arr[0].map(item => item.title)
           })
       })
+
+      this.mealService.deleted.subscribe(response => {
+        if(response==="reload")
+          this.ngOnInit();
+      })
+  
 
     }
 

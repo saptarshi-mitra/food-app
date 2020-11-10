@@ -15,14 +15,17 @@ export class FavItemComponent implements OnInit {
 
   constructor(private fire: FireService, private auth: AuthService,private router: Router) { }
 
+  beingDeleted = false;
+  
   ngOnInit(): void {
-    console.log(this.recipe);
+    // console.log(this.recipe);
   }
 
   onDelete() {
+    this.beingDeleted = true;
     this.auth.user.subscribe(user => {
       this.fire.deleteFavorite(user.id,this.recipe.id,user.token).subscribe(resopnse=>{
-        console.log(resopnse);
+        // console.log(resopnse);
         this.deleted.emit("reload");
       })
     })

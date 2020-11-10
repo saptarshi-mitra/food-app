@@ -1,6 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,15 +33,20 @@ import { FilterGlutenPipe } from './common/pipe/filter-gluten.pipe';
 import { FilterDiaryProductsPipe } from './common/pipe/filter-diary-products.pipe';
 import { SubscribeComponent } from './home/subscribe/subscribe.component';
 import { CarouselComponent } from './home/carousel/carousel.component';
-import { UserMealsComponent } from './user-meals/user-meals.component';
 import { ChartsModule } from 'ng2-charts';
 import { FavouriteComponent } from './favourite/favourite.component';
-import { IndividualGraphsComponent } from './user-meals/individual-graphs/individual-graphs.component';
-import { MealComponent } from './meal/meal.component';
 import { FavItemComponent } from './favourite/fav-item/fav-item.component';
 import { NotesComponent } from './notes/notes.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { MealParentComponent } from './meal-parent/meal-parent.component';
+import { ProfileComponent } from './profile/profile.component';
+import { PasswordChangeComponent } from './profile/password-change/password-change.component';
+import { UsernameChangeComponent } from './profile/username-change/username-change.component';
+import { MealComponent } from './meal-parent/meal/meal.component';
+import { UserMealsComponent } from './meal-parent/user-meals/user-meals.component';
+import { IndividualGraphsComponent } from './meal-parent/user-meals/individual-graphs/individual-graphs.component';
+import { MealItemComponent } from './meal-parent/meal/meal-item/meal-item.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +75,12 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     UserMealsComponent,
     FavouriteComponent,
     IndividualGraphsComponent,
-    NotesComponent
+    NotesComponent,
+    MealParentComponent,
+    MealItemComponent,
+    ProfileComponent,
+    PasswordChangeComponent,
+    UsernameChangeComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +91,11 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     ReactiveFormsModule,
     ChartsModule,
     BrowserAnimationsModule,
-    DragDropModule
+    DragDropModule,
+    MatTabsModule,
+    MatTooltipModule,
+    MatMenuModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
