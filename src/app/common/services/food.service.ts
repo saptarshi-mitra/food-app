@@ -20,19 +20,19 @@ export class FoodService {
   }
 
   getSuggestions(query){
-    return this._http.get(`https://api.spoonacular.com/food/menuItems/suggest?query=${query}&number=5&apiKey=${this._apikey}`)
+    return this._http.get(`https://api.spoonacular.com/food/menuItems/suggest?query=${query}&number=5&apiKey=${this.key_sumon}`)
   }
 
   getRandomTrivia(){
-    return this._http.get<any>(`https://api.spoonacular.com/food/trivia/random?apiKey=${this.api}`);
+    return this._http.get<any>(`https://api.spoonacular.com/food/trivia/random?apiKey=${this.key_sumon}`);
   }
 
   getRandomJoke(){
-    return this._http.get<any>(`https://api.spoonacular.com/food/jokes/random?apiKey=${this.api}`);
+    return this._http.get<any>(`https://api.spoonacular.com/food/jokes/random?apiKey=${this.key_sumon}`);
   }
 
   getRandomRecipe(count){
-    return this._http.get<any>(` https://api.spoonacular.com/recipes/random?number=${count}&apiKey=${this.api}`)
+    return this._http.get<any>(` https://api.spoonacular.com/recipes/random?number=${count}&apiKey=${this.key_sumon}`)
   }
 
   getData(id){
