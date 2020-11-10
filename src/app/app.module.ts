@@ -46,6 +46,7 @@ import { MealComponent } from './meal-parent/meal/meal.component';
 import { UserMealsComponent } from './meal-parent/user-meals/user-meals.component';
 import { IndividualGraphsComponent } from './meal-parent/user-meals/individual-graphs/individual-graphs.component';
 import { MealItemComponent } from './meal-parent/meal/meal-item/meal-item.component';
+import { ShortenPipe } from './common/pipe/shorten.pipe';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { MealItemComponent } from './meal-parent/meal/meal-item/meal-item.compon
     MealItemComponent,
     ProfileComponent,
     PasswordChangeComponent,
-    UsernameChangeComponent
+    UsernameChangeComponent,
+    ShortenPipe
   ],
   imports: [
     BrowserModule,

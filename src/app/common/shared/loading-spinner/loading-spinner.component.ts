@@ -6,4 +6,5 @@ import { Component, Input } from '@angular/core';
 })
 export class LoadingSpinnerComponent {
   @Input() color: string;
+  @Input() small: boolean;
 }
