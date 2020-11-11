@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       if (!!user) {
         this.authService.getDetails(user.id, user.token).subscribe(username => {
           this.userName = username.userName;
-          console.log(username);
+          // console.log(username);
         })
       }
     });
