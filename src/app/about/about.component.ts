@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-about',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
+
+  active=[false,false,false,false,false];
+  rate=0;
 
   constructor() { }
   id = [{

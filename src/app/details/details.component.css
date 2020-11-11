@@ -60,3 +60,8 @@
     font-style: italic;
     text-align: right;
   }
+
+  #rate .active,
+  #rate div svg:hover{
+      color: red;
+  }

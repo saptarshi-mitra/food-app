@@ -37,6 +37,8 @@ export class DetailsComponent implements OnInit {
   healthScore: number;
   ingredients = [];
   nutrition = [];
+  active=[false,false,false,false,false];
+  rate=0;
   substitute: any;
   @Input() imgUrl = [];
   wineText: string;
@@ -191,5 +193,24 @@ export class DetailsComponent implements OnInit {
     })
     this.comment = value;
     this.form.reset()
+  }
+  rating(index){
+    this.active[index-1]=!this.active[index-1];
+    if(this.active[index-1]){
+      this.rate = index
+      if(index>1){
+        for(let i=0;i<index-1;i++){
+          this.active[i]=true
+        }
+      }
+    }
+    else{
+      this.rate = index -1;
+      for(let i = index;i<5;i++){
+        this.active[i]=false;
+      }
+    }
+    
+    console.log(this.active)
   }
 }

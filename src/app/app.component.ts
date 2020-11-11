@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth/auth.service';
+import { NotesComponent } from './notes/notes.component';
 
 @Component({
   selector: 'app-root',
