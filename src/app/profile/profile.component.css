@@ -5,3 +5,17 @@
 .list-group{
     cursor: pointer;
 }
+
+.mobile-view{
+    display: none;
+}
+
+@media only screen and (max-width:767px){
+    .mobile-view{
+        display: block;
+    }
+
+    .desktop-view{
+        display: none;
+    }
+}
