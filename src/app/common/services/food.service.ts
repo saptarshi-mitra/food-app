@@ -21,7 +21,7 @@ export class FoodService {
   }
 
   getSuggestions(query){
-    return this._http.get(`https://api.spoonacular.com/food/menuItems/suggest?query=${query}&number=5&apiKey=${this._apikey}`)
+    return this._http.get(`https://api.spoonacular.com/food/menuItems/suggest?query=${query}&number=5&apiKey=${this.key_sumon}`)
   }
 
   getRandomTrivia(){

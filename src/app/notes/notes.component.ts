@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe } from "@angular/common";
@@ -14,39 +14,23 @@ import { AuthService } from '../auth/auth.service';
 export class NotesComponent implements OnInit {
 
   d = new Date();
+  condition:boolean;
   show: boolean;
   isLogged:boolean;
+  result="";
   user;
   data;
   localId: string = "";
   idToken: string = "";
   email:string = "";
-  note="";
-  date="";
-  months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  timePeriods = [
-    'Breakfast',
-    'Lunch',
-    'Snacks',
-    'Dinner'
-  ];
-  timePeriod = [
-    'Breakfast',
-    'Lunch',
-    'Snacks',
-    'Dinner'
-  ];
-  days=[
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-    'Sunday'
-  ]
-  constructor(private http:HttpClient,private userInfor: AuthService) {
-   }
+  timearray=[];
+  time=[];
+  hour:number;
+  min:number;
+  sum:number;
+
+
+  constructor(private http:HttpClient,private userInfor: AuthService) {}
 
   ngOnInit(): void {
     this.userInfor.user.subscribe(response =>{
@@ -60,29 +44,37 @@ export class NotesComponent implements OnInit {
     this.email === '' ? this.isLogged = false : this.isLogged = true;
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.timePeriods, event.previousIndex, event.currentIndex);
-  }
-
-  add(i,value,Period){
-    this.http.patch(`https://food-app-385cd.firebaseio.com/users/${this.localId}/notes/${this.timePeriod[i]}.json?auth=${this.idToken}`,{
-      "note":value,
-      "day":this.days[this.d.getDay()-1],
-      "date":this.d.getDate(),
-      "month":this.months[this.d.getMonth()],
-      "timePeriod":Period,
-      "year":this.d.getFullYear()
+  save(value){
+    this.http.patch(`https://food-app-385cd.firebaseio.com/users/${this.localId}/notes.json?auth=${this.idToken}`,{
+      "note":value
     }).subscribe(response =>{
       console.log(response)
     })
+    
+  }
+  submit(timer){
+    this.timearray =timer.split("T");
+    this.time = this.timearray[1].split(":")
+    this.hour = Math.abs((this.time[0] - this.d.getHours())*60);
+    this.min = Math.abs(this.time[1] - this.d.getMinutes());
+    this.sum = this.hour + this.min;
+    console.log(this.sum)
+    this.http.get(`https://food-app-385cd.firebaseio.com/users/${this.localId}/notes.json?auth=${this.idToken}`).subscribe(response =>{
+      setTimeout(function myFunc(){
+        this.result = response['note'];
+        document.getElementById('demo').innerHTML = this.result;
+      },3000)
+    });
+    setTimeout(function playAudio(){
+      let audio = new Audio();
+      audio.src = "../../../assets/audio/drum.mp3";
+      audio.load();
+      audio.play();
+    },3000)
+    this.condition=true;
   }
 
-  getData(value){
-    this.show =! this.show;
-    this.http.get(`https://food-app-385cd.firebaseio.com/users/${this.localId}/notes/${this.timePeriod[value]}.json?auth=${this.idToken}`).subscribe(response =>{
-      this.data = response
-      this.note = this.data.note;
-      this.date = this.data.date + " " +this.data.month +" "+this.data.year+" "+this.data.day;
-    })
-  }
+
+
+
 }

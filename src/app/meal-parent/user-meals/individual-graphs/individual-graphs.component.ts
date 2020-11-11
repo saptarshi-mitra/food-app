@@ -14,7 +14,7 @@ export class IndividualGraphsComponent implements OnInit {
   public doughnutChartType = 'doughnut'
   public colours = [
     {
-      backgroundColor: ["#d00", "#f55", "#ffb266", "#dd6e00", "#ff9", "#ee0", "#6f6", "#0d0", "#99f", "#33f", "#8600e8", "#4b0082", "#ac00f5", "#7000a0"],
+      backgroundColor: ["#8A56E2", "#C455E2", "#E255C6", "#E2558B", "#E27155", "#E2AC55", "#DDE255", "#A3E255", "#68E255", "#55E27D", "#55E2B8", "#55D2E2", "#5597E2", "#555CE2"],
       borderWidth: 0
     }
   ]
@@ -31,6 +31,19 @@ export class IndividualGraphsComponent implements OnInit {
     })
     data = data.filter(nutrient => nutrient.amount > 1)//removing nutrients with very low value
     data = data.filter(nutrient => nutrient.title !== 'Calories')//calories is not nutrient
+
+    if(data.length<7)
+      this.colours = [{
+        backgroundColor: this.colours[0].backgroundColor.filter((item, index) => index%2),
+        borderWidth: 0
+      }]
+    else if(data.length<=12){
+      this.colours[0].backgroundColor.splice(8,2)
+      this.colours = [{
+        backgroundColor: this.colours[0].backgroundColor,
+        borderWidth: 0
+      }]
+    }
 
     this.doughnutChartData = [{data: data.map(item => item.amount), label: 'Nutrients'}]
     this.doughnutChartLabels = data.map(item => item.title)
