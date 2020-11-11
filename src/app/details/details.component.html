@@ -6,11 +6,11 @@
     <div *ngIf="isLoaded">
       <p class="text-center h2 my-3 p-2"
         style="background-color: white;border: solid;border-image: linear-gradient( white, green,white) 1">
-        {{ recipe[0].title }}
+        {{ recipe.title }}
       </p>
       <div class="content">
         <div class="image-part my-5">
-          <img src="{{ image }}" class="rounded mx-auto d-block"
+          <img src="{{ recipe.image }}" class="rounded mx-auto d-block"
             style="box-shadow:3px 2px 11px 0px rgba(50, 50, 50, 0.42);">
         </div>
 
@@ -28,7 +28,7 @@
               <path
                 d="M13 5a2 2 0 0 0 2 2V5h-2zM3 5a2 2 0 0 1-2 2V5h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 13a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
             </svg>
-            <p class="text-center"><strong>{{ recipe[0].pricePerServing | currency:"INR"}}</strong></p>
+            <p class="text-center"><strong>{{ recipe.pricePerServing | currency:"INR"}}</strong></p>
           </div>
           <div class="col-md-3 pt-3">
             <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-suit-heart-fill" fill="currentColor"
@@ -36,7 +36,7 @@
               <path
                 d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
             </svg>
-            <p class="text-center"><strong>{{ recipe[0].aggregateLikes }} likes</strong></p>
+            <p class="text-center"><strong>{{ recipe.aggregateLikes }} likes</strong></p>
           </div>
           <div class="col-md-3 pt-3">
             <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-stopwatch" fill="currentColor"
@@ -44,7 +44,7 @@
               <path fill-rule="evenodd"
                 d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07A7.001 7.001 0 0 1 8 16 7 7 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zM8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3zm0 2.1a.5.5 0 0 1 .5.5V9a.5.5 0 0 1-.5.5H4.5a.5.5 0 0 1 0-1h3V5.6a.5.5 0 0 1 .5-.5z" />
             </svg>
-            <p class="text-center"><strong>Ready in {{ recipe[0].readyInMinutes }} minutes</strong></p>
+            <p class="text-center"><strong>Ready in {{ recipe.readyInMinutes }} minutes</strong></p>
           </div>
           <div class="col-md-3 pt-3">
             <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-award" fill="currentColor"
@@ -53,31 +53,34 @@
                 d="M9.669.864L8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193l-1.51-.229L8 1.126l-1.355.702-1.51.229-.684 1.365-1.086 1.072L3.614 6l-.25 1.506 1.087 1.072.684 1.365 1.51.229L8 10.874l1.356-.702 1.509-.229.684-1.365 1.086-1.072L12.387 6l.248-1.506-1.086-1.072-.684-1.365z" />
               <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
             </svg>
-            <p class="text-center"><strong>Our Score: {{ recipe[0].spoonacularScore }}</strong></p>
+            <p class="text-center"><strong>Our Score: {{ recipe.spoonacularScore }}</strong></p>
           </div>
         </div>
         <div class="justify-content-center my-5 d-flex" *ngIf="isLogged">
           <div class="fav mx-2">
             <label for="favAdder">Favourite</label>
-            <h4><button id="favAdder" class="btn {{favColor}}" (click)="addFav()"><svg width="2.5em" height="2.5em"
+            <h4>
+              <button id="favAdder" matTooltip="{{!!isFavourite?'Remove':'Add'}}" class="btn {{!!isFavourite?'btn-danger':''}}" (click)="addFav()"><svg width="2.5em" height="2.5em"
                   viewBox="0 0 16 16" class="bi bi-star-fill shadow p-1" fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg" style="color: yellow;">
                   <path
                     d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                </svg></button></h4>
+                </svg>
+              </button>
+            </h4>
           </div>
-          <div class="Meal mx-2" (click)="toggleMeal=!toggleMeal">
+          <div class="Meal mx-2">
             <label for="mealAdder">Meal Plan</label>
-            <h4><button id="mealAdder" class="btn btn-success" (click)="addToMeal()">
+            <h4><button id="mealAdder" class="btn btn-success" (click)="addToMeal()" matTooltip="{{!!isInMeal?'Remove':'Add'}}">
                 <svg width="2.5em" height="2.5em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-up shadow"
-                  fill="currentColor" xmlns="http://www.w3.org/2000/svg" *ngIf="!toggleMeal" matTooltip="Add">
+                  fill="currentColor" xmlns="http://www.w3.org/2000/svg" *ngIf="!isInMeal">
                   <path fill-rule="evenodd"
                     d="M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1h-2z" />
                   <path fill-rule="evenodd"
                     d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3z" />
                 </svg>
                 <svg width="2.5em" height="2.5em" viewBox="0 0 16 16" class="bi bi-box-arrow-down shadow"
-                  fill="currentColor" xmlns="http://www.w3.org/2000/svg" *ngIf="toggleMeal" matTooltip="Remove">
+                  fill="currentColor" xmlns="http://www.w3.org/2000/svg" *ngIf="isInMeal">
                   <path fill-rule="evenodd"
                     d="M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1h-2z" />
                   <path fill-rule="evenodd"
@@ -89,9 +92,9 @@
 
         <!-- SUMMARY -->
 
-        <div class="summary my-5" *ngIf="!(recipe[0].summary==='')">
+        <div class="summary my-5" *ngIf="!(recipe.summary==='')">
           <p class="h2  p-2" style="background-image: linear-gradient(to right,white,lightgreen)">Summary</p>
-          <p class="p-4"><span [outerHTML]="recipe[0].summary"></span></p>
+          <p class="p-4"><span [outerHTML]="recipe.summary"></span></p>
         </div>
 
         <!-- WINE TEXT -->
@@ -106,11 +109,11 @@
 
         <!-- INGREDIENTS -->
 
-        <div class="ingredients my-5" *ngIf="ingredients.length>0">
+        <div class="ingredients my-5" *ngIf="recipe.extendedIngredients.length>0">
           <p class="h2 p-2" style="background-image: linear-gradient(to right,white,lightgreen)">Ingredients</p>
-          <div class="row py-3 my-4" style="background-color:white;" *ngIf="imgUrl.length>0">
-            <div class="col-md-2 mx-auto" *ngFor="let img of imgUrl">
-              <img src="{{ img }}">
+          <div class="row py-3 my-4" style="background-color:white;" *ngIf="recipe.extendedIngredients.length>0">
+            <div class="col-md-2 mx-auto" *ngFor="let ingredient of recipe.extendedIngredients">
+              <img matTooltip="{{ingredient.name}}" [matTooltipClass]="'h6'" src="{{ ingredientsImageUrl+ingredient.image }}">
             </div>
           </div>
           <div class="alternate my-3">
@@ -129,7 +132,7 @@
               </div>
             </div>
           </div>
-          <h5>Find Ingredients accordingly to {{ recipe[0].servings }} serving</h5>
+          <h5>Find Ingredients accordingly to {{ recipe.servings }} serving</h5>
           <table class="table table-dark-striped table-hover">
             <thead>
               <tr>
@@ -139,7 +142,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let i of ingredients">
+              <tr *ngFor="let i of recipe.extendedIngredients">
                 <td>{{ i.name | uppercase }}</td>
                 <td>{{ i.amount}} {{ i.unit }}</td>
                 <td *ngIf="switch">{{i.measures.metric.amount}} {{i.measures.metric.unitShort}}</td>
@@ -150,10 +153,10 @@
 
         <!-- INSTRUCTIONS -->
 
-        <div class="instructions my-5" *ngIf="(instructions!='')">
+        <div class="instructions my-5" *ngIf="(recipe.instructions!='')">
           <p class="h2 p-2" style="background-image: linear-gradient(to right,white,lightgreen)">Instructions
           </p>
-          <p class="p-4"><span [outerHTML]="instructions"></span></p>
+          <p class="p-4"><span [outerHTML]="recipe.instructions"></span></p>
         </div>
 
         <!-- NUTRITIONAL INFO -->
@@ -164,7 +167,7 @@
           <ul class="p-4" style="list-style: none;display: inline-flex;">
             <li class="mx-2 p-2" style="border: solid thin;" *ngFor="let n of nutrition">
               <strong>{{n.amount}}{{n.unit}}</strong> {{ n.title }}</li>
-            <li class="mx-2 p-2" style="border: solid thin;"><strong>{{healthScore}}</strong> Health Score</li>
+            <li class="mx-2 p-2" style="border: solid thin;"><strong>{{recipe.healthScore}}</strong> Health Score</li>
           </ul>
         </div>
 
@@ -180,7 +183,7 @@
                 <label for="nutrient"><b>{{x.title}}:</b> {{x.amount}}{{x.unit}}</label>
                 <div class="progress m-2" style="height: 15px;">
                   <div id="nutrient" class="progress-bar" role="progressbar" style="background-color: #e76182"
-                    aria-valuenow="{{x.percentOfDailyNeeds}}" [style.width]="x.percentOfDailyNeeds+'%'"
+                     [style.width]="x.percentOfDailyNeeds+'%'"
                     aria-valuemin="0" aria-valuemax="100">
                     {{x.percentOfDailyNeeds}}%</div>
                 </div>
@@ -192,7 +195,7 @@
                 <label for="nutrient"><b>{{x.title}}:</b> {{x.amount}}{{x.unit}}</label>
                 <div class="progress m-2" style="height: 15px;">
                   <div id="nutrient" class="progress-bar" role="progressbar" style="background-color: #269fca"
-                    aria-valuenow="{{x.percentOfDailyNeeds}}" [style.width]="x.percentOfDailyNeeds+'%'"
+                     [style.width]="x.percentOfDailyNeeds+'%'"
                     aria-valuemin="0" aria-valuemax="100">
                     {{x.percentOfDailyNeeds}}%</div>
                 </div>
