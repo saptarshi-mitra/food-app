@@ -5,6 +5,16 @@
 
 .individualMeals{
     margin-top: 20px;
+    margin-bottom: 10px;
     width: 50%;
     box-sizing: border-box;
+}
+
+.card-title{
+    cursor: pointer;
+}
+
+.title-link{
+    color: #111;
+    text-decoration: none;
 }
