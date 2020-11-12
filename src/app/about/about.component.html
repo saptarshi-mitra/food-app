@@ -3,41 +3,47 @@
     <!-- Information -->
 
     <div class="text pl-3">
-        <h4>Our Mission</h4>
-        <h3 class="display-4">Shaping the Future of Food</h3>
+        <div class="h4">Our Mission</div>
+        <div class="h3 display-4">Shaping the Future of Food</div>
     </div>
 </div>
-<div class="container mx-auto">
-    <h4 class="display-4">Our goal is to change what you eat</h4>
-    <p class="pl-2">Changing how you eat is just a means to an end.</p>
-
-    <div class="d-flex my-5" >
-        <div class="img-1">
-            <img src="assets/images/chef.jpg" style="background-size: cover;">
+<div class="container">
+    <div class="row">
+        <div class="header col-sm-12" >
+            <div class="h4 display-4">Our goal is to change what you eat</div>
+            <p class="pl-2">Changing how you eat is just a means to an end.</p>
         </div>
-        <div class="top pt-3" style="background-image: linear-gradient(to bottom right,white,yellow);">
-            <h2 class="mx-4">Focussing on <span style="color: red;font-weight: 500;">Ease</span></h2>
+        <div class="col-sm-12">
+            <div class="d-flex my-5" id="topper">
+                <div class="img-1">
+                    <img src="assets/images/chef.jpg" style="background-size: cover;">
+                </div>
+                <div class="top-content pt-3" style="background-image: linear-gradient(to bottom right,white,yellow);">
+                    <h2 class="mx-4">Focussing on <span style="color: red;font-weight: 500;">Ease</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="d-flex my-5" id="middle">
+                <div class="middle-content pt-3" style="background-image: linear-gradient(to bottom right, silver,green);">
+                    <div class="mx-4">
+                        <h2>Focussing on <span style="color: red;">quality</span></h2>
+                    </div> 
+                </div>
+                <div class="img-2">
+                    <img src="assets/images/cookbook-general.jpg">
+                </div>
+            </div> 
         </div>
     </div>
 
-    <div class="d-flex my-5">
-        <div class="middle" style="background-image: linear-gradient(to bottom right, silver,green);">
-            <div class="text mx-4">
-                <h2>Who are <span style="color: red;">we?</span></h2>
-                <p >We are the three musketeers! Each one of us from different regions have come together to create this site and bring our native foods to the table!</p>
-            </div> 
-        </div>
-        <div class="img2">
-            <img src="assets/images/cookbook-general.jpg" alt="">
-        </div>
-    </div> 
-    <div class="d-flex m-4">
+    <div class="cards d-flex m-4">
         <div class="row-cards">
             <div class="row mx-2" style="font-weight: 550;">
                 <div class="col-md-6">
                     <div class="card" style="background-image: linear-gradient(to top,silver,rgba(255, 0, 0, 0.685));">
                         <div class="card-body">
-                          <h5 class="card-title">Resilience</h5>
+                          <div class="h5 card-title">Resilience</div>
                           <p class="card-text">We push ourselves beyond our abilities when faced with tough times. When we foresee uncertainty, we address it only with flexibility.</p>
                         </div>
                     </div>
@@ -45,7 +51,7 @@
                 <div class="col-md-6">
                     <div class="card" style="background-image: linear-gradient(to top,silver,rgba(0, 0, 255, 0.692));">
                         <div class="card-body">
-                          <h5 class="card-title">Acceptance</h5>
+                          <div class="h5 card-title">Acceptance</div>
                           <p class="card-text">Feedback is never taken personally, we break it into positive pieces and strive to work on each and every element even more effectively</p>
                         </div>
                     </div>
@@ -55,7 +61,7 @@
                 <div class="col-md-6">
                     <div class="card" style="background-image: linear-gradient(to top,silver,rgba(255, 217, 0, 0.699));">
                         <div class="card-body">
-                        <h5 class="card-title">Ownership</h5>
+                        <div class="h5 card-title">Ownership</div>
                         <p class="card-text">We take full ownership and responsibility of our actions</p>
                         </div>
                     </div>
@@ -63,7 +69,7 @@
                 <div class="col-md-6">
                     <div class="card" style="background-image: linear-gradient(to top,silver,rgba(0, 128, 0, 0.678));">
                         <div class="card-body">
-                        <h5 class="card-title">Spark</h5>
+                        <div class="h5 card-title">Spark</div>
                         <p class="card-text">We believe in, stand for and are evangelists of our culture</p>
                         </div>
                     </div>
@@ -71,21 +77,19 @@
             </div>
         </div>
     </div>
-
     <!-- TEAM MEMBERS -->
 
     <div class="author my-5">
-        <h4 class="display-4">People you get to collab with!</h4>
-        <div class="row my-5">
+        <div class="h4 display-4">People you get to collab with!</div>
+        <div class="row row-cols-3 my-5">
             <div class="col-md-3" *ngFor="let i of id">
                 <div class="card">
                     <img src="{{i.img}}" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <h5 class="card-title">{{i.name}}</h5>
+                        <h5 class="card-title">{{i.name}}</h5>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
 </div>
