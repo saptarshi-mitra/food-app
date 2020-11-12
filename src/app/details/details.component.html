@@ -99,7 +99,7 @@
 
         <!-- WINE TEXT -->
 
-        <div class="wine my-5" *ngIf="wineText!=''">
+        <div class="wine my-5" *ngIf="!!wineText">
           <p class="h2 p-2" style="background-image: linear-gradient(to right,white,lightgreen);">Wine Advice</p>
           <p class="p-4">{{ wineText }}</p>
           <p class="p-3" *ngIf="(link!='')"><a href="{{ link }}"><span class="p-2"

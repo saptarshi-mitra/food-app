@@ -21,7 +21,6 @@ export class DetailsComponent implements OnInit {
   recipeReviewComment = [];
   recipeReviewUser = [];
   recipeReview = [];
-  favColor;
   isInMeal = false;
   isFavourite = false;
   conditonal: boolean;
@@ -33,7 +32,6 @@ export class DetailsComponent implements OnInit {
   active = [false, false, false, false, false];
   rate = 0;
   substitute: any;
-  imgUrl = [];
   wineText: string;
   link: string;
   limit = [];
@@ -53,6 +51,7 @@ export class DetailsComponent implements OnInit {
     private http: HttpClient,
     private fb: FormBuilder,
     private fire: FireService) {
+
     this.form = fb.group({
       comment: ['']
     })
@@ -65,15 +64,20 @@ export class DetailsComponent implements OnInit {
     this.foodService.getRecipeData(this.route.snapshot.paramMap.get('id')).subscribe(response => {
       this.recipe = response;
       console.log(this.recipe);
-      this.wineText = this.recipe.winePairing.pairingText;
       this.nutrition = this.recipe.nutrition.nutrients.slice(0, 4);
       this.limit = this.recipe.nutrition.nutrients.slice(0, 8);
       this.includeMore = this.recipe.nutrition.nutrients.slice(8);
 
-      if (this.recipe.winePairing.hasOwnProperty('productMatches')) {
-        this.link = this.recipe.winePairing.productMatches[0].link;
+
+      if (!!this.recipe.winePairing.hasOwnProperty('productMatches')) {
+        if (!!this.recipe.winePairing.productMatches[0]) {
+          this.wineText = this.recipe.winePairing.pairingText;
+          this.link = this.recipe.winePairing.productMatches[0].link;
+        }
       }
 
+      console.log(this.wineText)
+          
       //user logged in check
       this.authService.user.subscribe(response => {
         if (!!response) {
@@ -94,7 +98,6 @@ export class DetailsComponent implements OnInit {
           //check if in favourite
           this.fire.getFavoriteRecipe(response.id, response.token, this.recipe.id).subscribe(res => {
             if (!!res) {
-              this.favColor = "btn-danger";
               this.isFavourite = true;
             }
           })
@@ -161,7 +164,7 @@ export class DetailsComponent implements OnInit {
   addComment(value) {
     this.authService.getDetails(this.user.id, this.user.token).subscribe(response => {
       this.username = response.userName;
-      this.http.post(`https://foodapp-a7482.firebaseio.com//reviews/${this.recipe.id}.json`, {
+      this.http.post(`https://foodapp-a7482.firebaseio.com/reviews/${this.recipe.id}.json`, {
         "review": this.comment,
         "user": this.username
       }).subscribe(response => {
