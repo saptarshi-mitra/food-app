@@ -16,41 +16,33 @@ export class DetailsComponent implements OnInit {
 
   isLoaded = false;
   form;
-  id: number;
   username: string;
   comment: string;
-  recipeArray = [];
   recipeReviewComment = [];
   recipeReviewUser = [];
   recipeReview = [];
-  @Input() favColor;
-  toggleMeal: boolean;
-  isTester: boolean = true;
+  isInMeal = false;
+  isFavourite = false;
   conditonal: boolean;
   isLogged: boolean = false;
   commentBool: boolean;
-  user:User;
+  user: User;
   recipe: any;
-  favourite = [];
-  healthScore: number;
-  ingredients = [];
   nutrition = [];
-  active=[false,false,false,false,false];
-  rate=0;
+  active = [false, false, false, false, false];
+  rate = 0;
   substitute: any;
-  @Input() imgUrl = [];
   wineText: string;
-  @Input() link: string;
-  instructions: string;
-  @Input() image: string;
-  @Input() limit = [];
-  @Input() includeMore = [];
+  link: string;
+  limit = [];
+  includeMore = [];
   show: boolean = false;
   showCardBool: boolean = false;
   view: boolean = false;
   switch: boolean = false;
   showText: string = "Show Complete Breakdown of Nutritional Information";
   buttonText: string = "Click to see in Metrics";
+  ingredientsImageUrl = "https://spoonacular.com/cdn/ingredients_100x100/";
 
   constructor(
     private foodService: FoodService,
@@ -59,6 +51,7 @@ export class DetailsComponent implements OnInit {
     private http: HttpClient,
     private fb: FormBuilder,
     private fire: FireService) {
+
     this.form = fb.group({
       comment: ['']
     })
@@ -66,37 +59,33 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.id = +this.route.snapshot.paramMap.get('id');
 
     //fetching recipe details
-    this.foodService.getData(this.id).subscribe(response => {
+    this.foodService.getRecipeData(this.route.snapshot.paramMap.get('id')).subscribe(response => {
       this.recipe = response;
-      // console.log(this.recipe);
-      this.image = response[0].image;
-      this.wineText = this.recipe[0].winePairing.pairingText;
-      this.ingredients = this.recipe[0].extendedIngredients;
-      this.ingredients.forEach(item => {
-        this.imgUrl.push("https://spoonacular.com/cdn/ingredients_100x100/" + item.image);
-      })
-      this.instructions = response[0].instructions;
-      this.nutrition = response[0].nutrition.nutrients.slice(0, 4);
-      this.limit = response[0].nutrition.nutrients.slice(0, 8);
-      this.includeMore = response[0].nutrition.nutrients.slice(8);
-      this.healthScore = response[0].healthScore;
+      console.log(this.recipe);
+      this.nutrition = this.recipe.nutrition.nutrients.slice(0, 4);
+      this.limit = this.recipe.nutrition.nutrients.slice(0, 8);
+      this.includeMore = this.recipe.nutrition.nutrients.slice(8);
 
-      if (this.recipe[0].winePairing.hasOwnProperty('productMatches')) {
-        this.link = this.recipe[0].winePairing.productMatches[0].link;
+
+      if (!!this.recipe.winePairing.hasOwnProperty('productMatches')) {
+        if (!!this.recipe.winePairing.productMatches[0]) {
+          this.wineText = this.recipe.winePairing.pairingText;
+          this.link = this.recipe.winePairing.productMatches[0].link;
+        }
       }
 
+      console.log(this.wineText)
+          
       //user logged in check
       this.authService.user.subscribe(response => {
-        this.isLoaded = true;
         if (!!response) {
           this.user = response
           this.isLogged = true;
 
           //get reviews
-          this.fire.getReviews(this.recipe[0].id).subscribe(response => {
+          this.fire.getReviews(this.recipe.id).subscribe(response => {
             if (!!response) {
               this.recipeReviewComment = Object.values(response);
               this.recipeReviewComment.forEach(item => {
@@ -107,19 +96,21 @@ export class DetailsComponent implements OnInit {
           })
 
           //check if in favourite
-          this.fire.getFavoriteRecipe(response.id, response.token, this.recipe[0].id).subscribe(res => {
+          this.fire.getFavoriteRecipe(response.id, response.token, this.recipe.id).subscribe(res => {
             if (!!res) {
-              this.favColor = "btn-danger";
-              this.isTester = false;
+              this.isFavourite = true;
             }
           })
 
           //check if in meal
-          this.fire.getMealRecipe(response.id, response.token, this.recipe[0].id).subscribe(res => {
+          this.fire.getMealRecipe(response.id, response.token, this.recipe.id).subscribe(res => {
             if (!!res) {
-              this.toggleMeal = true;
+              this.isInMeal = true;
             }
+            this.isLoaded = true;
           })
+        } else {
+          this.isLoaded = true;
         }
       })
     })
@@ -147,38 +138,23 @@ export class DetailsComponent implements OnInit {
   }
 
   addFav() {
-    if (this.isTester) {
-      this.favColor = "btn-danger";
-      this.http.patch(`https://food-app-385cd.firebaseio.com/users/${this.user.id}/favourites.json?auth=${this.user.token}`,
-        {
-          [this.recipe[0].id]: this.recipe[0]
-        }).subscribe(response => {
-          // console.log(response)
-        })
+    if (!this.isFavourite) {
+      this.fire.addFavorite(this.user.id, this.user.token, this.recipe).subscribe();
     }
     else {
-      this.favColor = "";
-      this.http.delete(`https://food-app-385cd.firebaseio.com/users/${this.user.id}/favourites/${this.recipe[0].id}.json?auth=${this.user.token}`).subscribe(response => {
-        // console.log(response);
-      })
+      this.fire.deleteFavorite(this.user.id, this.recipe.id, this.user.token).subscribe();
     }
-    this.isTester = !this.isTester;
+    this.isFavourite = !this.isFavourite;
   }
 
   addToMeal() {
-    if (!(this.toggleMeal)) {
-      this.http.patch(`https://food-app-385cd.firebaseio.com/users/${this.user.id}/meal.json?auth=${this.user.token}`, {
-        [this.recipe[0].id]: this.recipe[0]
-      }).subscribe(response => {
-        // console.log(response)
-      })
+    if (!this.isInMeal) {
+      this.fire.addMeal(this.user.id, this.user.token, this.recipe).subscribe();
     }
     else {
-      // this.favColor = "btn-succes";
-      this.http.delete(`https://food-app-385cd.firebaseio.com/users/${this.user.id}/meal/${this.recipe[0].id}.json?auth=${this.user.token}`).subscribe(response => {
-        // console.log(response);
-      })
+      this.fire.deleteMeal(this.user.id, this.recipe.id, this.user.token).subscribe();
     }
+    this.isInMeal = !this.isInMeal;
   }
 
   addReview() {
@@ -188,7 +164,7 @@ export class DetailsComponent implements OnInit {
   addComment(value) {
     this.authService.getDetails(this.user.id, this.user.token).subscribe(response => {
       this.username = response.userName;
-      this.http.post(`https://foodapp-a7482.firebaseio.com//reviews/${this.recipe[0].id}.json`, {
+      this.http.post(`https://foodapp-a7482.firebaseio.com/reviews/${this.recipe.id}.json`, {
         "review": this.comment,
         "user": this.username
       }).subscribe(response => {
@@ -198,23 +174,23 @@ export class DetailsComponent implements OnInit {
     this.comment = value;
     this.form.reset()
   }
-  rating(index){
-    this.active[index-1]=!this.active[index-1];
-    if(this.active[index-1]){
+  rating(index) {
+    this.active[index - 1] = !this.active[index - 1];
+    if (this.active[index - 1]) {
       this.rate = index
-      if(index>1){
-        for(let i=0;i<index-1;i++){
-          this.active[i]=true
+      if (index > 1) {
+        for (let i = 0; i < index - 1; i++) {
+          this.active[i] = true
         }
       }
     }
-    else{
-      this.rate = index -1;
-      for(let i = index;i<5;i++){
-        this.active[i]=false;
+    else {
+      this.rate = index - 1;
+      for (let i = index; i < 5; i++) {
+        this.active[i] = false;
       }
     }
-    
+
     console.log(this.active)
   }
 }
