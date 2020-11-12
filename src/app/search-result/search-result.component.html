@@ -1,70 +1,87 @@
 <div class="container-fluid results">
   <div class="row d-flex justify-content-center">
-    <div class="col-md-2">
-      <div class="h4 pb-3 border-bottom">Filters</div>
-      <div class="filters pb-3">
-        <!-- cuisine filter -->
-        <span class="font-weight-bold">Based on cruisine</span>
-        <div class="form-group">
-          <span class="mx-2" *ngFor="let cuisine of option_cuisines">
-            <label>
-              <input class="mr-1" type="checkbox" name="option_cuisines" value="{{cuisine.value}}" [(ngModel)]="cuisine.checked">{{ cuisine.name }}
-            </label>
-          </span>
-        </div>
-        <!-- veg/non veg filter -->
-        <span class="font-weight-bold">Based on food habit</span>
-        <div class="form-group">
-          <span class="mx-2" *ngFor="let habit of food_habit">
-            <label>
-              <input class="mr-1" type="checkbox" name="option_cuisines" value="{{habit.value}}" [(ngModel)]="habit.checked">{{ habit.name }}
-            </label>
-          </span>
-        </div>
-        <!-- dairy filter -->
-        <span class="font-weight-bold">Based on food includes dairy items</span>
-        <div class="form-group">
-          <span class="mx-2" *ngFor="let hasDairy of dairy">
-            <label>
-              <input class="mr-1" type="checkbox" name="dairy" value="{{hasDairy.value}}" [(ngModel)]="hasDairy.checked">{{ hasDairy.name }}
-            </label>
-          </span>
-        </div>
-        <!-- gluten filter -->
-        <span class="font-weight-bold">Based on food includes gluten</span>
-        <div class="form-group">
-          <span class="mx-2" *ngFor="let hasGluten of gluten">
-            <label>
-              <input class="mr-1" type="checkbox" name="gluten" value="{{hasGluten.value}}" [(ngModel)]="hasGluten.checked">{{ hasGluten.name }}
-            </label>
-          </span>
-        </div>
-        <!-- price filter -->
-        <span class="font-weight-bold mb-3">Based on price</span>
-        <div class="input-group">
-          <div class="input-group-prepend my-3">
-            <span class="input-group-text" id="validatedInputGroupPrepend">Min Price</span>
-            <input type="text" class="form-control" [(ngModel)]="min_value">
+    
+    <p class="d-flex filters-or-sort-button">
+      <div class="filter-span flex-fill filters-or-sort-button" data-toggle="collapse" data-target="#filters" aria-expanded="false" aria-controls="collapseExample">
+        <i class="fas fa-filter mr-2"></i>Filters
+      </div>
+      <div class="sort-span flex-fill filters-or-sort-button" data-toggle="collapse" data-target="#sorting" aria-expanded="false" aria-controls="collapseExample">
+        <i class="fas fa-sort-amount-up"></i><i class="fas fa-sort-amount-down-alt mr-2"></i>Sort
+      </div>
+    <!-- </p> -->
+    
+    
+    <div class="collapse col-md-2 filters" id="filters">
+      <div class="">
+        <div class="h4 pb-3 border-bottom">Filters</div>
+        <div class="filters pb-3">
+          <!-- cuisine filter -->
+          <span class="font-weight-bold">Based on cruisine</span>
+          <div class="form-group">
+            <span class="mx-2" *ngFor="let cuisine of option_cuisines">
+              <label>
+                <input class="mr-1" type="checkbox" name="option_cuisines" value="{{cuisine.value}}" [(ngModel)]="cuisine.checked">{{ cuisine.name }}
+              </label>
+            </span>
           </div>
-          <div class="input-group-prepend mb-3">
-            <span class="input-group-text" id="validatedInputGroupPrepend">Max Price</span>
-            <input type="text" class="form-control" [(ngModel)]="max_value">
+          <!-- veg/non veg filter -->
+          <span class="font-weight-bold">Based on food habit</span>
+          <div class="form-group">
+            <span class="mx-2" *ngFor="let habit of food_habit">
+              <label>
+                <input class="mr-1" type="checkbox" name="option_cuisines" value="{{habit.value}}" [(ngModel)]="habit.checked">{{ habit.name }}
+              </label>
+            </span>
           </div>
-        </div>
-        <div class="">
-          <button class="btn btn-danger" (click)="removeAllFilters()">Remove all Filters</button>
+          <!-- dairy filter -->
+          <span class="font-weight-bold">Based on food includes dairy items</span>
+          <div class="form-group">
+            <span class="mx-2" *ngFor="let hasDairy of dairy">
+              <label>
+                <input class="mr-1" type="checkbox" name="dairy" value="{{hasDairy.value}}" [(ngModel)]="hasDairy.checked">{{ hasDairy.name }}
+              </label>
+            </span>
+          </div>
+          <!-- gluten filter -->
+          <span class="font-weight-bold">Based on food includes gluten</span>
+          <div class="form-group">
+            <span class="mx-2" *ngFor="let hasGluten of gluten">
+              <label>
+                <input class="mr-1" type="checkbox" name="gluten" value="{{hasGluten.value}}" [(ngModel)]="hasGluten.checked">{{ hasGluten.name }}
+              </label>
+            </span>
+          </div>
+          <!-- price filter -->
+          <span class="font-weight-bold mb-3">Based on price</span>
+          <div class="input-group">
+            <div class="input-group-prepend my-3">
+              <span class="input-group-text" id="validatedInputGroupPrepend">Min Price</span>
+              <input type="text" class="form-control" [(ngModel)]="min_value">
+            </div>
+            <div class="input-group-prepend mb-3">
+              <span class="input-group-text" id="validatedInputGroupPrepend">Max Price</span>
+              <input type="text" class="form-control" [(ngModel)]="max_value">
+            </div>
+          </div>
+          <div class="">
+            <button class="btn btn-danger" (click)="removeAllFilters()">Remove all Filters</button>
+          </div>
         </div>
       </div>
     </div>
 
+    
+
 
     <div class="col-md-8">
-      <h3 class="mb-3">Seach results for {{ query }}</h3>
-      <div class="sort border-bottom pb-3">
-        <span class="font-weight-bold">Sort based on</span>
-        <span class="sort-prop mx-3" (click)="highToLow()">Price--Highest-to-lowest</span>
-        <span class="sort-prop mr-3" (click)="lowToHigh()">Price--Lowest-to-highest</span>
-        <span class="sort-prop" (click)="sortHealthScore()">Healthy meals first</span>
+      <div class="h3">Seach results for {{ query }}</div>
+      <div class="collapse col-md-2 sorting" id="sorting">
+        <div class="sort border-bottom pb-3">
+          <span class="font-weight-bold">Sort based on</span>
+          <span class="sort-prop mx-3" (click)="highToLow()">Price--Highest-to-lowest</span>
+          <span class="sort-prop mr-3" (click)="lowToHigh()">Price--Lowest-to-highest</span>
+          <span class="sort-prop" (click)="sortHealthScore()">Healthy meals first</span>
+        </div>
       </div>
       
 
@@ -76,8 +93,8 @@
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title">
-                <a [routerLink]="['/details', recipe.id]">{{ recipe.title }}</a>
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="ml-3 bi bi-circle-fill" [ngClass]="{'veg': recipe.vegetarian, 'non-veg': !recipe.vegetarian}" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <a [routerLink]="['/details', recipe.id]" class="h3">{{ recipe.title }}</a>
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="ml-3 bi bi-circle-fill h4" [ngClass]="{'veg': recipe.vegetarian, 'non-veg': !recipe.vegetarian}" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="8" cy="8" r="8"/>
                 </svg>
               </h5>            
@@ -102,7 +119,7 @@
                 </div>
                 <div class="d-flex justify-content-between m-4">
                   <div>
-                    <span class="text-bold h2">&#x20B9;{{ recipe.pricePerServing }}</span>/serving
+                    <span class="text-bold h2 price ">&#x20B9;{{ recipe.pricePerServing }}</span>/serving
                   </div>
                   <div>
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="ml-3 bi bi-circle-fill text-primary mr-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -128,4 +145,4 @@
   </div>
 </div>
 
-<!-- <pre>{{ recipes | json }}</pre>  recipe.healthScore --> 
+<!-- <pre>{{ recipes | json }}</pre>  recipe.healthScore -->  

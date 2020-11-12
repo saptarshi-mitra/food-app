@@ -13,3 +13,60 @@
 .sort-prop{
     cursor: pointer;
 }
+
+.filter-span{
+    cursor: pointer;
+    text-align: center;
+    padding: 20px;
+    font-size: 130%;
+    border: 1px solid #bbb;
+}
+
+.sort-span{
+    cursor: pointer;
+    text-align: center;
+    padding: 20px;
+    font-size: 130%;
+    border: 1px solid #bbb;
+}
+
+/* button not shown in desktop mode */
+.filters-or-sort-button{
+    display: none;
+}
+
+#filters.in,
+#sorting.in,
+#sorting.collapsing
+#filters.collapsing {
+    display: block!important;
+}
+
+@media only screen and (max-width: 767px){
+    .price{
+        font-size: 25px;
+    }
+
+    .results{
+        margin-top: 60px;
+    }
+    
+    /*to show the filter button in mobile mode*/
+    .filters-or-sort-button{
+        display: inline-block;
+    }
+} 
+
+/* to make the filters visible in normal desktop mode */
+@media only screen and (min-width: 768px){
+    #filters{ 
+        display: block!important;
+        visibility:visible!important;
+    }
+
+    #sorting{ 
+        display: inline!important;
+        visibility: visible!important;
+    }
+
+}
