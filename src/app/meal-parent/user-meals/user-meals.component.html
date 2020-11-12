@@ -35,7 +35,7 @@
   <div class="meals">
     <div class="card individualMeals" *ngFor="let recipe of recipes">
       <div class="card-body">
-        <h5 class="card-title">{{ recipe.title }}</h5>
+        <h3 class="card-title"><a [routerLink]="['/details', recipe.id]" class="title-link">{{ recipe.title }}</a></h3>
         <app-individual-graphs [recipe]="recipe"></app-individual-graphs>
       </div>
     </div>

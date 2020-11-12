@@ -28,7 +28,7 @@ export class SignupComponent implements OnInit {
       // console.log(response)
       //add userName after user is registered
       this.authService.registerDetails(userName,response.localId,response.idToken).subscribe(details =>{
-        console.log(details);
+        // console.log(details);
         this.isLoading = false;
         //redirect ro signin
         this.router.navigate(['/signin']);

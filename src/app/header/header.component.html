@@ -8,7 +8,6 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <!-- main links -->
       <div class="navbar-nav">
-        <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
         <a class="nav-link" href="#trending">Trending</a>
         <a class="nav-link" routerLink="/help">Help</a>
         <!-- <a class="nav-link" routerLink="/favourite">My Favourites</a> -->
@@ -38,13 +37,16 @@
       <div *ngIf="isAuthenticated" class="ml-md-auto d-flex">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item dropdown">
-            <a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown">{{userName}}</a>
+            <a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown">
+              <app-loading-spinner [small]="true" *ngIf="!userName"></app-loading-spinner>
+              <span *ngIf="!!userName">{{userName}}</span>
+            </a>
             <ul class="dropdown-menu dropdown-menu-right">
               <li><a class="dropdown-item" routerLink="/meal"> Meal</a></li>
               <div class="dropdown-divider m-1"></div>
               <li><a class="dropdown-item" routerLink="/favourite"> Favourites </a></li>
               <div class="dropdown-divider m-1"></div>
-              <li><a class="dropdown-item" href="#"> Settings </a></li>
+              <li><a class="dropdown-item" routerLink="account/usernameChange"> Settings </a></li>
               <div class="dropdown-divider m-1"></div>
               <li><a class="dropdown-item" routerLink="/notes"> Notes </a></li>
               <div class="dropdown-divider m-1"></div>

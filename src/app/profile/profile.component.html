@@ -1,13 +1,25 @@
 <div class="container">
-    <div class="row">
-        <div class="col-3">
-            <ul class="list-group">
-                <li class="list-group-item" routerLink="/account/passwordChange">Password change</li>
-                <li class="list-group-item" routerLink="/account/usernameChange">Username change</li>
-            </ul>
+    <div class="desktop-view">
+        <div class="row">
+            <div class="col-3">
+                <ul class="list-group">
+                    <li class="list-group-item" routerLink="/account/usernameChange">Username change</li>
+                    <li class="list-group-item" routerLink="/account/passwordChange">Password change</li>
+                </ul>
+            </div>
+            <div class="col-9">
+                <router-outlet></router-outlet>
+            </div>
         </div>
-        <div class="col-9">
-            <router-outlet></router-outlet>
-        </div>
+    </div>
+    <div class="mobile-view">
+        <mat-tab-group>
+          <mat-tab label="Username Change">
+            <app-username-change></app-username-change>
+          </mat-tab>
+          <mat-tab label="Password Change">
+            <app-password-change></app-password-change>
+          </mat-tab>
+        </mat-tab-group>
     </div>
 </div>
