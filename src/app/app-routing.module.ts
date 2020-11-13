@@ -15,6 +15,7 @@ import { MealParentComponent } from './meal-parent/meal-parent.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PasswordChangeComponent } from './profile/password-change/password-change.component';
 import { UsernameChangeComponent } from './profile/username-change/username-change.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -61,7 +62,8 @@ const routes: Routes = [
   },
   {
     path: 'notes',
-    component: NotesComponent
+    component: NotesComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'account',
@@ -71,11 +73,15 @@ const routes: Routes = [
       {path: 'usernameChange', component: UsernameChangeComponent}
     ],
     canActivate: [AuthGuardService]
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'top' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

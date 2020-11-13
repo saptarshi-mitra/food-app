@@ -18,16 +18,18 @@ export class MealComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.user.subscribe(currentUser => {
-      this.fire.getMeal(currentUser.id, currentUser.token).subscribe(response => {
-        if (response) {
-          this.recipes = Object.values(response);
-          console.log(this.recipes)
-        }
-        else{
-          this.recipes = null;
-        }
-        this.isLoading = false;
-      })
+      if(currentUser){
+        this.fire.getMeal(currentUser.id, currentUser.token).subscribe(response => {
+          if (response) {
+            this.recipes = Object.values(response);
+            console.log(this.recipes)
+          }
+          else{
+            this.recipes = null;
+          }
+          this.isLoading = false;
+        })
+      }
     })
 
     this.mealService.deleted.subscribe(response => {

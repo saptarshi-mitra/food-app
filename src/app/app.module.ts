@@ -47,6 +47,7 @@ import { UserMealsComponent } from './meal-parent/user-meals/user-meals.componen
 import { IndividualGraphsComponent } from './meal-parent/user-meals/individual-graphs/individual-graphs.component';
 import { MealItemComponent } from './meal-parent/meal/meal-item/meal-item.component';
 import { ShortenPipe } from './common/pipe/shorten.pipe';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { ShortenPipe } from './common/pipe/shorten.pipe';
     ProfileComponent,
     PasswordChangeComponent,
     UsernameChangeComponent,
-    ShortenPipe
+    ShortenPipe,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
