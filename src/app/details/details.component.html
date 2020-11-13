@@ -1,206 +1,246 @@
-<div class="container pt-3 mt-5" style="background-image: linear-gradient(to bottom right,white,linen,white);">
-    <h3 class="my-3 p-2 display-4"
+<div class="container-fluid" style="background-image: linear-gradient(to bottom right,white,#feffd1,white);">
+  <div class="container pt-3 mt-5">
+    <div class="d-flex justify-content-center" style="height: 100vh; align-items: center;" *ngIf="!isLoaded">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <div *ngIf="isLoaded">
+      <p class="text-center h2 my-3 p-2"
         style="background-color: white;border: solid;border-image: linear-gradient( white, green,white) 1">
-        {{ recipe[0].title }}</h3>
-
-        <!-- RECIPE IMAGE -->
-
-    <div class="content">
+        {{ recipe.title }}
+      </p>
+      <div class="content">
         <div class="image-part my-5">
-            <img src="{{ image }}" class="rounded mx-auto d-block" style="border: solid thin;">
+          <img src="{{ recipe.image }}" class="rounded mx-auto d-block"
+            style="box-shadow:3px 2px 11px 0px rgba(50, 50, 50, 0.42);">
         </div>
 
         <!-- PRICE/LIKES/SCORE -->
 
 
         <div class="row"
-            style="text-align: center;margin-top: 38px;border: solid;border-image: linear-gradient( white, green,white) 1;padding-left: 130px;">
-            <div class="col-md-2 pt-3">
-                <svg width="3rem" height="3rem" viewBox="0 0 16 16" class="bi bi-cash-stack" fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg" style="color: green;">
-                    <path d="M14 3H1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1h-1z" />
-                    <path fill-rule="evenodd"
-                        d="M15 5H1v8h14V5zM1 4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H1z" />
-                    <path
-                        d="M13 5a2 2 0 0 0 2 2V5h-2zM3 5a2 2 0 0 1-2 2V5h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 13a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
-                </svg>
-                <p class="text-center"><strong>{{ recipe[0].pricePerServing | currency:"INR"}}</strong></p>
-            </div>
-            <div class="col-md-2 pt-3">
-                <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-suit-heart-fill" fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg" style="color: red;">
-                    <path
-                        d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
-                </svg>
-                <p class="text-center"><strong>{{ recipe[0].aggregateLikes }} likes</strong></p>
-            </div>
-            <div class="col-md-2 pt-3">
-                <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-stopwatch" fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                        d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07A7.001 7.001 0 0 1 8 16 7 7 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zM8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3zm0 2.1a.5.5 0 0 1 .5.5V9a.5.5 0 0 1-.5.5H4.5a.5.5 0 0 1 0-1h3V5.6a.5.5 0 0 1 .5-.5z" />
-                </svg>
-                <p class="text-center"><strong>Ready in {{ recipe[0].readyInMinutes }} minutes</strong></p>
-            </div>
-            <div class="col-md-2 pt-3">
-                <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-award" fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg" style="color: gold;">
-                    <path fill-rule="evenodd"
-                        d="M9.669.864L8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193l-1.51-.229L8 1.126l-1.355.702-1.51.229-.684 1.365-1.086 1.072L3.614 6l-.25 1.506 1.087 1.072.684 1.365 1.51.229L8 10.874l1.356-.702 1.509-.229.684-1.365 1.086-1.072L12.387 6l.248-1.506-1.086-1.072-.684-1.365z" />
-                    <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
-                </svg>
-                <p class="text-center"><strong>Our Score: {{ recipe[0].spoonacularScore }}</strong></p>
-            </div>
-            <div class="col-md-2 pt-3">
-                <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
-                  </svg>
-            </div>
+          style="background-color: white;text-align: center;margin-top: 38px;border: solid;border-image: linear-gradient( white, green,white) 1">
+          <div class="col-md-3 pt-3">
+            <svg width="3rem" height="3rem" viewBox="0 0 16 16" class="bi bi-cash-stack" fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg" style="color: green;">
+              <path d="M14 3H1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1h-1z" />
+              <path fill-rule="evenodd"
+                d="M15 5H1v8h14V5zM1 4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H1z" />
+              <path
+                d="M13 5a2 2 0 0 0 2 2V5h-2zM3 5a2 2 0 0 1-2 2V5h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 13a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
+            </svg>
+            <p class="text-center"><strong>{{ recipe.pricePerServing | currency:"INR"}}</strong></p>
+          </div>
+          <div class="col-md-3 pt-3">
+            <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-suit-heart-fill" fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg" style="color: red;">
+              <path
+                d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
+            </svg>
+            <p class="text-center"><strong>{{ recipe.aggregateLikes }} likes</strong></p>
+          </div>
+          <div class="col-md-3 pt-3">
+            <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-stopwatch" fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07A7.001 7.001 0 0 1 8 16 7 7 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zM8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3zm0 2.1a.5.5 0 0 1 .5.5V9a.5.5 0 0 1-.5.5H4.5a.5.5 0 0 1 0-1h3V5.6a.5.5 0 0 1 .5-.5z" />
+            </svg>
+            <p class="text-center"><strong>Ready in {{ recipe.readyInMinutes }} minutes</strong></p>
+          </div>
+          <div class="col-md-3 pt-3">
+            <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-award" fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg" style="color: gold;">
+              <path fill-rule="evenodd"
+                d="M9.669.864L8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193l-1.51-.229L8 1.126l-1.355.702-1.51.229-.684 1.365-1.086 1.072L3.614 6l-.25 1.506 1.087 1.072.684 1.365 1.51.229L8 10.874l1.356-.702 1.509-.229.684-1.365 1.086-1.072L12.387 6l.248-1.506-1.086-1.072-.684-1.365z" />
+              <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
+            </svg>
+            <p class="text-center"><strong>Our Score: {{ recipe.spoonacularScore }}</strong></p>
+          </div>
         </div>
-
-        <!-- FAVOURITE/MEAL PLANNER -->
-
-
-        <div class="favourite my-5 d-flex" *ngIf="isLogged" style="margin-left: 450px">
-            <div class="fav mx-2">
-                <label for="favAdder">Favourite</label>
-                <h4><button id="favAdder" class="btn {{favColor}}" (click)="addFav()"><svg width="2.5em" height="2.5em" viewBox="0 0 16 16" class="bi bi-star-fill shadow p-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color: yellow;">
-                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                  </svg></button></h4>
-            </div>
-            <div class="Meal mx-2" (click)="toggleMeal=!toggleMeal">
-                <label for="mealAdder">Meal Plan</label>
-                <h4><button id="mealAdder" class="btn btn-success" (click)="addToMeal()"><svg width="2.5em" height="2.5em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-up shadow" fill="currentColor" xmlns="http://www.w3.org/2000/svg" *ngIf="!toggleMeal">
-                    <path fill-rule="evenodd" d="M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1h-2z"/>
-                    <path fill-rule="evenodd" d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3z"/>
-                  </svg>
-                  <svg width="2.5em" height="2.5em" viewBox="0 0 16 16" class="bi bi-box-arrow-down shadow" fill="currentColor" xmlns="http://www.w3.org/2000/svg" *ngIf="toggleMeal">
-                    <path fill-rule="evenodd" d="M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1h-2z"/>
-                    <path fill-rule="evenodd" d="M7.646 15.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 14.293V5.5a.5.5 0 0 0-1 0v8.793l-2.146-2.147a.5.5 0 0 0-.708.708l3 3z"/>
-                  </svg>
-                </button></h4>
-            </div>
+        <div class="justify-content-center my-5 d-flex" *ngIf="isLogged">
+          <div class="fav mx-2">
+            <label for="favAdder">Favourite</label>
+            <h4>
+              <button id="favAdder" matTooltip="{{!!isFavourite?'Remove':'Add'}}" class="btn {{!!isFavourite?'btn-danger':''}}" (click)="addFav()"><svg width="2.5em" height="2.5em"
+                  viewBox="0 0 16 16" class="bi bi-star-fill shadow p-1" fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg" style="color: yellow;">
+                  <path
+                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                </svg>
+              </button>
+            </h4>
+          </div>
+          <div class="Meal mx-2">
+            <label for="mealAdder">Meal Plan</label>
+            <h4><button id="mealAdder" class="btn btn-success" (click)="addToMeal()" matTooltip="{{!!isInMeal?'Remove':'Add'}}">
+                <svg width="2.5em" height="2.5em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-up shadow"
+                  fill="currentColor" xmlns="http://www.w3.org/2000/svg" *ngIf="!isInMeal">
+                  <path fill-rule="evenodd"
+                    d="M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1h-2z" />
+                  <path fill-rule="evenodd"
+                    d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3z" />
+                </svg>
+                <svg width="2.5em" height="2.5em" viewBox="0 0 16 16" class="bi bi-box-arrow-down shadow"
+                  fill="currentColor" xmlns="http://www.w3.org/2000/svg" *ngIf="isInMeal">
+                  <path fill-rule="evenodd"
+                    d="M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1h-2z" />
+                  <path fill-rule="evenodd"
+                    d="M7.646 15.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 14.293V5.5a.5.5 0 0 0-1 0v8.793l-2.146-2.147a.5.5 0 0 0-.708.708l3 3z" />
+                </svg>
+              </button></h4>
+          </div>
         </div>
 
         <!-- SUMMARY -->
 
-        <div class="summary my-5" *ngIf="!(recipe[0].summary==='')">
-            <h4 class="display-4 p-2" style="background-image: linear-gradient(to right,white,lightgreen)">Summary</h4>
-            <p class="p-4"><span [outerHTML]="recipe[0].summary"></span></p>
+        <div class="summary my-5" *ngIf="!(recipe.summary==='')">
+          <p class="h2  p-2" style="background-image: linear-gradient(to right,white,lightgreen)">Summary</p>
+          <p class="p-4"><span [outerHTML]="recipe.summary"></span></p>
         </div>
 
         <!-- WINE TEXT -->
 
-        <div class="wine my-5" *ngIf="wineText!=''">
-            <h4 class="display-4 p-2" style="background-image: linear-gradient(to right,white,lightgreen);">Wine Advice</h4>
-            <p class="p-4">{{ wineText }}</p>
-            <p class="p-3" *ngIf="(link!='')"><a href="{{ link }}"><span class="p-2"
-                        style="background-image: linear-gradient(to right,green,darkgreen);color: white;">>> Get this Wine !</span></a></p>
+        <div class="wine my-5" *ngIf="!!wineText">
+          <p class="h2 p-2" style="background-image: linear-gradient(to right,white,lightgreen);">Wine Advice</p>
+          <p class="p-4">{{ wineText }}</p>
+          <p class="p-3" *ngIf="(link!='')"><a href="{{ link }}"><span class="p-2"
+                style="background-image: linear-gradient(to right,green,darkgreen);color: white;">>> Get this Wine
+                !</span></a></p>
         </div>
 
         <!-- INGREDIENTS -->
 
-        <div class="ingredients my-5" *ngIf="ingredients.length>0">
-            <h4 class="display-4 p-2" style="background-image: linear-gradient(to right,white,lightgreen)">Ingredients</h4>
-            <div class="row py-3 my-4" style="background-color:white;" *ngIf="imgUrl.length>0">
-                <div class="col-md-2 mx-auto" *ngFor="let img of imgUrl">
-                    <img src="{{ img }}">
-                </div>
+        <div class="ingredients my-5" *ngIf="recipe.extendedIngredients.length>0">
+          <p class="h2 p-2" style="background-image: linear-gradient(to right,white,lightgreen)">Ingredients</p>
+          <div class="row py-3 my-4" style="background-color:white;" *ngIf="recipe.extendedIngredients.length>0">
+            <div class="col-md-2 mx-auto" *ngFor="let ingredient of recipe.extendedIngredients">
+              <img matTooltip="{{ingredient.name}}" [matTooltipClass]="'h6'" src="{{ ingredientsImageUrl+ingredient.image }}">
             </div>
-            <div class="alternate my-3">
-                <h5>Short of ingredients? Find alternatives!</h5>
-                <input type="text" class="form-control" placeholder="Enter Ingredient" (keyup.enter)="alternate($event.target.value)">
-                <div class="output" *ngIf="view">
-                    <div class="success my-3">
-                        <div class="card" style="width: 30rem;" *ngIf="substitute.status==='success'">
-                            <div class="card-header bg-dark" style="color: white;">{{substitute.message}}</div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item" *ngFor="let sub of substitute.substitutes">{{ sub }}</li>
-                            </ul>
-                        </div>
-                        <div class="alert alert-primary" *ngIf="substitute.status==='failure'">No substitute found.</div>
-                    </div>
+          </div>
+          <div class="alternate my-3">
+            <h5>Short of ingredients? Find alternatives!</h5>
+            <input type="text" class="form-control" placeholder="Enter Ingredient"
+              (keyup.enter)="alternate($event.target.value)">
+            <div class="output" *ngIf="view">
+              <div class="success my-3">
+                <div class="card" style="width: 30rem;" *ngIf="substitute.status==='success'">
+                  <div class="card-header bg-dark" style="color: white;">{{substitute.message}}</div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item" *ngFor="let sub of substitute.substitutes">{{ sub }}</li>
+                  </ul>
                 </div>
+                <div class="alert alert-primary" *ngIf="substitute.status==='failure'">No substitute found.</div>
+              </div>
             </div>
-            <h5>Find Ingredients accordingly to {{ recipe[0].servings }} serving</h5>
-            <table class="table table-dark-striped table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Ingredients</th>
-                        <th scope="col">Amount <button class="btn btn-small btn-secondary mx-3" (click)="measure()">{{buttonText}}</button></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let i of ingredients">
-                        <td>{{ i.name | uppercase }}</td>
-                        <td>{{ i.amount}} {{ i.unit }}</td>
-                        <td *ngIf="switch">{{i.measures.metric.amount}} {{i.measures.metric.unitShort}}</td>
-                    </tr>
-                </tbody>
-            </table>
+          </div>
+          <h5>Find Ingredients accordingly to {{ recipe.servings }} serving</h5>
+          <table class="table table-dark-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Ingredients</th>
+                <th scope="col">Amount <button class="btn btn-small btn-secondary mx-3"
+                    (click)="measure()">{{buttonText}}</button></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let i of recipe.extendedIngredients">
+                <td>{{ i.name | uppercase }}</td>
+                <td>{{ i.amount}} {{ i.unit }}</td>
+                <td *ngIf="switch">{{i.measures.metric.amount}} {{i.measures.metric.unitShort}}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <!-- INSTRUCTIONS -->
 
-        <div class="instructions my-5" *ngIf="(instructions!='')">
-            <h4 class="display-4 p-2" style="background-image: linear-gradient(to right,white,lightgreen)">Instructions</h4>
-            <p class="p-4"><span [outerHTML]="instructions"></span></p>
+        <div class="instructions my-5" *ngIf="(recipe.instructions!='')">
+          <p class="h2 p-2" style="background-image: linear-gradient(to right,white,lightgreen)">Instructions
+          </p>
+          <p class="p-4"><span [outerHTML]="recipe.instructions"></span></p>
         </div>
 
         <!-- NUTRITIONAL INFO -->
 
         <div class="nutrition-info" *ngIf="nutrition.length>0">
-            <h4 class="display-4 p-2">Nutritional Information</h4>
-            <h5 class="mx-3"><b>QuickView</b></h5>
-            <ul class="p-4" style="list-style: none;display: inline-flex;">
-                <li class="mx-2 p-2" style="border: solid thin;" *ngFor="let n of nutrition">
-                    <strong>{{n.amount}}{{n.unit}}</strong> {{ n.title }}</li>
-                <li class="mx-2 p-2" style="border: solid thin;"><strong>{{healthScore}}</strong> Health Score</li>
-            </ul>
+          <p class="h3 p-2">Nutritional Information</p>
+          <h3 class="mx-3"><b>QuickView</b></h3>
+          <ul class="p-4" style="list-style: none;display: inline-flex;">
+            <li class="mx-2 p-2" style="border: solid thin;" *ngFor="let n of nutrition">
+              <strong>{{n.amount}}{{n.unit}}</strong> {{ n.title }}</li>
+            <li class="mx-2 p-2" style="border: solid thin;"><strong>{{recipe.healthScore}}</strong> Health Score</li>
+          </ul>
         </div>
 
         <!-- NUTRITIONAL INFO IN DETAIL -->
 
         <div class="nutrition-deep-info p-2" *ngIf="limit.length>0 && includeMore.length>0">
-            <button class="btn" (click)="showLimit()" style="background-color: black;"><span style="color: white;">{{ showText }}</span></button>
-            <div class="content" *ngIf="show">
-                <div class="badForHealth">
-                    <h5 class="display-5" style="color: #e76182;"><b>Limit These</b></h5>
-                    <div class="container" *ngFor="let x of limit">
-                        <label for="nutrient"><b>{{x.title}}:</b> {{x.amount}}{{x.unit}}</label>
-                        <div class="progress m-2" style="height: 15px;">
-                            <div id="nutrient" class="progress-bar" role="progressbar"
-                                style="background-color: #e76182"
-                                aria-valuenow="{{x.percentOfDailyNeeds}}" [style.width]="x.percentOfDailyNeeds+'%'" aria-valuemin="0" aria-valuemax="100">
-                                {{x.percentOfDailyNeeds}}%</div>
-                        </div>
-                    </div>
+          <button class="btn" (click)="showLimit()" style="background-color: black;"><span
+              style="color: white;">{{ showText }}</span></button>
+          <div class="content mt-4" *ngIf="show">
+            <div class="badForHealth">
+              <h3 class="display-5" style="color: #e76182;"><b>Limit These</b></h3>
+              <div class="container" *ngFor="let x of limit">
+                <label for="nutrient"><b>{{x.title}}:</b> {{x.amount}}{{x.unit}}</label>
+                <div class="progress m-2" style="height: 15px;">
+                  <div id="nutrient" class="progress-bar" role="progressbar" style="background-color: #e76182"
+                     [style.width]="x.percentOfDailyNeeds+'%'"
+                    aria-valuemin="0" aria-valuemax="100">
+                    {{x.percentOfDailyNeeds}}%</div>
                 </div>
-                <div class="goodForHealth pt-4">
-                    <h5 class="display-5" style="color: #269fca;"><b>Eat more of these !</b></h5>
-                    <div class="container" *ngFor="let x of includeMore">
-                        <label for="nutrient"><b>{{x.title}}:</b> {{x.amount}}{{x.unit}}</label>
-                        <div class="progress m-2" style="height: 15px;">
-                            <div id="nutrient" class="progress-bar" role="progressbar"
-                                style="background-color: #269fca"
-                                aria-valuenow="{{x.percentOfDailyNeeds}}" [style.width]="x.percentOfDailyNeeds+'%'" aria-valuemin="0" aria-valuemax="100">
-                                {{x.percentOfDailyNeeds}}%</div>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="d-flex">
-                    <div class='box salmon mx-2'></div>
-                    <div class='box blue mx-2'></div>
-                    <p class="mx-1">Covered Percent of Daily Need</p>
-                </div>
+              </div>
             </div>
+            <div class="goodForHealth pt-4">
+              <h3 class="display-5" style="color: #269fca;"><b>Eat more of these !</b></h3>
+              <div class="container" *ngFor="let x of includeMore">
+                <label for="nutrient"><b>{{x.title}}:</b> {{x.amount}}{{x.unit}}</label>
+                <div class="progress m-2" style="height: 15px;">
+                  <div id="nutrient" class="progress-bar" role="progressbar" style="background-color: #269fca"
+                     [style.width]="x.percentOfDailyNeeds+'%'"
+                    aria-valuemin="0" aria-valuemax="100">
+                    {{x.percentOfDailyNeeds}}%</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex">
+              <div class='box salmon mx-2'></div>
+              <div class='box blue mx-2'></div>
+              <p class="mx-1">Covered Percent of Daily Need</p>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="reviews mt-5 pb-5">
+        <p class="h3">Reviews</p>
+        <div class="review-text my-3">
+          <form [formGroup]="form">
+            <textarea class="form-control" formControlName="comment" name="comment" id="comment" cols="70" rows="3"
+              [hidden]="commentBool" placeholder="Enter your Review" style="padding: 10px;" *ngIf="isLogged"
+              (keyup.enter)=addComment($event.target.value)></textarea>
+          </form>
+        </div>
+        <div class="review-btn my-4">
+          <button class="btn btn-success" (click)="addReview()" style="border-radius: 0.5;"
+            *ngIf="isLogged; else isLoggedOut">Add Review</button>
+        </div>
+
+        <blockquote>{{comment}}<i>{{username}}</i></blockquote>
+        <div class="row">
+          <div class="col-md-12">
+            <blockquote lang="en" *ngFor="let review of recipeReview">{{review}}<i>{{username}}</i></blockquote>
+          </div>
+        </div>
+        <ng-template #isLoggedOut>
+          <button class="btn btn-secondary" disabled style="border:solid thin">Log In to Post a Review</button>
+        </ng-template>
+      </div>
     </div>
+  </div>
 </div>
 
-<!-- REVIEWS SECTION -->
-
+<!--changes by himanshu, needs to be merged, I could not figure out the changes(sumon)
+    </div>
+</div>
 <div class="reviews m-5">
     <h4 class="display-4">Reviews</h4>
     <div class="review-btn my-4">
@@ -229,10 +269,13 @@
     <div class="row">
         <div class="col-md-12">
             <blockquote lang="en" *ngFor="let review of recipeReview">{{review}}<i>{{username}}</i></blockquote>
+          </div>
         </div>
+        <ng-template #isLoggedOut>
+          <button class="btn btn-secondary" disabled style="border:solid thin">Log In to Post a Review</button>
+        </ng-template>
+      </div>
     </div>
-    <ng-template #isLoggedOut>
-        <button class="btn btn-secondary" disabled style="border:solid thin">Log In to Post a Review</button>
-    </ng-template>
+  </div>
 </div>
-
+ -->

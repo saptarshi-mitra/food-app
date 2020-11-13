@@ -1,19 +1,14 @@
 <header>
   <nav class="navigation-bar navbar fixed-top navbar-expand-lg navbar-dark">
     <a class="navbar-brand" routerLink="/">Hungry Time</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+
+    <!-- desktop -->
+    <div class="desktop w-100 d-flex">
       <!-- main links -->
       <div class="navbar-nav">
-        <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
         <a class="nav-link" href="#trending">Trending</a>
         <a class="nav-link" routerLink="/help">Help</a>
-        <!-- <a class="nav-link" routerLink="/favourite">My Favourites</a> -->
-        <!-- <a class="nav-link" routerLink="/meal">My Meals</a> -->
-<!--         <a class="nav-link" routerLink="/account/passwordChange">Profile</a> -->
         <a class="nav-link" routerLink="/about">About Us</a>
         <div class="dropdown mx-1" style="margin-top:1px ;" *ngIf="isAuthenticated">
           <button class="btn btn-success btn-sm dropdown-toggle mt-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 0;">
@@ -38,13 +33,16 @@
       <div *ngIf="isAuthenticated" class="ml-md-auto d-flex">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item dropdown">
-            <a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown">{{userName}}</a>
+            <a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown">
+              <app-loading-spinner [small]="true" *ngIf="!userName"></app-loading-spinner>
+              <span *ngIf="!!userName">{{userName}}</span>
+            </a>
             <ul class="dropdown-menu dropdown-menu-right">
               <li><a class="dropdown-item" routerLink="/meal"> Meal</a></li>
               <div class="dropdown-divider m-1"></div>
               <li><a class="dropdown-item" routerLink="/favourite"> Favourites </a></li>
               <div class="dropdown-divider m-1"></div>
-              <li><a class="dropdown-item" href="#"> Settings </a></li>
+              <li><a class="dropdown-item" routerLink="account/usernameChange"> Settings </a></li>
               <div class="dropdown-divider m-1"></div>
               <li><a class="dropdown-item" routerLink="/notes"> Notes </a></li>
               <div class="dropdown-divider m-1"></div>
@@ -53,6 +51,37 @@
           </li>
         </ul>
       </div>
+    </div>
+
+    <!-- mobile -->
+    <div class="mobile d-flex justify-content-end">
+
+      <a class="hamburger" data-toggle="collapse" data-target="#demo"><i class="fas fa-bars"></i></a>
+
+    </div>
+    <div id="demo" class="collapse sidenav">
+      <div class="d-flex justify-content-end">
+        <a class="hamburger p-3" data-toggle="collapse" data-target="#demo"><i class="fas fa-times"></i></a>
+      </div>
+      <a class="side-link pl-4 pt-2 pb-2" href="#trending">Trending</a>
+      <a class="side-link pl-4 pt-2 pb-2" data-toggle="collapse" data-target="#demo" routerLink="/help">Help</a>
+      <a class="side-link pl-4 pt-2 pb-2" data-toggle="collapse" data-target="#demo" routerLink="/about">About Us</a>
+
+      <div *ngIf="!isAuthenticated" class=" d-flex pl-4 pt-2 pb-2">
+        <button class="btn btn-light mr-2" data-toggle="collapse" data-target="#demo" routerLink="/signin">Sign in</button>
+        <button class="btn btn-success" data-toggle="collapse" data-target="#demo" routerLink="/signup">Sign up</button>
+      </div>
+
+      <a class="side-link pl-4 pt-2 pb-2" data-toggle="collapse" data-target="#user" *ngIf="!!isAuthenticated">{{userName}} <i class="pl-2 fas fa-caret-down"></i></a>
+
+      <div class="collapse" id="user">
+        <a class="side-link pl-4 pt-2 pb-2" data-toggle="collapse" data-target="#demo" routerLink="/meal"> Meal</a>
+        <a class="side-link pl-4 pt-2 pb-2" data-toggle="collapse" data-target="#demo" routerLink="/favourite"> Favourites </a>
+        <a class="side-link pl-4 pt-2 pb-2" data-toggle="collapse" data-target="#demo" routerLink="account/usernameChange"> Settings </a>
+        <a class="side-link pl-4 pt-2 pb-2" data-toggle="collapse" data-target="#demo" routerLink="/notes"> Notes </a>
+        <a class="side-link pl-4 pt-2 pb-2 text-danger" (click)="onLogout()" data-toggle="collapse" data-target="#demo"> Signout </a>
+      </div>
+
     </div>
   </nav>
 </header>

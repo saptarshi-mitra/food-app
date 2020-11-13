@@ -33,14 +33,20 @@ export class FoodService {
   }
 
   getRandomRecipe(count){
-    return this._http.get<any>(` https://api.spoonacular.com/recipes/random?number=${count}&apiKey=${this.apiKey}`)
+    return this._http.get<any>(` https://api.spoonacular.com/recipes/random?number=${count}&apiKey=${this._apikey}`)
   }
 
   getData(id){
     return this._http.get(`${this.url}${id}&apiKey=${this.api}&includeNutrition=true`);
   }
+
+  getRecipeData(id){
+    return this._http.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${this.key_sumon}&includeNutrition=true`);
+  }
+
+
   getIngredientAlternate(value){
-    return this._http.get(`https://api.spoonacular.com/food/ingredients/substitutes?ingredientName=${value}&apiKey=${this.api}`);
+    return this._http.get<any>(`https://api.spoonacular.com/food/ingredients/substitutes?ingredientName=${value}&apiKey=${this.api}`);
   }
 
 

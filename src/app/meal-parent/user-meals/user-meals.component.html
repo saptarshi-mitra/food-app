@@ -1,9 +1,8 @@
 <div class="container mt-4">
-  <h1>Welcome {{ userName }}</h1>
   <div *ngIf="doughnutChartData.length>0; else nothing">
   <h3 class="mt-2">Here is your total nutrients intake</h3>
   <div class="row">
-    <div class="col-6">
+    <div class="col-md-6">
       <div>
         <canvas baseChart
           height="300px"
@@ -15,7 +14,7 @@
         </canvas>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-md-6 mt-md-4">
       <div>
         <canvas baseChart
         height="300px"
@@ -35,7 +34,7 @@
   <div class="meals">
     <div class="card individualMeals" *ngFor="let recipe of recipes">
       <div class="card-body">
-        <h5 class="card-title">{{ recipe.title }}</h5>
+        <h3 class="card-title"><a [routerLink]="['/details', recipe.id]" class="title-link">{{ recipe.title }}</a></h3>
         <app-individual-graphs [recipe]="recipe"></app-individual-graphs>
       </div>
     </div>

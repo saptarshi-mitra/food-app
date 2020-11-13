@@ -1,67 +1,74 @@
 .box {
-    float: left;
-    height: 20px;
-    width: 20px;
-    margin-bottom: 15px;
-    border: 1px solid black;
-    clear: both;
-  }
-  
-  .salmon {
-    background-color: #e76182;
-  }
-  
-  .blue {
-    background-color: #269fca;
-  }
+  float: left;
+  height: 20px;
+  width: 20px;
+  margin-bottom: 15px;
+  border: 1px solid black;
+  clear: both;
+}
 
-  blockquote {
-    min-height: 5em;
-    padding   : 1em 4em;
-    font      : 1em/150% sans-serif;
-    position  : relative;
-    background-color: lightgoldenrodyellow;
-  }
-  
-  blockquote::before,
-  blockquote::after {
-    position: absolute;
-    height  : 3rem;
-    font    : 6rem/100% Georgia, "Times New Roman", Times, serif;
-  }
-  
-  blockquote::before {
-    content: '“';
-    top    : 0.3rem;
-    left   : 0.9rem;
-  }
-  
-  blockquote::after {
-    content: '”';
-    bottom : 0.3rem;
-    right  : 0.8rem;
-  }
+.salmon {
+  background-color: #e76182;
+}
 
-  blockquote:lang(en)::before {
-    content: '«';
-    top    : -1.5rem;
-    left   : 0.5rem;
-  }
-  
-  blockquote:lang(en)::after {
-    content: '»';
-    bottom : 2.6rem;
-    right  : 0.5rem
-  }
-  blockquote i {
-    display   : block;
-    font-size : 0.8em;
-    margin-top: 1rem;
-    font-style: italic;
-    text-align: right;
-  }
+.blue {
+  background-color: #269fca;
+}
 
-  #rate .active,
-  #rate div svg:hover{
-      color: red;
+blockquote {
+  min-height: 5em;
+  padding: 1em 4em;
+  font: 1em/150% sans-serif;
+  position: relative;
+  background-color: #f4ff98;
+}
+
+blockquote::before,
+blockquote::after {
+  position: absolute;
+  height: 3rem;
+  font: 6rem/100% Georgia, "Times New Roman", Times, serif;
+}
+
+blockquote::before {
+  content: '“';
+  top: 0.3rem;
+  left: 0.9rem;
+}
+
+blockquote::after {
+  content: '”';
+  bottom: 0.3rem;
+  right: 0.8rem;
+}
+
+blockquote:lang(en)::before {
+  content: '«';
+  top: -1.5rem;
+  left: 0.5rem;
+}
+
+blockquote:lang(en)::after {
+  content: '»';
+  bottom: 2.6rem;
+  right: 0.5rem
+}
+
+blockquote i {
+  display: block;
+  font-size: 0.8em;
+  margin-top: 1rem;
+  font-style: italic;
+  text-align: right;
+}
+
+#rate .active,
+#rate div svg:hover {
+  color: red;
+}
+
+@media only screen and (max-width: 600px) {
+  .image-part img {
+    width: 100%;
   }
+}
