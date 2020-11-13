@@ -10,6 +10,14 @@
         <a class="nav-link" href="#trending">Trending</a>
         <a class="nav-link" routerLink="/help">Help</a>
         <a class="nav-link" routerLink="/about">About Us</a>
+        <div class="dropdown mx-1" style="margin-top:1px ;" *ngIf="isAuthenticated">
+          <button class="btn btn-success btn-sm dropdown-toggle mt-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 0;">
+            Notifications
+          </button>
+          <div class="dropdown-menu mt-2" aria-labelledby="dropdownMenuButton" style="background-color: lightgreen;">
+            <p id="demo"></p>
+          </div>
+        </div>
       </div>
       <!-- signin/signup buttons -->
 
@@ -77,3 +85,4 @@
     </div>
   </nav>
 </header>
+

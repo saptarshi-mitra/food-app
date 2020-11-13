@@ -9,3 +9,42 @@
     padding-top:400px ;
 }
 
+
+@media screen and (max-width:425px){
+    #bg-img{
+        min-height: 100vh;
+        min-width: 200vh;
+    }
+    .container .row .header{
+        min-width: 900px;
+    }
+    .cards .row-cards .row .col-md-6{
+        margin-left: 300px;
+        padding: 0%;
+        width: 300px;
+    }
+    .author .h4{
+        width: 900px;
+    }
+    .author .row .col-md-3{
+        min-width:200px;
+        padding: 0%;
+        margin-left: 380px;
+        background-color: palegoldenrod;
+    }
+}
+@media screen and (min-width:480px){
+    #bg-img{
+        min-height: 100vh;
+        min-width: 200vh;
+    }
+    .container .row .header{
+        min-width: 900px;
+    }
+    .cards .row-cards .row .col-md-6{
+        margin-left: 280px;
+    }
+    .author .h4{
+        width: 900px;
+    }
+}

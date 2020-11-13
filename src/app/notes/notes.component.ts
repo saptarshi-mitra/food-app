@@ -6,6 +6,9 @@ import { FormBuilder } from '@angular/forms';
 import { isNgTemplate } from '@angular/compiler';
 import { AuthService } from '../auth/auth.service';
 
+@Injectable({
+  providedIn:'root'
+})
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
@@ -15,7 +18,6 @@ export class NotesComponent implements OnInit {
 
   d = new Date();
   condition:boolean;
-  show: boolean;
   isLogged:boolean;
   result="";
   user;
@@ -28,7 +30,6 @@ export class NotesComponent implements OnInit {
   hour:number;
   min:number;
   sum:number;
-
 
   constructor(private http:HttpClient,private userInfor: AuthService) {}
 
@@ -58,19 +59,18 @@ export class NotesComponent implements OnInit {
     this.hour = Math.abs((this.time[0] - this.d.getHours())*60);
     this.min = Math.abs(this.time[1] - this.d.getMinutes());
     this.sum = this.hour + this.min;
-    console.log(this.sum)
     this.http.get(`https://food-app-385cd.firebaseio.com/users/${this.localId}/notes.json?auth=${this.idToken}`).subscribe(response =>{
       setTimeout(function myFunc(){
         this.result = response['note'];
         document.getElementById('demo').innerHTML = this.result;
-      },3000)
+      },(this.sum)*60000)
     });
     setTimeout(function playAudio(){
       let audio = new Audio();
       audio.src = "../../../assets/audio/drum.mp3";
       audio.load();
       audio.play();
-    },3000)
+    },(this.sum)*60000)
     this.condition=true;
   }
 

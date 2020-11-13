@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { NotesComponent } from '../notes/notes.component';
 
 @Component({
   selector: 'app-header',
@@ -9,12 +10,12 @@ import { AuthService } from '../auth/auth.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,private note:NotesComponent) { }
 
   isAuthenticated = false;
   private userSub: Subscription;
-  userName = null;
 
+  userName = null;
 
   ngOnInit(): void {
     this.userName = "";
