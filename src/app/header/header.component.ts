@@ -14,11 +14,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   isAuthenticated = false;
   private userSub: Subscription;
-<<<<<<< HEAD
-  userName = null;
-=======
->>>>>>> ff2394fef22af150a1dd19905d3ecbf55444d7b0
-
   userName = null;
 
   ngOnInit(): void {
