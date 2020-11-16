@@ -50,5 +50,11 @@ export class FireService {
     return this.http.get(`https://foodapp-a7482.firebaseio.com/reviews/${recipeId}.json`)
   }
 
+  addReview(id:string, comment: string, user: string) {
+    return this.http.post(`https://foodapp-a7482.firebaseio.com/reviews/${id}.json`, {
+      "review": comment,
+      "user": user
+    })
+  }
 
 }
