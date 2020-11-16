@@ -181,10 +181,6 @@ export class DetailsComponent implements OnInit {
     }
   }
 
-  addReview() {
-    this.commentBool = !this.commentBool;
-  }
-
   addComment(value) {
     this.authService.getDetails(this.user.id, this.user.token).subscribe(response => {
       this.username = response.userName;

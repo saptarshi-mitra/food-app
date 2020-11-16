@@ -90,7 +90,7 @@
         <!-- SUMMARY -->
 
         <div class="summary my-5" *ngIf="!(recipe[0].summary==='')">
-          <p class="h2  p-2" style="background-image: linear-gradient(to right,white,lightgreen)">Summary</p>
+          <p class="h2 p-2" style="background-image: linear-gradient(to right,white,lightgreen)">Summary</p>
           <p class="p-4"><span [outerHTML]="recipe[0].summary"></span></p>
         </div>
 
@@ -134,7 +134,7 @@
             <thead>
               <tr>
                 <th scope="col">Ingredients</th>
-                <th scope="col">Amount <button class="btn btn-small btn-secondary mx-3"
+                <th scope="col">Amount <button class="btn btn-sm btn-secondary mx-3"
                     (click)="measure()">{{buttonText}}</button></th>
               </tr>
             </thead>
@@ -216,17 +216,16 @@
               (keyup.enter)=addComment($event.target.value)></textarea>
           </form>
         </div>
-        <div class="review-btn my-4">
-          <button class="btn btn-success" (click)="addReview()" style="border-radius: 0.5;"
-            *ngIf="isLogged; else isLoggedOut">Add Review</button>
-        </div>
-
-        <blockquote>{{comment}}<i>{{username}}</i></blockquote>
-        <div class="row">
-          <div class="col-md-12">
-            <blockquote lang="en" *ngFor="let review of recipeReview">{{review}}<i>{{username}}</i></blockquote>
+        <div class="review-btn my-4" *ngIf="isLogged; else isLoggedOut">
+          <blockquote>{{comment}}<i>{{username}}</i></blockquote>
+          <div class="row">
+            <div class="col-md-12">
+              <blockquote lang="en" *ngFor="let review of recipeReview">{{review}}<i>{{username}}</i></blockquote>
+            </div>
           </div>
         </div>
+
+        
         <ng-template #isLoggedOut>
           <button class="btn btn-secondary" disabled style="border:solid thin">Log In to Post a Review</button>
         </ng-template>

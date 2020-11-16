@@ -36,7 +36,6 @@ export class NotesComponent implements OnInit {
   ngOnInit(): void {
     this.userInfor.user.subscribe(response =>{
       this.user=response;
-      console.log(response)
       this.email = this.user.email;
       this.localId = this.user.id;
       this.idToken = this.user._token;
