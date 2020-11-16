@@ -16,6 +16,20 @@ export class FireService {
     return this.http.get(`https://food-app-385cd.firebaseio.com/users/${userId}/meal.json?auth=${token}`)
   }
 
+  addFavorite(userId: string, token: string, recipe: any) {
+    return this.http.patch(`https://food-app-385cd.firebaseio.com/users/${userId}/favourites.json?auth=${token}`,
+      {
+        [recipe.id]: recipe
+      })
+  }
+
+  addMeal(userId: string, token: string, recipe: any) {
+    return this.http.patch(`https://food-app-385cd.firebaseio.com/users/${userId}/meal.json?auth=${token}`,
+      {
+        [recipe.id]: recipe
+      })
+  }
+
   getFavoriteRecipe(userId: string, token: string, recipeId: string) {
     return this.http.get(`https://food-app-385cd.firebaseio.com/users/${userId}/favourites/${recipeId}.json?auth=${token}`)
   }

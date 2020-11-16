@@ -18,3 +18,16 @@
 .suggest{
     cursor: pointer;
 }
+
+@media only screen and (max-width: 767px){
+    .input-tag{
+        line-height: 1.02;
+        font-size: 50px;
+        font-weight: 300;
+        color: white;
+    }
+
+    .list-group{
+        display: none;
+    }
+}

@@ -6,8 +6,12 @@
 .individualMeals{
     margin-top: 20px;
     margin-bottom: 10px;
-    width: 50%;
+    width: 48%;
     box-sizing: border-box;
+}
+
+.card{
+    margin: 5px;
 }
 
 .card-title{
@@ -17,4 +21,15 @@
 .title-link{
     color: #111;
     text-decoration: none;
+}
+
+@media only screen and (max-width: 767px){
+    .meals{
+        display: block;
+    }
+    .individualMeals{
+        margin-top: 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
 }
