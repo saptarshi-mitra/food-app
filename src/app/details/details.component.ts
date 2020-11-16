@@ -157,10 +157,6 @@ export class DetailsComponent implements OnInit {
     this.isInMeal = !this.isInMeal;
   }
 
-  addReview() {
-    this.commentBool = !this.commentBool;
-  }
-
   addComment(value) {
     this.authService.getDetails(this.user.id, this.user.token).subscribe(response => {
       this.username = response.userName;
@@ -174,23 +170,5 @@ export class DetailsComponent implements OnInit {
     this.comment = value;
     this.form.reset()
   }
-  rating(index) {
-    this.active[index - 1] = !this.active[index - 1];
-    if (this.active[index - 1]) {
-      this.rate = index
-      if (index > 1) {
-        for (let i = 0; i < index - 1; i++) {
-          this.active[i] = true
-        }
-      }
-    }
-    else {
-      this.rate = index - 1;
-      for (let i = index; i < 5; i++) {
-        this.active[i] = false;
-      }
-    }
 
-    console.log(this.active)
-  }
 }

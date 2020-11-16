@@ -219,63 +219,19 @@
               (keyup.enter)=addComment($event.target.value)></textarea>
           </form>
         </div>
-        <div class="review-btn my-4">
-          <button class="btn btn-success" (click)="addReview()" style="border-radius: 0.5;"
-            *ngIf="isLogged; else isLoggedOut">Add Review</button>
-        </div>
-
-        <blockquote>{{comment}}<i>{{username}}</i></blockquote>
-        <div class="row">
-          <div class="col-md-12">
-            <blockquote lang="en" *ngFor="let review of recipeReview">{{review}}<i>{{username}}</i></blockquote>
-          </div>
-        </div>
-        <ng-template #isLoggedOut>
-          <button class="btn btn-secondary" disabled style="border:solid thin">Log In to Post a Review</button>
-        </ng-template>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--changes by himanshu, needs to be merged, I could not figure out the changes(sumon)
-    </div>
-</div>
-<div class="reviews m-5">
-    <h4 class="display-4">Reviews</h4>
-    <div class="review-btn my-4">
-        <button class="btn btn-success" (click)="addReview()" style="border-radius: 0.5;" *ngIf="isLogged; else isLoggedOut">Add Review</button>
-        <div class="review">
-            <div class="rating d-flex mt-3">
-                <div class="rate" id="rate" *ngFor="let star of active;let i = index">
-                    <div type="button" (click)=rating(i+1) [ngClass]="{'active':active[i]}">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg" [id]="i"  >
-                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                    </svg>
-                    </div>
-                </div>
-                <p class="mx-3">{{rate}}</p>
+        <div class="review-btn my-4" *ngIf="isLogged; else isLoggedOut">
+          <blockquote>{{comment}}<i>{{username}}</i></blockquote>
+          <div class="row">
+            <div class="col-md-12">
+              <blockquote lang="en" *ngFor="let review of recipeReview">{{review}}<i>{{username}}</i></blockquote>
             </div>
-    
-        </div>
-    </div>
-    <div class="review-text my-3">
-        <form [formGroup]="form">
-            <textarea class="form-control" formControlName="comment" name="comment" id="comment" cols="70" rows="3" [hidden]="commentBool" placeholder="Enter your Review" style="padding: 10px;" *ngIf="isLogged" (keyup.enter)=addComment($event.target.value)></textarea>
-        </form>
-    </div>
-    <blockquote>{{comment}}<i>{{username}}</i></blockquote>
-    <div class="row">
-        <div class="col-md-12">
-            <blockquote lang="en" *ngFor="let review of recipeReview">{{review}}<i>{{username}}</i></blockquote>
           </div>
         </div>
+      
+        
         <ng-template #isLoggedOut>
           <button class="btn btn-secondary" disabled style="border:solid thin">Log In to Post a Review</button>
         </ng-template>
       </div>
-    </div>
   </div>
 </div>
- -->
