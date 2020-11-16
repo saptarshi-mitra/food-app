@@ -2,7 +2,7 @@
   background-color: #39bf5e;
 }
 
-@media all and (min-width: 992px) {
+@media all and (min-width: 768px) {
   .navbar .nav-item .dropdown-menu {
     display: none;
   }
@@ -24,7 +24,7 @@
 	display: none!important;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 767px) {
   .desktop {
     display: none !important;
   }
