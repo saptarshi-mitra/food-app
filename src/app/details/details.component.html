@@ -60,7 +60,8 @@
           <div class="fav mx-2">
             <label for="favAdder">Favourite</label>
             <h4>
-              <button id="favAdder" matTooltip="{{!!isFavourite?'Remove':'Add'}}" class="btn {{!!isFavourite?'btn-danger':''}}" (click)="addFav()"><svg width="2.5em" height="2.5em"
+              <button id="favAdder" matTooltip="{{!!isFavourite?'Remove':'Add'}}"
+                class="btn {{!!isFavourite?'btn-danger':''}}" (click)="addFav()"><svg width="2.5em" height="2.5em"
                   viewBox="0 0 16 16" class="bi bi-star-fill shadow p-1" fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg" style="color: yellow;">
                   <path
@@ -71,7 +72,8 @@
           </div>
           <div class="Meal mx-2">
             <label for="mealAdder">Meal Plan</label>
-            <h4><button id="mealAdder" class="btn btn-success" (click)="addToMeal()" matTooltip="{{!!isInMeal?'Remove':'Add'}}">
+            <h4><button id="mealAdder" class="btn btn-success" (click)="addToMeal()"
+                matTooltip="{{!!isInMeal?'Remove':'Add'}}">
                 <svg width="2.5em" height="2.5em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-up shadow"
                   fill="currentColor" xmlns="http://www.w3.org/2000/svg" *ngIf="!isInMeal">
                   <path fill-rule="evenodd"
@@ -113,7 +115,8 @@
           <p class="h2 p-2" style="background-image: linear-gradient(to right,white,lightgreen)">Ingredients</p>
           <div class="row py-3 my-4" style="background-color:white;" *ngIf="recipe.extendedIngredients.length>0">
             <div class="col-md-2 mx-auto" *ngFor="let ingredient of recipe.extendedIngredients">
-              <img matTooltip="{{ingredient.name}}" [matTooltipClass]="'h6'" src="{{ ingredientsImageUrl+ingredient.image }}">
+              <img matTooltip="{{ingredient.name}}" [matTooltipClass]="'h6'"
+                src="{{ ingredientsImageUrl+ingredient.image }}">
             </div>
           </div>
           <div class="alternate my-3">
@@ -183,8 +186,7 @@
                 <label for="nutrient"><b>{{x.title}}:</b> {{x.amount}}{{x.unit}}</label>
                 <div class="progress m-2" style="height: 15px;">
                   <div id="nutrient" class="progress-bar" role="progressbar" style="background-color: #e76182"
-                     [style.width]="x.percentOfDailyNeeds+'%'"
-                    aria-valuemin="0" aria-valuemax="100">
+                    [style.width]="x.percentOfDailyNeeds+'%'" aria-valuemin="0" aria-valuemax="100">
                     {{x.percentOfDailyNeeds}}%</div>
                 </div>
               </div>
@@ -195,8 +197,7 @@
                 <label for="nutrient"><b>{{x.title}}:</b> {{x.amount}}{{x.unit}}</label>
                 <div class="progress m-2" style="height: 15px;">
                   <div id="nutrient" class="progress-bar" role="progressbar" style="background-color: #269fca"
-                     [style.width]="x.percentOfDailyNeeds+'%'"
-                    aria-valuemin="0" aria-valuemax="100">
+                    [style.width]="x.percentOfDailyNeeds+'%'" aria-valuemin="0" aria-valuemax="100">
                     {{x.percentOfDailyNeeds}}%</div>
                 </div>
               </div>
@@ -210,28 +211,33 @@
           </div>
         </div>
       </div>
+
+
+      <!-- REVIEW -->
+
       <div class="reviews mt-5 pb-5">
         <p class="h3">Reviews</p>
-        <div class="review-text my-3">
-          <form [formGroup]="form">
-            <textarea class="form-control" formControlName="comment" name="comment" id="comment" cols="70" rows="3"
-              [hidden]="commentBool" placeholder="Enter your Review" style="padding: 10px;" *ngIf="isLogged"
-              (keyup.enter)=addComment($event.target.value)></textarea>
-          </form>
-        </div>
+
+        <!-- a button would be better, as a user might post a long review -->
         <div class="review-btn my-4" *ngIf="isLogged; else isLoggedOut">
-          <blockquote>{{comment}}<i>{{username}}</i></blockquote>
-          <div class="row">
-            <div class="col-md-12">
-              <blockquote lang="en" *ngFor="let review of recipeReview">{{review}}<i>{{username}}</i></blockquote>
-            </div>
+          <div class="review-text my-3">
+            <textarea class="form-control" cols="70" rows="3" placeholder="Enter your Review" style="padding: 10px;"
+              [(ngModel)]="comment"></textarea>
+          </div>
+          <button class="btn btn-success" (click)="addComment()">Post</button>
+        </div>
+        <ng-template #isLoggedOut>
+          <button class="btn btn-danger mb-3" routerLink="/signin">Log In to Post a Review</button>
+        </ng-template>
+
+        <!-- all reviews -->
+        <div class="row">
+          <div class="col-md-12">
+            <div *ngIf="!recipeReview.length">No reviews yet!</div>
+            <blockquote lang="en" *ngFor="let review of recipeReview">{{review.review}}<i>{{review.user}}</i>
+            </blockquote>
           </div>
         </div>
-      
-        
-        <ng-template #isLoggedOut>
-          <button class="btn btn-secondary" disabled style="border:solid thin">Log In to Post a Review</button>
-        </ng-template>
       </div>
+    </div>
   </div>
-</div>

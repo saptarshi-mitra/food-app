@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FoodService } from '../common/services/food.service';
-import { FormBuilder } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { FireService } from '../common/services/fire.service';
@@ -15,22 +14,15 @@ import { User } from '../auth/user.model';
 export class DetailsComponent implements OnInit {
 
   isLoaded = false;
-  form;
   username: string;
   comment: string;
-  recipeReviewComment = [];
-  recipeReviewUser = [];
   recipeReview = [];
   isInMeal = false;
   isFavourite = false;
-  conditonal: boolean;
   isLogged: boolean = false;
-  commentBool: boolean;
   user: User;
   recipe: any;
   nutrition = [];
-  active = [false, false, false, false, false];
-  rate = 0;
   substitute: any;
   wineText: string;
   link: string;
@@ -49,16 +41,11 @@ export class DetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private authService: AuthService,
     private http: HttpClient,
-    private fb: FormBuilder,
     private fire: FireService) {
 
-    this.form = fb.group({
-      comment: ['']
-    })
   }
 
   ngOnInit(): void {
-
 
     //fetching recipe details
     this.foodService.getRecipeData(this.route.snapshot.paramMap.get('id')).subscribe(response => {
@@ -77,23 +64,23 @@ export class DetailsComponent implements OnInit {
       }
 
       console.log(this.wineText)
-          
+
+      //get reviews
+      this.fire.getReviews(this.recipe.id).subscribe(response => {
+        if (!!response) {
+          this.recipeReview = Object.values(response);
+          // console.log(this.recipeReview)
+        }
+      })
+
       //user logged in check
       this.authService.user.subscribe(response => {
         if (!!response) {
           this.user = response
           this.isLogged = true;
 
-          //get reviews
-          this.fire.getReviews(this.recipe.id).subscribe(response => {
-            if (!!response) {
-              this.recipeReviewComment = Object.values(response);
-              this.recipeReviewComment.forEach(item => {
-                this.recipeReview.push(item.review)
-                this.recipeReviewUser.push(item.user)
-              })
-            }
-          })
+          //get username
+          this.authService.getDetails(this.user.id, this.user.token).subscribe(response => this.username = response.userName);
 
           //check if in favourite
           this.fire.getFavoriteRecipe(response.id, response.token, this.recipe.id).subscribe(res => {
@@ -157,18 +144,13 @@ export class DetailsComponent implements OnInit {
     this.isInMeal = !this.isInMeal;
   }
 
-  addComment(value) {
-    this.authService.getDetails(this.user.id, this.user.token).subscribe(response => {
-      this.username = response.userName;
-      this.http.post(`https://foodapp-a7482.firebaseio.com/reviews/${this.recipe.id}.json`, {
-        "review": this.comment,
-        "user": this.username
-      }).subscribe(response => {
-        // console.log(response)
-      })
+  addComment() {
+    this.fire.addReview(this.recipe.id, this.comment, this.username).subscribe();
+    this.recipeReview.unshift({
+      "review": this.comment,
+      "user": this.username
     })
-    this.comment = value;
-    this.form.reset()
+    this.comment = "";
   }
 
 }
