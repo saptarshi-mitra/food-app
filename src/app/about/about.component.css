@@ -1,17 +1,16 @@
 #bg-img{
     background-image: url(../../assets/images/pizza.jpg);
-    min-height: 100vh;
+    min-height: 80vh;
     width: auto;
     background-size: cover;
 }
-.text{
+.text-center{
     color: white;
-    padding-top:400px ;
+    padding-top: 250px;
+    
 }
-#topper, #middle{
+#topper img, #middle img{
     background-color: palevioletred;
-    width: auto;
-    height: auto;
 }
 
 
@@ -19,10 +18,10 @@
     #bg-img{
         width: auto;
         height: auto;
-        max-height: 50vh;
+        background-size: cover;
     }
-    .row .col-sm-12 img{
-        width: auto;
-        height: auto;
+    #topper img, #middle img{
+        background-size: cover;
+        max-width: 45vh;
     }
 }
