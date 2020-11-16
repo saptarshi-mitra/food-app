@@ -7,12 +7,7 @@
 .text-center{
     color: white;
     padding-top: 250px;
-    
 }
-#topper img, #middle img{
-    background-color: palevioletred;
-}
-
 
 @media only screen and (max-width: 767px){
     #bg-img{
