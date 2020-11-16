@@ -29,8 +29,6 @@ export class DetailsComponent implements OnInit {
   user: User;
   recipe: any;
   nutrition = [];
-  active = [false, false, false, false, false];
-  rate = 0;
   substitute: any;
   wineText: string;
   link: string;

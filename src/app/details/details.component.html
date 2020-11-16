@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-center" style="height: 100vh; align-items: center;" *ngIf="!isLoaded">
       <app-loading-spinner></app-loading-spinner>
     </div>
-    <div *ngIf="isLoaded">
+    <div *ngIf="isLoaded container">
       <p class="text-center h2 my-3 p-2"
         style="background-color: white;border: solid;border-image: linear-gradient( white, green,white) 1">
         {{ recipe.title }}
@@ -164,8 +164,8 @@
         <div class="nutrition-info" *ngIf="nutrition.length>0">
           <p class="h3 p-2">Nutritional Information</p>
           <h3 class="mx-3"><b>QuickView</b></h3>
-          <ul class="p-4" style="list-style: none;display: inline-flex;">
-            <li class="mx-2 p-2" style="border: solid thin;" *ngFor="let n of nutrition">
+          <ul class="row p-4" style="list-style: none;display: inline-flex;">
+            <li class="mx-2 p-2 col-md-2" style="border: solid thin;" *ngFor="let n of nutrition">
               <strong>{{n.amount}}{{n.unit}}</strong> {{ n.title }}</li>
             <li class="mx-2 p-2" style="border: solid thin;"><strong>{{recipe.healthScore}}</strong> Health Score</li>
           </ul>
