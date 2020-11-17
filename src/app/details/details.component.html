@@ -167,10 +167,11 @@
         <div class="nutrition-info" *ngIf="nutrition.length>0">
           <p class="h3 p-2">Nutritional Information</p>
           <h3 class="mx-3"><b>QuickView</b></h3>
+
           <ul class="row p-4" style="list-style: none;display: inline-flex;">
             <li class="mx-2 p-2 col-md-2" style="border: solid thin;" *ngFor="let n of nutrition">
               <strong>{{n.amount}}{{n.unit}}</strong> {{ n.title }}</li>
-            <li class="mx-2 p-2" style="border: solid thin;"><strong>{{recipe.healthScore}}</strong> Health Score</li>
+            <li class="mx-2 p-2" style="border: solid thin;background-color: white;"><strong>{{recipe.healthScore}}</strong> Health Score</li>
           </ul>
         </div>
 
@@ -203,7 +204,7 @@
               </div>
             </div>
 
-            <div class="d-flex">
+            <div class="d-flex my-3 py-3">
               <div class='box salmon mx-2'></div>
               <div class='box blue mx-2'></div>
               <p class="mx-1">Covered Percent of Daily Need</p>
@@ -234,7 +235,7 @@
         <div class="row">
           <div class="col-md-12">
             <div *ngIf="!recipeReview.length">No reviews yet!</div>
-            <blockquote lang="en" *ngFor="let review of recipeReview">{{review.review}}<i>{{review.user}}</i>
+            <blockquote lang="en" *ngFor="let review of recipeReview">{{review.review}}<i>{{review.user}} | {{review.timeStamp | date:'medium'}}</i>
             </blockquote>
           </div>
         </div>

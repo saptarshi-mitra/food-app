@@ -18,16 +18,17 @@
 blockquote {
   min-height: 5em;
   padding: 1em 4em;
-  font: 1em/150% sans-serif;
+  font: 1.1em/150% sans-serif;
   position: relative;
-  background-color: #f4ff98;
+  background-color: #d0ffd3;
+  border-radius: 10px;
 }
 
 blockquote::before,
 blockquote::after {
   position: absolute;
   height: 3rem;
-  font: 6rem/100% Georgia, "Times New Roman", Times, serif;
+  font: 5rem/100% Georgia, "Times New Roman", Times, serif;
 }
 
 blockquote::before {
@@ -43,15 +44,15 @@ blockquote::after {
 }
 
 blockquote:lang(en)::before {
-  content: '«';
-  top: -1.5rem;
-  left: 0.5rem;
+  content: '“';
+  /* top: -1.5rem;
+  left: 0.5rem; */
 }
 
 blockquote:lang(en)::after {
-  content: '»';
-  bottom: 2.6rem;
-  right: 0.5rem
+  content: '”';
+  /* bottom: 2.6rem;
+  right: 0.5rem */
 }
 
 blockquote i {

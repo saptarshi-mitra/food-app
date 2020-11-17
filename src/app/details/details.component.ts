@@ -40,9 +40,7 @@ export class DetailsComponent implements OnInit {
     private foodService: FoodService,
     private route: ActivatedRoute,
     private authService: AuthService,
-    private http: HttpClient,
     private fire: FireService) {
-
   }
 
   ngOnInit(): void {
@@ -50,7 +48,7 @@ export class DetailsComponent implements OnInit {
     //fetching recipe details
     this.foodService.getRecipeData(this.route.snapshot.paramMap.get('id')).subscribe(response => {
       this.recipe = response;
-      console.log(this.recipe);
+      // console.log(this.recipe);
       this.nutrition = this.recipe.nutrition.nutrients.slice(0, 4);
       this.limit = this.recipe.nutrition.nutrients.slice(0, 8);
       this.includeMore = this.recipe.nutrition.nutrients.slice(8);
@@ -63,13 +61,20 @@ export class DetailsComponent implements OnInit {
         }
       }
 
-      console.log(this.wineText)
+      // console.log(this.wineText)
 
       //get reviews
       this.fire.getReviews(this.recipe.id).subscribe(response => {
         if (!!response) {
           this.recipeReview = Object.values(response);
           // console.log(this.recipeReview)
+          this.recipeReview.sort(function (a, b) {
+            var keyA = new Date(a.timeStamp), keyB = new Date(b.timeStamp);
+            // Compare the 2 dates
+            if (keyA < keyB) return 1;
+            if (keyA > keyB) return -1;
+            return 0;
+          });
         }
       })
 
@@ -148,7 +153,8 @@ export class DetailsComponent implements OnInit {
     this.fire.addReview(this.recipe.id, this.comment, this.username).subscribe();
     this.recipeReview.unshift({
       "review": this.comment,
-      "user": this.username
+      "user": this.username,
+      "timeStamp": new Date()
     })
     this.comment = "";
   }
