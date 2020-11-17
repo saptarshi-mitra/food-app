@@ -7,9 +7,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-  active=[false,false,false,false,false];
-  rate=0;
-
   constructor() { }
   id = [{
     "name":"Saptarshi Mitra",
