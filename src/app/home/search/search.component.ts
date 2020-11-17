@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FoodService } from 'src/app/common/services/food.service';
+import { RecipeSuggest } from 'src/app/common/shared/model/recipe-suggest';
 
 @Component({
   selector: 'app-search',
@@ -8,8 +9,8 @@ import { FoodService } from 'src/app/common/services/food.service';
 })
 export class SearchComponent implements OnInit {
 
-  recipe
-  suggestions
+  recipe: string
+  suggestions: RecipeSuggest
   constructor(private _service:FoodService) { }
 
   ngOnInit(): void {

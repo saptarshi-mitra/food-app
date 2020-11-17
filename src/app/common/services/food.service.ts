@@ -16,23 +16,23 @@ export class FoodService {
 
   constructor(private _http: HttpClient) { }
 
-  getSearchResult(query){
+  getSearchResult(query: string){
     return this._http.get(`https://api.spoonacular.com/recipes/complexSearch?query=${query}&addRecipeNutrition=true&number=10&apiKey=${this._apikey}`)
   }
 
-  getSuggestions(query){
+  getSuggestions(query: string){
     return this._http.get(`https://api.spoonacular.com/food/menuItems/suggest?query=${query}&number=5&apiKey=${this.key_sumon}`)
   }
 
   getRandomTrivia(){
-    return this._http.get<any>(`https://api.spoonacular.com/food/trivia/random?apiKey=${this.apiKey}`);
+    return this._http.get<{text: string}>(`https://api.spoonacular.com/food/trivia/random?apiKey=${this.apiKey}`);
   }
 
   getRandomJoke(){
-    return this._http.get<any>(`https://api.spoonacular.com/food/jokes/random?apiKey=${this.apiKey}`);
+    return this._http.get<{text: string}>(`https://api.spoonacular.com/food/jokes/random?apiKey=${this.apiKey}`);
   }
 
-  getRandomRecipe(count){
+  getRandomRecipe(count: number){
     return this._http.get<any>(` https://api.spoonacular.com/recipes/random?number=${count}&apiKey=${this._apikey}`)
   }
 
