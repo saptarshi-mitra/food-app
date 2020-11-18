@@ -44,26 +44,16 @@ export class NotesComponent implements OnInit {
     this.email === '' ? this.isLogged = false : this.isLogged = true;
   }
 
-  save(value){
-    this.http.patch(`https://food-app-385cd.firebaseio.com/users/${this.localId}/notes.json?auth=${this.idToken}`,{
-      "note":value
-    }).subscribe(response =>{
-      console.log(response)
-    })
-    
-  }
-  submit(timer){
+  submit(value,timer){
     this.timearray =timer.split("T");
     this.time = this.timearray[1].split(":")
     this.hour = Math.abs((this.time[0] - this.d.getHours())*60);
     this.min = Math.abs(this.time[1] - this.d.getMinutes());
     this.sum = this.hour + this.min;
-    this.http.get(`https://food-app-385cd.firebaseio.com/users/${this.localId}/notes.json?auth=${this.idToken}`).subscribe(response =>{
-      setTimeout(function myFunc(){
-        this.result = response['note'];
-        document.getElementById('demo').innerHTML = this.result;
-      },(this.sum)*60000)
-    });
+    //console.log((this.sum)*60000)
+    setTimeout(function myFunc(){
+      document.getElementById('demo').innerHTML = value;
+      },(this.sum)*60000) 
     setTimeout(function playAudio(){
       let audio = new Audio();
       audio.src = "../../../assets/audio/drum.mp3";
@@ -72,8 +62,4 @@ export class NotesComponent implements OnInit {
     },(this.sum)*60000)
     this.condition=true;
   }
-
-
-
-
 }
