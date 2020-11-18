@@ -4,11 +4,8 @@
 <div class="container my-5" *ngIf="isLogged">
     <div class="content d-flex flex-column">
         <div class="h4 display-4">Make your notes here.</div>
-        <textarea name="note" id="note" cols="80" rows="10" placeholder="Enter your notes here." #notearea></textarea>
-        <button class="btn btn-success" (click)="save(notearea.value)">Save</button>
-    </div>
-    <div class="setTime mt-4">
-        <input type="datetime-local" #timer>
-        <button class="btn btn-success mx-2" (click)="submit(timer.value)">Submit</button>
+        <textarea class="my-4" name="note" id="note" cols="80" rows="10" placeholder="Enter your notes here." #notearea></textarea>
+        <input type="datetime-local" class="form-control mx-auto" style="width: 50%;" #timer>
+        <button class="btn btn-success my-4 mx-auto" (click)="submit(notearea.value,timer.value)">Submit</button>
     </div>
 </div>
