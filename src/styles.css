@@ -9,3 +9,15 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.success-snackbar{
+  background-color: #f2e230;
+  color: green;
+  margin-top: 70px !important;
+}
+
+.error-snackbar{
+  background-color: #e84e3c;
+  color: yellow;
+  margin-top: 70px !important;
+}

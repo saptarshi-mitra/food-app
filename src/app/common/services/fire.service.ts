@@ -57,5 +57,20 @@ export class FireService {
       "timeStamp": new Date()
     })
   }
+  
+  getNumberOfSubscribedPeople(){
+    return this.http.get(`https://food-app-385cd.firebaseio.com/subscribe.json?shallow=true`)
+  }
+
+  addNewSubscriber(id, firstName, lastName, email){
+    return this.http.patch(`https://food-app-385cd.firebaseio.com/subscribe.json`,{
+      id: {
+        "id": id,
+        "firstName": firstName,
+        "lastName": lastName,
+        "email": email
+      }
+    })
+  }
 
 }
