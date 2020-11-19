@@ -58,7 +58,8 @@ export class NotesComponent implements OnInit {
   }
 
   submit(value,timer){
-    this.timearray =timer.split("T");
+    try{
+      this.timearray =timer.split("T");
     this.time = this.timearray[1].split(":")
     this.hour = Math.abs((this.time[0] - this.d.getHours())*60);
     this.min = Math.abs(this.time[1] - this.d.getMinutes());
@@ -76,6 +77,7 @@ export class NotesComponent implements OnInit {
     },(this.sum)*60000)
     this.condition=true;
     this.form.reset();
+    }catch(error){}
   }
 
   edit(){
@@ -84,7 +86,8 @@ export class NotesComponent implements OnInit {
   update(value){
     clearInterval(this.display)
     clearInterval(this.displayTimer)
-    this.time = this.timearray[1].split(":")
+    try{
+      this.time = this.timearray[1].split(":")
     this.hour = Math.abs((this.time[0] - this.d.getHours())*60);
     this.min = Math.abs(this.time[1] - this.d.getMinutes());
     this.sum = this.hour + this.min;
@@ -99,6 +102,8 @@ export class NotesComponent implements OnInit {
       audio.load();
       audio.play();
     },(this.sum)*60000)
+    }catch(error){}
+    
   }
 
   delete(){
