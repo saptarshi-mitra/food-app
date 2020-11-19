@@ -48,6 +48,7 @@ import { IndividualGraphsComponent } from './meal-parent/user-meals/individual-g
 import { MealItemComponent } from './meal-parent/meal/meal-item/meal-item.component';
 import { ShortenPipe } from './common/pipe/shorten.pipe';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MatTabsModule,
     MatTooltipModule,
     MatMenuModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
