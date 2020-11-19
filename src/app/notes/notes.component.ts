@@ -1,8 +1,8 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, Injectable, Input, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe } from "@angular/common";
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { isNgTemplate } from '@angular/compiler';
 import { AuthService } from '../auth/auth.service';
 
@@ -17,8 +17,16 @@ import { AuthService } from '../auth/auth.service';
 export class NotesComponent implements OnInit {
 
   d = new Date();
+  form;
   condition:boolean;
   isLogged:boolean;
+  textUpdate:string;
+  show:boolean = false;
+  display;
+  displayTimer;
+  displayUpdate;
+  displayUpdateTimer;
+  newNote:string;
   result="";
   user;
   data;
@@ -31,7 +39,12 @@ export class NotesComponent implements OnInit {
   min:number;
   sum:number;
 
-  constructor(private http:HttpClient,private userInfor: AuthService) {}
+  constructor(private http:HttpClient,private userInfor: AuthService,private fb:FormBuilder) {
+    this.form = fb.group({
+      note: ['',Validators.required],
+      datetime: ['',Validators.required]
+    })
+  }
 
   ngOnInit(): void {
     this.userInfor.user.subscribe(response =>{
@@ -50,16 +63,49 @@ export class NotesComponent implements OnInit {
     this.hour = Math.abs((this.time[0] - this.d.getHours())*60);
     this.min = Math.abs(this.time[1] - this.d.getMinutes());
     this.sum = this.hour + this.min;
+    this.textUpdate = value;
     //console.log((this.sum)*60000)
-    setTimeout(function myFunc(){
+    this.display= setTimeout(function myFunc(){
       document.getElementById('demo').innerHTML = value;
       },(this.sum)*60000) 
-    setTimeout(function playAudio(){
+    this.displayTimer = setTimeout(function playAudio(){
       let audio = new Audio();
       audio.src = "../../../assets/audio/drum.mp3";
       audio.load();
       audio.play();
     },(this.sum)*60000)
     this.condition=true;
+    this.form.reset();
   }
+
+  edit(){
+    this.show =! this.show;
+  }
+  update(value){
+    clearInterval(this.display)
+    clearInterval(this.displayTimer)
+    this.time = this.timearray[1].split(":")
+    this.hour = Math.abs((this.time[0] - this.d.getHours())*60);
+    this.min = Math.abs(this.time[1] - this.d.getMinutes());
+    this.sum = this.hour + this.min;
+    this.newNote = value;
+    //console.log(this.sum)
+    this.displayUpdate = setTimeout(function myFunc(){
+      document.getElementById('demo').innerHTML = value;
+    },(this.sum)*60000)
+    this.displayUpdateTimer = setTimeout(function playAudio(){
+      let audio = new Audio();
+      audio.src = "../../../assets/audio/drum.mp3";
+      audio.load();
+      audio.play();
+    },(this.sum)*60000)
+  }
+
+  delete(){
+    clearInterval(this.display)
+    clearInterval(this.displayTimer)
+    clearInterval(this.displayUpdate)
+    clearInterval(this.displayUpdateTimer)
+  }
+
 }

@@ -1,6 +1,11 @@
 .navigation-bar {
   background-color: #39bf5e;
 }
+#noter{
+  padding: 10px;
+  background-image: linear-gradient(to right,white,#39bf5e);
+  border: solid green thin;
+}
 
 @media all and (min-width: 768px) {
   .navbar .nav-item .dropdown-menu {

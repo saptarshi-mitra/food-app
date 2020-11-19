@@ -4,8 +4,18 @@
 <div class="container my-5" *ngIf="isLogged">
     <div class="content d-flex flex-column">
         <div class="h4 display-4">Make your notes here.</div>
-        <textarea class="my-4" name="note" id="note" cols="80" rows="10" placeholder="Enter your notes here." #notearea></textarea>
-        <input type="datetime-local" class="form-control mx-auto" style="width: 50%;" #timer>
-        <button class="btn btn-success my-4 mx-auto" (click)="submit(notearea.value,timer.value)">Submit</button>
+        <form [formGroup]="form" class="mx-auto">
+            <textarea class="my-4" formControlName="note" name="note" id="note" cols="80" rows="10" placeholder="Enter your notes here." style="padding: 10px;" #notearea></textarea>
+            <input type="datetime-local" formControlName="datetime" class="form-control mx-auto" style="width: 50%;" #timer>
+            <div class="d-flex">
+                <button class="btn btn-success my-4 mx-auto" (click)="submit(notearea.value,timer.value)">Submit</button>
+                <button class="btn btn-danger my-4 mx-auto" (click)="delete()">Delete</button>
+            </div>   
+        </form>
+        <div class="h4 display-5" *ngIf="condition"><a (click)="edit()" id="editor">Want to edit your Note?</a></div>
+        <div class="d-flex" *ngIf="show">
+            <input type="text" class="form-control mx-2" [value]="textUpdate" #textval>
+            <button class="btn btn-success mx-auto" (click)="update(textval.value)">Update</button>
+        </div>
     </div>
 </div>
