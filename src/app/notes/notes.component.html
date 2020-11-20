@@ -3,7 +3,7 @@
 </div>
 <div class="container my-5" *ngIf="isLogged">
     <div class="content d-flex flex-column">
-        <div class="h4 display-4">Make your notes here.</div>
+        <div class="h4 display-4 mt-4">Make your notes here.</div>
         <form [formGroup]="form" class="mx-auto">
             <textarea class="my-4" formControlName="note" name="note" id="note" cols="80" rows="10" placeholder="Enter your notes here." style="padding: 10px;" #notearea></textarea>
             <input type="datetime-local" formControlName="datetime" class="form-control mx-auto" style="width: 50%;" #timer>
