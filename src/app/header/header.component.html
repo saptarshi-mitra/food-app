@@ -27,7 +27,7 @@
               Notifications
             </a>
             <ul class="dropdown-menu dropdown-menu-right">
-              <li><a  id="notify" class="dropdown-item">No notification</a></li>
+              <li><a  id="notify" class="dropdown-item notify">No notification</a></li>
             </ul>
           </li>
         </ul>
@@ -90,6 +90,12 @@
       <div class="collapse" id="user">
         <a class="side-link pl-4 pt-2 pb-2" data-toggle="collapse" data-target="#demo" routerLink="/meal"> Meal</a>
         <a class="side-link pl-4 pt-2 pb-2" data-toggle="collapse" data-target="#demo" routerLink="/favourite"> Favourites </a>
+
+        <a class="side-link pl-4 pt-2 pb-2" data-toggle="collapse" data-target="#note">Notification <i class="pl-2 fas fa-caret-down"></i></a>
+        <ul class="collapse mobile-note" id="note">
+          <li><a id="notify" class="dropdown-item notify">No notification</a></li>
+        </ul>
+
         <a class="side-link pl-4 pt-2 pb-2" data-toggle="collapse" data-target="#demo" routerLink="account/usernameChange"> Settings </a>
         <a class="side-link pl-4 pt-2 pb-2" data-toggle="collapse" data-target="#demo" routerLink="/notes"> Notes </a>
         <a class="side-link pl-4 pt-2 pb-2 text-danger" (click)="onLogout()" data-toggle="collapse" data-target="#user,#demo"> Signout </a>
