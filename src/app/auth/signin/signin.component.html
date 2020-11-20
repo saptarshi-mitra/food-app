@@ -6,7 +6,7 @@
         <img class="mt-5 mb-4" src="https://spoonacular.com/cdn/ingredients_100x100/apple.jpg" alt="" width="72"
           height="72">
       </div>
-      <h1 class="text-center h3 mb-3 font-weight-normal">Sign in to foodApp</h1>
+      <h1 class="text-center h3 mb-3 font-weight-normal">Sign in to Hungry Time</h1>
 
       <div class="alert alert-danger" *ngIf="error">
         {{ error }}
@@ -16,7 +16,7 @@
       <input type="email" id="inputEmail" class="form-control mb-3" placeholder="Email address" autofocus="true"
         name="email" ngModel required email>
       <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control mb-3" placeholder="Password" ngModel name="password"
+      <input type="password" id="inputPassword" class="form-control mb-3" placeholder="Password" ngModel name="password" minlength="6"
         required>
       <!-- <div class="checkbox mb-3">
       <label>
