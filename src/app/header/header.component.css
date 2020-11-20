@@ -70,3 +70,11 @@
 #user{
 	background-color: #065000;
 }
+
+.mobile-note{
+  list-style-type: none;
+}
+
+.mobile-note li a{
+  color: white;
+}
