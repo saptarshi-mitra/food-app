@@ -10,14 +10,27 @@
         <a class="nav-link" href="#trending">Trending</a>
         <a class="nav-link" routerLink="/help">Help</a>
         <a class="nav-link" routerLink="/about">About Us</a>
+        <!-- 
         <div class="dropdown mx-1" style="margin-top:1px ;" *ngIf="isAuthenticated">
           <button class="btn btn-success btn-sm dropdown-toggle mt-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 0;">
             Notifications
           </button>
           <div class="dropdown-menu mt-2" id="noter" aria-labelledby="dropdownMenuButton">
-            <p id="demo"></p>
+            <p id="notify">No notifications</p>
           </div>
-        </div>
+        </div> -->
+      </div>
+      <div *ngIf="isAuthenticated" class="d-flex">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown">
+              Notifications
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li><a  id="notify" class="dropdown-item">No notification</a></li>
+            </ul>
+          </li>
+        </ul>
       </div>
       <!-- signin/signup buttons -->
 

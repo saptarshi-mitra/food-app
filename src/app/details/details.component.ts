@@ -15,7 +15,7 @@ export class DetailsComponent implements OnInit {
 
   isLoaded = false;
   username: string;
-  comment: string;
+  comment: string ;
   recipeReview = [];
   isInMeal = false;
   isFavourite = false;
@@ -150,13 +150,15 @@ export class DetailsComponent implements OnInit {
   }
 
   addComment() {
-    this.fire.addReview(this.recipe.id, this.comment, this.username).subscribe();
-    this.recipeReview.unshift({
-      "review": this.comment,
-      "user": this.username,
-      "timeStamp": new Date()
-    })
-    this.comment = "";
+    if (this.comment) {
+      this.fire.addReview(this.recipe.id, this.comment, this.username).subscribe();
+      this.recipeReview.unshift({
+        "review": this.comment,
+        "user": this.username,
+        "timeStamp": new Date()
+      })
+      this.comment = "";
+    }
   }
 
 }
